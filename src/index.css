@@ -1,0 +1,244 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Manrope", sans-serif;
+}
+
+/* Navbar Style */
+.customNav {
+  background-color: #fcfcfc !important;
+  padding: 1rem 6rem !important;
+  box-shadow: 0 2px 3px 0 rgba(139, 139, 139, 0.4);
+}
+
+.navBrand {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.nav-link {
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.nav-link.active {
+  color: blue !important;
+  font-weight: 500;
+}
+
+.nav-link:hover {
+  color: blue !important;
+}
+/* End of Navbar Style */
+
+/* Hero Section */
+.carousel-section {
+  padding-top: 5rem;
+}
+
+.main-title-carousel {
+  text-shadow: 5px 5px 4px rgba(47, 47, 47, 0.72);
+  font-size: 48px;
+  font-weight: 800;
+}
+
+.description-title-carousel {
+  text-shadow: 5px 5px 4px rgba(47, 47, 47, 0.72);
+  font-size: 32px;
+  font-weight: 600;
+}
+/* End of Hero Section */
+
+/* Section 1 */
+.section1-left {
+  padding-top: 8rem;
+}
+
+.title-selamat-datang {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.sub-title-selamat-datang {
+  font-size: 40px;
+  font-weight: 600;
+  text-shadow: 1px 1px 1px rgba(47, 47, 47, 0.72);
+}
+
+.deskripsi-selamat-datang {
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.img-thumbnail {
+  max-width: 80% !important;
+  margin-left: 5rem;
+}
+/* End of Section 1 */
+
+/* Section 2 */
+.section-2 {
+  background-color: #f3f3f3;
+}
+
+.title-rekomendasi-wisata {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.sub-titile-rekomendasi-wisata {
+  font-size: 40px;
+  font-weight: 700;
+  text-shadow: 1px 2px 1px rgba(47, 47, 47, 0.72);
+}
+
+.deskripsi-rekomendasi-wisata {
+  font-size: 15px;
+  font-weight: 300;
+}
+/* End of Section 2 */
+
+/* Slider Image */
+[type="radio"] {
+  display: none;
+}
+
+#slider {
+  height: 30vw;
+  width: 40vw;
+  margin: 0 auto;
+  /* left: 1%; */
+  position: relative;
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+#slider label {
+  margin: auto;
+  background-color: aliceblue;
+  width: 60%;
+  height: 100%;
+  border-radius: 4px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+
+#s1:checked ~ #slide3,
+#s2:checked ~ #slide1,
+#s3:checked ~ #slide2 {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  transform: translate3d(-50%, 0, -100px);
+}
+
+#s1:checked ~ #slide1,
+#s2:checked ~ #slide2,
+#s3:checked ~ #slide3 {
+  box-shadow: 0 13px 25px 0 rgba(0, 0, 0, 0.3), 0 11px 7px 0 rgba(0, 0, 0, 0.19);
+  transform: translate3d(0, 0, 0);
+}
+
+#s1:checked ~ #slide2,
+#s2:checked ~ #slide3,
+#s3:checked ~ #slide1 {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.3), 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  transform: translate3d(50%, 0, -100px);
+}
+/* End of Slider Image */
+
+/* Section 3 */
+.section3-right {
+  padding-top: 8rem;
+}
+
+/* End of Section 3 */
+
+/* Footer */
+.footer-text {
+  font-size: 20px;
+  font-weight: 600;
+  color: #8a8a8a;
+}
+/* End of Footer */
+
+/* Wisata */
+
+.card-body a {
+  text-decoration: none;
+}
+
+/* End of Wisata */
+
+/* Detail Wisata */
+.jumbotron {
+  margin-top: 5rem;
+  background-image: url(./assets/images/slide1.png);
+  background-size: cover;
+  /* background-position: 0 -210px; */
+  border-bottom: 5px solid lightskyblue;
+}
+
+.detail-wisata-image {
+  height: 50%;
+  width: 100%;
+}
+
+.head-title-detail-wisata {
+  margin-top: 1.75rem;
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.address-title {
+  margin-top: -0.3rem;
+  margin-bottom: 1.25rem;
+  font-size: 20px;
+  font-weight: 500;
+  color: rgba(101, 98, 98, 0.46);
+}
+
+.deskripsi-1,
+.deskripsi-2 {
+  text-align: justify;
+}
+
+.section-ulasan {
+  margin-top: 3rem;
+  margin-left: -0.5rem;
+}
+
+.list-ulasan {
+  margin-top: 3rem;
+  margin-left: 0.5rem;
+}
+
+.form-ulasan,
+.list-ulasan {
+  border: 2px solid rgba(161, 161, 161, 0.185);
+  padding: 1.5rem;
+  border-radius: 5px;
+  margin-bottom: 5rem;
+}
+
+.input-ulasan {
+  background-color: rgba(238, 238, 238, 1) !important;
+  border-color: rgba(201, 201, 201, 0.64) !important;
+  color: rgba(141, 141, 141, 1) !important;
+}
+
+.btn-submit-ulasan {
+  width: 100%;
+}
+
+/* End of Detail Wisata */
+
+/* Svg */
+svg {
+  width: 64px;
+  height: 64px;
+}
+
+/* End of Svg */
