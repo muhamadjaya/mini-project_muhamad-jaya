@@ -7,6 +7,7 @@ import DetailWisata from "./pages/DetailWisata";
 import VirtualTour from "./pages/VirtualTour";
 import Berita from "./pages/Berita";
 import Login from "./pages/Login";
+import KelolaWisata from "./pages/KelolaWisata";
 import InputWisata from "./pages/InputWisata";
 import NotFound from "./pages/NotFound";
 
@@ -19,7 +20,8 @@ const App = () => {
       <Route path="/virtualtour" element={<VirtualTour />} />
       <Route path="/berita" element={<Berita />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/inputwisata" element={<InputWisata />} />
+      <Route path="/kelolawisata" element={<KelolaWisata />} />
+      <Route path="/kelolawisata/inputwisata" element={<InputWisata />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

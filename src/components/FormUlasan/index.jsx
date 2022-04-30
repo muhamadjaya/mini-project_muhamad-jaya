@@ -1,72 +1,114 @@
-import React from "react";
+import React, { useState } from "react";
+// Apollo Client
+import { useQuery, useMutation } from "@apollo/client";
+// Hasura GraphQL Queries
+import { GET_LISTULASAN } from "../../graphql/queries";
+// Hasura GraphQL Mutations
+import { INSERT_ULASAN } from "../../graphql/mutations";
 
-const FormUlasan = ({ dataUlasan }) => {
-  const items = dataUlasan.ulasan;
+const FormUlasan = ({ dataWisata }) => {
+  const idwisata = dataWisata.wisata[0].id;
+
+  console.log("ini id wisata", idwisata);
+
+  const { data, loading, error, refetch } = useQuery(GET_LISTULASAN);
+
+  const [insertWisata, { loading: loadingInsert }] = useMutation(
+    INSERT_ULASAN,
+    { refetchQueries: [GET_LISTULASAN] }
+  );
+
+  const [inputs, setInputs] = useState({
+    nama: "",
+    email: "",
+    ulasan: "",
+  });
+
+  const handleInput = (value, key) => {
+    const newInputs = { ...inputs };
+
+    newInputs[key] = value;
+
+    // Kepo isi variable
+    console.log(newInputs[key]);
+
+    setInputs(newInputs);
+
+    // Kepo isi variable
+    console.log(newInputs);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    insertWisata({
+      variables: {
+        object: {
+          nama: inputs.nama,
+          email: inputs.email,
+          ulasan: inputs.ulasan,
+          id_wisata: idwisata,
+        },
+      },
+    });
+
+    setInputs({
+      nama: "",
+      email: "",
+      ulasan: "",
+    });
+  };
 
   return (
-    <>
-      <div className="container">
-        <div className="row justify-content-between">
-          <div className="col-12 col-lg-7">
-            <div className="section-ulasan">
-              <form className="row form-ulasan">
-                <h4 className="pb-2">Beri Ulasan Mengenai Wisata</h4>
-                <hr />
-                <div className="col-md-6 mt-4">
-                  <input
-                    type="text"
-                    className="form-control input-ulasan"
-                    placeholder="Masukkan Nama"
-                    aria-label="Masukkan Nama"
-                  />
-                </div>
-
-                <div className="col-md-6 mt-4">
-                  <input
-                    type="text"
-                    className="form-control input-ulasan"
-                    placeholder="Masukkan Email"
-                    aria-label="Masukkan Email"
-                  />
-                </div>
-
-                <div className="col-12 mt-4">
-                  <textarea
-                    className="form-control input-ulasan"
-                    placeholder="Masukkan Ulasan"
-                    aria-label="Masukkan Ulasan"
-                    rows={7}
-                  />
-                </div>
-
-                <div className="col-12 mt-3">
-                  <button
-                    type="submit"
-                    className="btn btn-primary btn-submit-ulasan"
-                  >
-                    Kirim
-                  </button>
-                </div>
-              </form>
-            </div>
+    <div className="col-12 col-lg-7">
+      <div className="section-ulasan">
+        <form className="row form-ulasan" onSubmit={handleSubmit}>
+          <h4 className="pb-2">Beri Ulasan Mengenai Wisata</h4>
+          <hr />
+          <div className="col-md-6 mt-4">
+            <input
+              type="text"
+              name="nama"
+              className="form-control input-ulasan"
+              placeholder="Masukkan Nama"
+              aria-label="Masukkan Nama"
+              value={inputs.nama}
+              onChange={(e) => handleInput(e.target.value, e.target.name)}
+            />
           </div>
-          <div className="col-12 col-lg-5">
-            <div className="list-ulasan">
-              <h4>{items.length} Ulasan</h4>
-              <hr />
 
-              {dataUlasan?.ulasan.map((value, valueIdx) => (
-                <>
-                  <h6 key={valueIdx}>{value.nama}</h6>
-                  <p>{value.ulasan}</p>
-                  <hr />
-                </>
-              ))}
-            </div>
+          <div className="col-md-6 mt-4">
+            <input
+              type="email"
+              name="email"
+              className="form-control input-ulasan"
+              placeholder="Masukkan Email"
+              aria-label="Masukkan Email"
+              value={inputs.email}
+              onChange={(e) => handleInput(e.target.value, e.target.name)}
+            />
           </div>
-        </div>
+
+          <div className="col-12 mt-4">
+            <textarea
+              name="ulasan"
+              className="form-control input-ulasan"
+              placeholder="Masukkan Ulasan"
+              aria-label="Masukkan Ulasan"
+              rows={7}
+              value={inputs.ulasan}
+              onChange={(e) => handleInput(e.target.value, e.target.name)}
+            />
+          </div>
+
+          <div className="col-12 mt-3">
+            <button type="submit" className="btn btn-primary btn-submit-ulasan">
+              Kirim
+            </button>
+          </div>
+        </form>
       </div>
-    </>
+    </div>
   );
 };
 

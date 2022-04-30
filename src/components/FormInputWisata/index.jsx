@@ -195,7 +195,7 @@ const FormInputWisata = () => {
                     />
                   </div>
                 </div>
-
+                {/* 
                 <div className="row mb-3">
                   <label htmlFor="gambar" className="col-sm-2 col-form-label">
                     Gambar
@@ -213,17 +213,19 @@ const FormInputWisata = () => {
                       }
                     />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="row mb-3">
                   <label
-                    htmlFor="image-wisata"
+                    htmlFor="gambar-wisata"
                     className="col-sm-2 col-form-label"
                   >
                     Image
                   </label>
                   <div className="col-sm-10">
                     <input
+                      className="form-control"
+                      id="gambar-wisata"
                       type="file"
                       onChange={(e) => {
                         uploadImage(e);
@@ -232,7 +234,7 @@ const FormInputWisata = () => {
                   </div>
                 </div>
 
-                <div className="row mb-3">
+                {/* <div className="row mb-3">
                   <label
                     htmlFor="image-wisata"
                     className="col-sm-2 col-form-label"
@@ -242,7 +244,7 @@ const FormInputWisata = () => {
                   <div className="col-sm-10">
                     <img src={baseImage} height="200px" alt="img preview" />
                   </div>
-                </div>
+                </div> */}
 
                 <div className="row mb-3">
                   <div className="col-sm-2"></div>

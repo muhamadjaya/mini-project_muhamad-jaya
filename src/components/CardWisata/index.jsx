@@ -53,17 +53,27 @@ const CardWisata = () => {
 
   return (
     <>
-      <div className="section-section mb-5">
-        <input
-          onChange={onChangeTitle}
-          value={title}
-          autoFocus
-          type="text"
-          className="searchbyname-input"
-        />
-        <button type="submit" className="btn-search" onClick={handleSearch}>
-          Search
-        </button>
+      <div className="section-section mb-4">
+        <div className="row">
+          <div className="col-md-3">
+            <input
+              onChange={onChangeTitle}
+              value={title}
+              autoFocus
+              type="text"
+              className="form-control searchbyname-input"
+            />
+          </div>
+          <div className="col-md-2">
+            <button
+              type="submit"
+              className="btn btn-primary btn-search"
+              onClick={handleSearch}
+            >
+              Search
+            </button>
+          </div>
+        </div>
       </div>
 
       {loading || loadingByName ? (

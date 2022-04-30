@@ -13,3 +13,23 @@ export const INSERT_WISATA = gql`
     }
   }
 `;
+
+export const INSERT_ULASAN = gql`
+  mutation insertUlasan($object: ulasan_insert_input!) {
+    insert_ulasan_one(object: $object) {
+      id
+      nama
+      email
+      ulasan
+      id_wisata
+    }
+  }
+`;
+
+export const DELETE_WSIATA_BY_ID = gql`
+  mutation deleteWisataById($id: Int!) {
+    delete_wisata_by_pk(id: $id) {
+      id
+    }
+  }
+`;

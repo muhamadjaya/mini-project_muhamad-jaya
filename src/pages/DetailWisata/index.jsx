@@ -2,15 +2,12 @@ import React from "react";
 import Navbar from "../../components/Navbar";
 import Hero from "../../components/Hero";
 import FormUlasan from "../../components/FormUlasan";
+import ListUlasan from "../../components/ListUlasan";
 import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 // Apollo Client
 import { useQuery } from "@apollo/client";
 // Hasura GraphQL Queries
-import {
-  GET_WISATA_BY_ID,
-  GET_ULASAN,
-  GET_WISATA_AND_ULASAN,
-} from "../../graphql/queries";
+import { GET_WISATA_AND_ULASAN } from "../../graphql/queries";
 
 import { useParams } from "react-router-dom";
 
@@ -19,15 +16,6 @@ const DetailWisata = () => {
 
   const { data, loading, error, refetch } = useQuery(GET_WISATA_AND_ULASAN, {
     variables: { id: id },
-  });
-
-  const {
-    data: dataUlasan,
-    loading: loadingUlasan,
-    error: errorUlasan,
-    refetch: refetchUlasan,
-  } = useQuery(GET_ULASAN, {
-    variables: { id_wisata: 1 },
   });
 
   console.log("ini data wisata", data);
@@ -59,13 +47,15 @@ const DetailWisata = () => {
                     </h3>
                     <h4 className="address-title">{value.alamat}</h4>
                     <p className="deskripsi-1">{value.deskripsi}</p>
-                    {/* <p className="deskripsi-2">
-                
-              </p> */}
                   </div>
 
                   <div className="section-ulasan">
-                    <FormUlasan dataUlasan={data} />
+                    <div className="container">
+                      <div className="row justify-content-between">
+                        <FormUlasan dataWisata={data} />
+                        <ListUlasan dataUlasan={data} />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
