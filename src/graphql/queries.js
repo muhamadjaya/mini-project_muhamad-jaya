@@ -86,3 +86,42 @@ export const GET_ULASAN_BY_ID_WISATA = gql`
     }
   }
 `;
+
+export const GET_LISTBERITA = gql`
+  query getListBerita {
+    berita(order_by: { id: asc }) {
+      id
+      judul
+      deskripsi
+      tgl_posting
+      gambar
+      id_admin
+    }
+  }
+`;
+
+export const GET_BERITA_BY_ID = gql`
+  query getBeritaById($id: Int!) {
+    berita(where: { id: { _eq: $id } }) {
+      id
+      judul
+      deskripsi
+      tgl_posting
+      gambar
+      id_admin
+    }
+  }
+`;
+
+export const GET_ADMIN = gql`
+  query getAdmin($username: String, $password: String) {
+    admin(
+      where: { username: { _eq: $username }, password: { _eq: $password } }
+    ) {
+      id
+      nama_admin
+      username
+      password
+    }
+  }
+`;

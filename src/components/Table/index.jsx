@@ -34,59 +34,66 @@ const Table = () => {
   };
 
   return (
-    <div className="table-section">
-      <div className="row mb-4">
-        <div className="col-md-4">
-          <Link to="/kelolawisata/inputwisata" className="btn btn-primary">
-            Tambah Wisata
-          </Link>
-        </div>
-      </div>
+    <div className="container-md">
       <div className="row">
         <div className="col-md-12">
-          {loading ? (
-            <LoadingSvg />
-          ) : (
-            <table className="table table-bordered">
-              <thead className="table-secondary">
-                <tr className="text-center">
-                  <td>No</td>
-                  <td>Nama Wisata</td>
-                  <td>Kategori</td>
-                  <td>Alamat</td>
-                  <td>Deskripsi</td>
-                  <td className="text-center" colSpan={2}>
-                    Actions
-                  </td>
-                </tr>
-              </thead>
+          <div className="row mb-4">
+            <div className="col-md-4">
+              <Link to="/kelolawisata/inputwisata" className="btn btn-primary">
+                Tambah Wisata
+              </Link>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-12">
+              {loading ? (
+                <LoadingSvg />
+              ) : (
+                <table className="table table-bordered">
+                  <thead className="table-secondary">
+                    <tr className="text-center">
+                      <td>No</td>
+                      <td>Nama Wisata</td>
+                      <td>Kategori</td>
+                      <td>Alamat</td>
+                      <td>Deskripsi</td>
+                      <td className="text-center" colSpan={2}>
+                        Actions
+                      </td>
+                    </tr>
+                  </thead>
 
-              <tbody>
-                {data?.wisata.map((value, valueIdx) => (
-                  <tr key={valueIdx} data-key={value.id}>
-                    <td className="text-center">{valueIdx + 1}</td>
-                    <td>{value.nama_wisata}</td>
-                    <td className="text-center">{value.kategori}</td>
-                    <td>{value.alamat}</td>
-                    <td>{value.deskripsi.substr(0, 50)}</td>
-                    <td className="text-center">
-                      <button className="btn btn-outline-primary">
-                        Update
-                      </button>
-                    </td>
-                    <td className="text-center">
-                      <button
-                        className="btn btn-outline-danger"
-                        onClick={() => onDeleteData(value.id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+                  <tbody>
+                    {data?.wisata.map((value, valueIdx) => (
+                      <tr key={valueIdx} data-key={value.id}>
+                        <td className="text-center">{valueIdx + 1}</td>
+                        <td>{value.nama_wisata}</td>
+                        <td className="text-center">{value.kategori}</td>
+                        <td>{value.alamat}</td>
+                        <td>{value.deskripsi.substr(0, 50)}</td>
+                        <td className="text-center">
+                          <Link
+                            to={`/kelolawisata/ubahwisata/${value.id}`}
+                            className="btn btn-outline-primary"
+                          >
+                            Update
+                          </Link>
+                        </td>
+                        <td className="text-center">
+                          <button
+                            className="btn btn-outline-danger"
+                            onClick={() => onDeleteData(value.id)}
+                          >
+                            Delete
+                          </button>
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </div>
+          </div>
         </div>
       </div>
     </div>

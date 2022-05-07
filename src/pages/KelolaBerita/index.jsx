@@ -4,26 +4,23 @@ import Sidebar from "../../components/Sidebar";
 import Hero from "../../components/Hero";
 import Footer from "../../components/Footer";
 
-import Table from "../../components/Table";
+import TableBerita from "../../components/TableBerita";
 
-const KelolaWisata = () => {
+const KelolaBerita = () => {
   return (
     <>
       <Sidebar />
       <Hero />
-      <div id="wrap">
-        <div className="container mt-5 pt-5" id="main">
-          <div className="row">
-            <div className="col-12 col-lg-12">
-              <Table />
-            </div>
+      <div className="container mt-5 pt-5">
+        <div className="row">
+          <div className="col-12 col-lg-12">
+            <TableBerita />
           </div>
         </div>
       </div>
-
       <Footer />
     </>
   );
 };
 
-export default KelolaWisata;
+export default KelolaBerita;

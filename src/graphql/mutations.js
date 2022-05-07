@@ -33,3 +33,24 @@ export const DELETE_WSIATA_BY_ID = gql`
     }
   }
 `;
+
+export const INSERT_BERITA = gql`
+  mutation insertBerita($object: berita_insert_input!) {
+    insert_berita_one(object: $object) {
+      id
+      judul
+      deskripsi
+      tgl_posting
+      gambar
+      id_admin
+    }
+  }
+`;
+
+export const DELETE_BERITA_BY_ID = gql`
+  mutation deleteBeritaById($id: Int!) {
+    delete_berita_by_pk(id: $id) {
+      id
+    }
+  }
+`;

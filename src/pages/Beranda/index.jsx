@@ -15,6 +15,16 @@ const Beranda = () => {
     setSelectedIndex(index);
   };
 
+  // Mapbox
+  // var mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
+
+  // mapboxgl.accessToken =
+  //   "pk.eyJ1IjoiamF5YW11aGFtYWQ5OSIsImEiOiJja3B0Nmh5MnAwejB4MndtdXFudGJlOW1pIn0.OCi7urJJMAsdI084T1lq5A";
+  // var map = new mapboxgl.Map({
+  //   container: "YOUR_CONTAINER_ELEMENT_ID",
+  //   style: "mapbox://styles/mapbox/streets-v11",
+  // });
+
   return (
     <>
       {/* Navbar */}
@@ -279,6 +289,142 @@ const Beranda = () => {
         </section>
       </div>
       {/* End of Section 3 */}
+
+      {/* Section 4 */}
+      <div className="section-rekomendasi-wisata mt-5 ">
+        <section className="section-2 pb-5">
+          <div className="row pt-5">
+            <div className="col-12 col-lg-12">
+              <h5 className="text-primary font-weight-bold text-center title-rekomendasi-wisata">
+                Highlight Berita
+              </h5>
+              <h1 className="text-center sub-titile-rekomendasi-wisata">
+                Destinasi Wisata Yang Wajib Anda Kunjungi
+              </h1>
+              <p className="text-center deskripsi-rekomendasi-wisata">
+                Membantu kamu untuk menemukan tempat wisata terbaik yang sesuai
+                dengan <br /> keinginan sebelum memulai petualangan mu di
+                Banten.
+              </p>
+            </div>
+          </div>
+
+          <div className="container">
+            <div className="row pt-5">
+              <div className="col-12 col-lg-12">
+                {/* Coba */}
+                <div className="row row-cols-1 row-cols-md-3 g-4">
+                  <div className="col">
+                    <div className="card h-100">
+                      <img
+                        src={Image1}
+                        className="card-img-top"
+                        alt="image-berita"
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">Card title</h5>
+                        <p className="card-text">
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This content is
+                          a little bit longer.
+                        </p>
+                      </div>
+                      <div className="card-footer">
+                        <small className="text-muted">
+                          Last updated 3 mins ago
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div className="card h-100">
+                      <img
+                        src={Image1}
+                        className="card-img-top"
+                        alt="image-berita2"
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">Card title</h5>
+                        <p className="card-text">
+                          This card has supporting text below as a natural
+                          lead-in to additional content.
+                        </p>
+                      </div>
+                      <div className="card-footer">
+                        <small className="text-muted">
+                          Last updated 3 mins ago
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col">
+                    <div className="card h-100">
+                      <img
+                        src={Image1}
+                        className="card-img-top"
+                        alt="image-berita3"
+                      />
+                      <div className="card-body">
+                        <h5 className="card-title">Card title</h5>
+                        <p className="card-text">
+                          This is a wider card with supporting text below as a
+                          natural lead-in to additional content. This card has
+                          even longer content than the first to show that equal
+                          height action.
+                        </p>
+                      </div>
+                      <div className="card-footer">
+                        <small className="text-muted">
+                          Last updated 3 mins ago
+                        </small>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* End of Coba */}
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* End of Section 4 */}
+
+      {/* Section 5 */}
+      <div className="container peta-banten mt-5 pt-5">
+        <section className="section-peta">
+          <div className="row">
+            <div className="col-12 col-lg-12">
+              <h5 className="text-primary font-weight-bold text-center title-rekomendasi-wisata">
+                Peta Wisata Banten
+              </h5>
+              <h1 className="text-center sub-titile-rekomendasi-wisata">
+                Peta Wisata Banten
+              </h1>
+              <p className="text-center deskripsi-rekomendasi-wisata">
+                Visualisasi tempat-tempat wisata yang ada di Banten.
+              </p>
+            </div>
+          </div>
+
+          <div className="row mt-3">
+            <div className="col-md-12">
+              <iframe
+                title="this is title"
+                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1015012.8501057501!2d105.38972825391154!3d-6.407661350231691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1stempat%20wisata%20banten!5e0!3m2!1sid!2sid!4v1651828964968!5m2!1sid!2sid"
+                width="100%"
+                height="450"
+                style={{ border: "0" }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              ></iframe>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      {/* End of Section 5 */}
 
       {/* Footer */}
       <Footer />

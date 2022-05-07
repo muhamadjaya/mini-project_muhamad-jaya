@@ -83,10 +83,10 @@ const CardWisata = () => {
           <div className="row row-cols-1 row-cols-md-3">
             {data?.wisata.map((value, valueIdx) => (
               <div className="col mb-4" key={valueIdx}>
-                <div className="card">
+                <div className="card card-wista">
                   <img
                     src={value.gambar}
-                    className="card-img-top"
+                    className="card-img-top img-wisata"
                     alt="Wisata Alam"
                   />
                   <div className="card-body">
@@ -117,10 +117,10 @@ const CardWisata = () => {
             <div className="row row-cols-1 row-cols-md-3">
               {dataByName?.wisata.map((value, valueIdx) => (
                 <div className="col mb-4" key={valueIdx}>
-                  <div className="card">
+                  <div className="card card-wista">
                     <img
                       src={value.gambar}
-                      className="card-img-top"
+                      className="card-img-top img-wisata"
                       alt="Wisata Alam"
                     />
                     <div className="card-body">
