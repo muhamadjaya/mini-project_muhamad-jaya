@@ -54,3 +54,47 @@ export const DELETE_BERITA_BY_ID = gql`
     }
   }
 `;
+
+// export const UPDATE_WISATA = gql`
+//   mutation updateWisata($id: Int!, $update: wisata_set_input) {
+//     update_wisata_by_pk(pk_columns: { id: $id }, _set: $update) {
+//       id
+//       nama_wisata
+//       kategori
+//       deskripsi
+//       alamat
+//       gambar
+//       id_admin
+//     }
+//   }
+// `;
+
+export const UPDATE_WISATA = gql`
+  mutation updateWisata(
+    $id: Int!
+    $nama_wisata: String = ""
+    $kategori: String = ""
+    $alamat: String = ""
+    $deskripsi: String = ""
+    $gambar: String = ""
+    $id_admin: Int = 10
+  ) {
+    update_wisata(
+      where: { id: { _eq: $id } }
+      _set: {
+        nama_wisata: $nama_wisata
+        kategori: $kategori
+        alamat: $alamat
+        deskripsi: $deskripsi
+        gambar: $gambar
+        id_admin: $id_admin
+      }
+    ) {
+      returning {
+        id
+        nama_wisata
+        gambar
+      }
+    }
+  }
+`;

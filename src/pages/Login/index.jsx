@@ -13,6 +13,8 @@ import { GET_ADMIN } from "../../graphql/queries";
 // Universal Cookies
 import Cookies from "universal-cookie";
 
+import Swal from "sweetalert2";
+
 const Login = () => {
   const [getAdmin, { data, loading, error }] = useLazyQuery(GET_ADMIN, {
     onCompleted: (data) => {
@@ -20,6 +22,11 @@ const Login = () => {
     },
     onError: (error) => {
       console.log(error);
+      Swal.fire({
+        title: "Failed!",
+        text: "Login gagal",
+        icon: "error",
+      });
     },
   });
 
@@ -30,6 +37,13 @@ const Login = () => {
   let navigate = useNavigate();
 
   const cookies = new Cookies();
+
+  useEffect(() => {
+    const getAuth = cookies.get("auth");
+    if (getAuth) {
+      navigate("/kelolawisata");
+    }
+  }, []);
 
   useEffect(() => {
     if (data?.admin.length === 1) {

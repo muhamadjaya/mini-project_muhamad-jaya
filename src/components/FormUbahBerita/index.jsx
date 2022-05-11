@@ -17,8 +17,14 @@ const FormUbahBerita = () => {
 
   const [isDataReady, setIsDataReady] = useState(false);
 
+  const [list, setList] = useState([]);
+
   const { data, loading, error, refetch } = useQuery(GET_BERITA_BY_ID, {
     variables: { id: id },
+    onCompleted: (data) => {
+      setList([...data?.berita]);
+      setIsDataReady(true);
+    },
   });
 
   //   const { data, loading, error, refetch } = useQuery(GET_LISTWISATA);
@@ -34,15 +40,6 @@ const FormUbahBerita = () => {
     tgl_posting: "",
     gambar: "",
   });
-
-  const [filledInputs, setFilledInputs] = useState({
-    judul: data?.wisata[0].nama_wisata,
-    deskripsi: data?.wisata[0].deskripsi,
-    tgl_posting: data?.wisata[0].tgl_posting,
-    gambar: data?.wisata[0].gambar,
-  });
-
-  const [list, setList] = useState([]);
 
   const [baseImage, setBaseImage] = useState("");
 
@@ -112,13 +109,6 @@ const FormUbahBerita = () => {
     console.log("ini isEdit", isEdit);
   }, [data, isEdit]);
 
-  useEffect(() => {
-    if (!loading && data) {
-      setList([...data?.wisata]);
-      setIsDataReady(true);
-    }
-  }, [loading, data]);
-
   console.log("ini list", list);
   console.log(isDataReady);
 
@@ -184,7 +174,7 @@ const FormUbahBerita = () => {
                     </label>
                     <div className="col-sm-10">
                       <input
-                        type="text"
+                        type="date"
                         name="alamat"
                         className="form-control"
                         id="input-tgl-posting"

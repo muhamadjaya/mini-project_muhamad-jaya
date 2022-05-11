@@ -6,12 +6,23 @@ import { GET_LISTWISATA } from "../../graphql/queries";
 // Hasura GraphQL Mutations
 import { INSERT_WISATA } from "../../graphql/mutations";
 
+import Swal from "sweetalert2";
+
 const FormInputWisata = () => {
   const { data, loading, error, refetch } = useQuery(GET_LISTWISATA);
 
   const [insertWisata, { loading: loadingInsert }] = useMutation(
     INSERT_WISATA,
-    { refetchQueries: [GET_LISTWISATA] }
+    {
+      refetchQueries: [GET_LISTWISATA],
+      onCompleted: (data) => {
+        Swal.fire({
+          title: "Sukses!",
+          text: "Data Berhasil Diupdate",
+          icon: "success",
+        });
+      },
+    }
   );
 
   const [inputs, setInputs] = useState({
@@ -133,12 +144,15 @@ const FormInputWisata = () => {
                       name="kategori"
                       className="form-select"
                       aria-label="Default select kategori wisata"
+                      defaultValue=""
                       id="kategori-wisata"
-                      value={initSelectValue}
                       onChange={(e) =>
                         handleInput(e.target.value, e.target.name)
                       }
                     >
+                      <option value="" hidden>
+                        Pilih Kategori
+                      </option>
                       {categories.map((dataCategory, dataCategoryIdx) => (
                         <option key={dataCategoryIdx} value={dataCategory}>
                           {dataCategory}

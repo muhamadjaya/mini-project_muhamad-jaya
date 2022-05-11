@@ -15,6 +15,8 @@ const DetailWisata = () => {
 
   const { data, loading, error, refetch } = useQuery(GET_WISATA_AND_ULASAN, {
     variables: { id: id },
+    fetchPolicy: "no-cache",
+    nextFetchPolicy: "no-cache",
   });
 
   console.log("ini data wisata", data);

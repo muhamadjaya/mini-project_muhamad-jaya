@@ -2,7 +2,7 @@ import React, { useState } from "react";
 // Apollo Client
 import { useQuery, useMutation } from "@apollo/client";
 // Hasura GraphQL Queries
-import { GET_LISTULASAN } from "../../graphql/queries";
+import { GET_LISTULASAN, GET_WISATA_AND_ULASAN } from "../../graphql/queries";
 // Hasura GraphQL Mutations
 import { INSERT_ULASAN } from "../../graphql/mutations";
 
@@ -11,11 +11,14 @@ const FormUlasan = ({ dataWisata }) => {
 
   console.log("ini id wisata", idwisata);
 
-  const { data, loading, error, refetch } = useQuery(GET_LISTULASAN);
+  const { data, loading, error, refetch } = useQuery(GET_LISTULASAN, {
+    fetchPolicy: "no-cache",
+    nextFetchPolicy: "no-cache",
+  });
 
   const [insertWisata, { loading: loadingInsert }] = useMutation(
     INSERT_ULASAN,
-    { refetchQueries: [GET_LISTULASAN] }
+    { refetchQueries: [GET_LISTULASAN, GET_WISATA_AND_ULASAN] }
   );
 
   const [inputs, setInputs] = useState({

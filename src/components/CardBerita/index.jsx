@@ -7,8 +7,6 @@ import { useQuery, useLazyQuery } from "@apollo/client";
 // Hasura GraphQL Queries
 import { GET_LISTBERITA } from "../../graphql/queries";
 
-import ImageNews from "../../assets/images/slide1.png";
-
 const CardBerita = () => {
   const { data, loading, error, refetch } = useQuery(GET_LISTBERITA);
 

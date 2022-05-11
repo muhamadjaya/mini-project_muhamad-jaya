@@ -4,28 +4,42 @@ import { useQuery, useMutation } from "@apollo/client";
 // Hasura GraphQL Queries
 import { GET_LISTWISATA, GET_WISATA_BY_ID } from "../../graphql/queries";
 // Hasura GraphQL Mutations
-import { INSERT_WISATA } from "../../graphql/mutations";
+import { UPDATE_WISATA } from "../../graphql/mutations";
 
 import LoadingSvg from "../LoadingSvg/LoadingSvg";
 
 import { useParams } from "react-router-dom";
 
+import Swal from "sweetalert2";
+
+// Universal Cookies
+import Cookies from "universal-cookie";
+
 const FormUbahWisata = () => {
   const { id } = useParams();
 
-  const [isEdit, setIsEdit] = useState(false);
-
   const [isDataReady, setIsDataReady] = useState(false);
+
+  const cookies = new Cookies();
+
+  const cookiesAuth = cookies.get("auth");
 
   const { data, loading, error, refetch } = useQuery(GET_WISATA_BY_ID, {
     variables: { id: id },
   });
 
-  //   const { data, loading, error, refetch } = useQuery(GET_LISTWISATA);
-
-  const [insertWisata, { loading: loadingInsert }] = useMutation(
-    INSERT_WISATA,
-    { refetchQueries: [GET_LISTWISATA] }
+  const [updateWisata, { loading: loadingUpdate }] = useMutation(
+    UPDATE_WISATA,
+    {
+      refetchQueries: [GET_LISTWISATA],
+      onCompleted: (data) => {
+        Swal.fire({
+          title: "Sukses!",
+          text: "Data Berhasil Diupdate",
+          icon: "success",
+        });
+      },
+    }
   );
 
   const [inputs, setInputs] = useState({
@@ -36,22 +50,12 @@ const FormUbahWisata = () => {
     gambar: "",
   });
 
-  const [filledInputs, setFilledInputs] = useState({
-    namaWisata: data?.wisata[0].nama_wisata,
-    kategori: data?.wisata[0].kategori,
-    alamat: data?.wisata[0].alamat,
-    deskripsi: data?.wisata[0].deskripsi,
-    gambar: data?.wisata[0].gambar,
-  });
-
-  const [list, setList] = useState([]);
-
   const [baseImage, setBaseImage] = useState("");
 
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertBase64(file);
-    setBaseImage(base64);
+    setInputs({ ...inputs, gambar: base64 });
     console.log(base64);
   };
 
@@ -93,16 +97,15 @@ const FormUbahWisata = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    insertWisata({
+    updateWisata({
       variables: {
-        object: {
-          nama_wisata: inputs.namaWisata,
-          kategori: inputs.kategori,
-          alamat: inputs.alamat,
-          deskripsi: inputs.deskripsi,
-          gambar: baseImage,
-          id_admin: 1,
-        },
+        id: id,
+        nama_wisata: inputs.namaWisata,
+        kategori: inputs.kategori,
+        alamat: inputs.alamat,
+        deskripsi: inputs.deskripsi,
+        gambar: inputs.gambar,
+        id_admin: cookiesAuth.id,
       },
     });
 
@@ -114,11 +117,6 @@ const FormUbahWisata = () => {
       gambar: "",
     });
   };
-
-  useEffect(() => {
-    console.log(data);
-    console.log("ini isEdit", isEdit);
-  }, [data, isEdit]);
 
   useEffect(() => {
     if (!loading && data) {
@@ -135,46 +133,7 @@ const FormUbahWisata = () => {
   }, [loading, data]);
 
   console.log(inputs);
-  console.log("ini list", list);
   console.log(isDataReady);
-
-  const renderElement = () => {
-    if (inputs.kategori === "Alam") {
-      return (
-        <>
-          <option selected value={inputs.kategori}>
-            {inputs.kategori}
-          </option>
-          <option value="Pantai">Pantai</option>
-          <option value="Kuliner">Kuliner</option>
-        </>
-      );
-    }
-
-    if (inputs.kategori === "Pantai") {
-      return (
-        <>
-          <option value="Alam">Alam</option>
-          <option selected value={inputs.kategori}>
-            {inputs.kategori}
-          </option>
-          <option value="Kuliner">Kuliner</option>
-        </>
-      );
-    }
-
-    if (inputs.kategori === "Kuliner") {
-      return (
-        <>
-          <option value="Alam">Alam</option>
-          <option value="Pantai">Pantai</option>
-          <option selected value={inputs.kategori}>
-            {inputs.kategori}
-          </option>
-        </>
-      );
-    }
-  };
 
   return (
     <>
@@ -221,30 +180,21 @@ const FormUbahWisata = () => {
                         className="form-select"
                         aria-label="Default select kategori wisata"
                         id="kategori-wisata"
-                        // value={initSelectValue}
+                        value={inputs.kategori}
                         onChange={(e) =>
                           handleInput(e.target.value, e.target.name)
                         }
                       >
-                        {/* {inputs.kategori === "Alam" ? (
-                          <>
-                            <option selected value={inputs.kategori}>
-                              {inputs.kategori}
-                            </option>
-                            <option value="Pantai">Pantai</option>
-                            <option value="Kuliner">Kuliner</option>
-                          </>
-                        ) : (
-                          <>
-                            <option value="Alam">Alam</option>
-                            <option selected value={inputs.kategori}>
-                              {inputs.kategori}
-                            </option>
-                            <option value="Kuliner">Kuliner</option>
-                          </>
-                        )} */}
+                        <option value="" hidden>
+                          Pilih Kategori
+                        </option>
+                        {categories.map((dataCategory, dataCategoryIdx) => (
+                          <option key={dataCategoryIdx} value={dataCategory}>
+                            {dataCategory}
+                          </option>
+                        ))}
 
-                        {renderElement()}
+                        {/* {renderElement()} */}
                       </select>
                     </div>
                   </div>

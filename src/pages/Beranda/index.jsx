@@ -216,6 +216,7 @@ const Beranda = () => {
                   sesuai dengan <br /> keinginan sebelum memulai petualangan mu
                   di Banten.
                 </p>
+                <p>test</p>
               </div>
             </div>
           </div>
