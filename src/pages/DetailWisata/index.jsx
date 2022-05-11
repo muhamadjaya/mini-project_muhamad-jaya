@@ -1,6 +1,5 @@
 import React from "react";
 import Navbar from "../../components/Navbar";
-import Hero from "../../components/Hero";
 import FormUlasan from "../../components/FormUlasan";
 import ListUlasan from "../../components/ListUlasan";
 import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
@@ -23,7 +22,6 @@ const DetailWisata = () => {
   return (
     <>
       <Navbar />
-      <Hero />
 
       {loading ? (
         <LoadingSvg />

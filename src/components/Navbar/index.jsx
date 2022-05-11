@@ -57,7 +57,7 @@ const Navbar = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <NavLink className="dropdown-item" to="/wisata">
+                      <NavLink className="dropdown-item" to="/wisataalam">
                         Wisata Alam
                       </NavLink>
                       <NavLink className="dropdown-item" to="/wisatapantai">

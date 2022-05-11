@@ -311,6 +311,22 @@ const FormUbahWisata = () => {
                   </div>
 
                   <div className="row mb-3">
+                    <label
+                      htmlFor="image-wisata"
+                      className="col-sm-2 col-form-label"
+                    >
+                      Preview
+                    </label>
+                    <div className="col-sm-10">
+                      <img
+                        src={inputs.gambar}
+                        height="200px"
+                        alt="img preview"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
                     <div className="col-sm-2"></div>
                     <div className="col-sm-10">
                       <button type="submit" className="btn btn-primary">

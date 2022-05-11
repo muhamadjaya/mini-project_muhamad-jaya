@@ -9,7 +9,9 @@ const Hero = () => {
   const [currentPath, setCurrentPath] = useState("");
 
   useEffect(() => {
-    if (location.pathname.substring(1, location.pathname.length) === "wisata") {
+    if (
+      location.pathname.substring(1, location.pathname.length) === "wisataalam"
+    ) {
       setCurrentPath("Wisata Alam");
     }
 

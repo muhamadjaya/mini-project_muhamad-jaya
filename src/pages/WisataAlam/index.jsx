@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "../../components/Navbar";
 import Hero from "../../components/Hero";
 import Search from "../../components/Search";
-import CardWisata from "../../components/CardWisata";
+import CardWisataAlam from "../../components/CardWisataAlam";
 import Footer from "../../components/Footer";
 
 const WisataAlam = () => {
@@ -14,7 +14,7 @@ const WisataAlam = () => {
         <section className="wisata-alam">
           {/* <Search /> */}
 
-          <CardWisata />
+          <CardWisataAlam />
         </section>
       </div>
       <Footer />

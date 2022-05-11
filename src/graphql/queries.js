@@ -125,3 +125,111 @@ export const GET_ADMIN = gql`
     }
   }
 `;
+
+// Query Kategori Wisata Alam
+export const GET_WISATA_ALAM = gql`
+  query getWisataAlam {
+    wisata(order_by: { id: asc }, where: { kategori: { _eq: "Alam" } }) {
+      id
+      nama_wisata
+      kategori
+      alamat
+      deskripsi
+      gambar
+      id_admin
+    }
+  }
+`;
+
+export const GET_WISATA_ALAM_BY_NAME = gql`
+  query getWisataAlamByName($nama_wisata: String!) {
+    wisata(
+      where: {
+        nama_wisata: { _ilike: $nama_wisata }
+        kategori: { _eq: "Alam" }
+      }
+    ) {
+      id
+      nama_wisata
+      kategori
+      alamat
+      deskripsi
+      gambar
+      id_admin
+    }
+  }
+`;
+
+// End of Query Kategori Wisata Alam
+
+// Query Kategori Wisata Pantai
+export const GET_WISATA_PANTAI = gql`
+  query getWisataPantai {
+    wisata(order_by: { id: asc }, where: { kategori: { _eq: "Pantai" } }) {
+      id
+      nama_wisata
+      kategori
+      alamat
+      deskripsi
+      gambar
+      id_admin
+    }
+  }
+`;
+
+export const GET_WISATA_PANTAI_BY_NAME = gql`
+  query getWisataPantaiByName($nama_wisata: String!) {
+    wisata(
+      where: {
+        nama_wisata: { _ilike: $nama_wisata }
+        kategori: { _eq: "Pantai" }
+      }
+    ) {
+      id
+      nama_wisata
+      kategori
+      alamat
+      deskripsi
+      gambar
+      id_admin
+    }
+  }
+`;
+
+// End of Query Kategori Wisata Pantai
+
+// Query Kategori Wisata Kuliner
+export const GET_WISATA_KULINER = gql`
+  query getWisataKuliner {
+    wisata(order_by: { id: asc }, where: { kategori: { _eq: "Kuliner" } }) {
+      id
+      nama_wisata
+      kategori
+      alamat
+      deskripsi
+      gambar
+      id_admin
+    }
+  }
+`;
+
+export const GET_WISATA_KULINER_BY_NAME = gql`
+  query getWisataKulinerByName($nama_wisata: String!) {
+    wisata(
+      where: {
+        nama_wisata: { _ilike: $nama_wisata }
+        kategori: { _eq: "Kuliner" }
+      }
+    ) {
+      id
+      nama_wisata
+      kategori
+      alamat
+      deskripsi
+      gambar
+      id_admin
+    }
+  }
+`;
+
+// End of Query Kategori Wisata Kuliner
