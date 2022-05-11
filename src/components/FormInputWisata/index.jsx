@@ -48,12 +48,7 @@ const FormInputWisata = () => {
 
   const [listWisata, setListWisata] = useState([]);
 
-  const [categories, setCategories] = useState([
-    "Pilih kategori",
-    "Alam",
-    "Pantai",
-    "Kuliner",
-  ]);
+  const [categories, setCategories] = useState(["Alam", "Pantai", "Kuliner"]);
 
   const [initSelectValue, setInitSelectValue] = useState(categories[0]);
 
@@ -100,8 +95,7 @@ const FormInputWisata = () => {
 
   return (
     <>
-      <h1>Form Input</h1>
-      <section className="tambahwisataalamm mb-5 pb-5 mt-5 pt-5">
+      <section className="tambahwisataalamm mb-3 pb-3 mt-3 pt-3">
         <div className="container">
           <div className="row justify-content-between">
             <div className="col-md-8">

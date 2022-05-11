@@ -4,10 +4,13 @@ import Hero from "../../components/Hero";
 import FormUbahWisata from "../../components/FormUbahWisata";
 import Footer from "../../components/Footer";
 
+import Sidebar from "../../components/Sidebar";
+import DashboardHeader from "../../components/DashboardHeader";
+
 const UbahWisata = () => {
   return (
     <>
-      <Navbar />
+      {/* <Navbar />
       <Hero />
       <div className="container mt-5 pt-5">
         <div className="row">
@@ -16,7 +19,15 @@ const UbahWisata = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer /> */}
+
+      <Sidebar />
+      <div className="main-content">
+        <DashboardHeader />
+        <main>
+          <FormUbahWisata />
+        </main>
+      </div>
     </>
   );
 };

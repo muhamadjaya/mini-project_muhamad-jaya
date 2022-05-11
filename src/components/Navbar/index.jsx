@@ -14,14 +14,102 @@ const Navbar = () => {
               className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
-              data-bs-target="#navbarNavAltMarkup"
-              aria-controls="navbarNavAltMarkup"
+              data-bs-target="#navbarNavDropdown"
+              aria-controls="navbarNavDropdown"
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
               <span className="navbar-toggler-icon"></span>
             </button>
-            <div className="collapse navbar-collapse d" id="navbarNavAltMarkup">
+
+            <div className="collapse navbar-collapse" id="navbarNavDropdown">
+              <ul className="navbar-nav">
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    }
+                    aria-current="page"
+                    to="/"
+                  >
+                    Beranda
+                  </NavLink>
+                </li>
+
+                <li className="nav-item dropdown">
+                  <NavLink
+                    // className="nav-link dropdown-toggle"
+                    className={({ isActive }) =>
+                      isActive
+                        ? "nav-link dropdown-toggle"
+                        : "nav-link dropdown-toggle"
+                    }
+                    to="/"
+                    id="navbarDropdownMenuLink"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Kategori
+                  </NavLink>
+                  <ul
+                    className="dropdown-menu"
+                    aria-labelledby="navbarDropdownMenuLink"
+                  >
+                    <li>
+                      <NavLink className="dropdown-item" to="/wisata">
+                        Wisata Alam
+                      </NavLink>
+                      <NavLink className="dropdown-item" to="/wisatapantai">
+                        Wisata Pantai
+                      </NavLink>
+                    </li>
+                    <li>
+                      <NavLink className="dropdown-item" to="/wisatakuliner">
+                        Wisata Kuliner
+                      </NavLink>
+                    </li>
+                  </ul>
+                </li>
+
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    }
+                    to="/berita"
+                  >
+                    Berita
+                  </NavLink>
+                </li>
+
+                <li className="nav-item">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    }
+                    to="/tentang"
+                  >
+                    Tentang
+                  </NavLink>
+                </li>
+              </ul>
+
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item ">
+                  <NavLink
+                    className={({ isActive }) =>
+                      isActive ? "nav-link active" : "nav-link"
+                    }
+                    to="/login"
+                  >
+                    Login
+                  </NavLink>
+                </li>
+              </ul>
+            </div>
+
+            {/* <div className="collapse navbar-collapse d" id="navbarNavAltMarkup">
               <div className="navbar-nav">
                 <NavLink
                   className={({ isActive }) =>
@@ -56,6 +144,36 @@ const Navbar = () => {
                 >
                   Berita
                 </NavLink>
+                <NavLink
+                  className="nav-link dropdown-toggle"
+                  to="/"
+                  id="navbarDropdownMenuLink"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  Dropdown link
+                </NavLink>
+                <ul
+                  className="dropdown-menu"
+                  aria-labelledby="navbarDropdownMenuLink"
+                >
+                  <li>
+                    <NavLink to="/" className="dropdown-item">
+                      Alam
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/" className="dropdown-item">
+                      Pantai
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/" className="dropdown-item">
+                      Kuliner
+                    </NavLink>
+                  </li>
+                </ul>
               </div>
               <div className="navbar-nav ms-auto">
                 <NavLink
@@ -67,7 +185,7 @@ const Navbar = () => {
                   Login
                 </NavLink>
               </div>
-            </div>
+            </div> */}
           </div>
         </nav>
       </div>

@@ -41,7 +41,7 @@ const DetailWisata = () => {
                     />
                   </div>
 
-                  <div className="main-content">
+                  <div className="content-utama">
                     <h3 className="head-title-detail-wisata">
                       {value.nama_wisata}
                     </h3>

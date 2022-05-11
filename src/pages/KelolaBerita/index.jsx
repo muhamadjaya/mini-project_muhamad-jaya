@@ -4,12 +4,14 @@ import Sidebar from "../../components/Sidebar";
 import Hero from "../../components/Hero";
 import Footer from "../../components/Footer";
 
+import DashboardHeader from "../../components/DashboardHeader";
+
 import TableBerita from "../../components/TableBerita";
 
 const KelolaBerita = () => {
   return (
     <>
-      <Sidebar />
+      {/* <Sidebar />
       <Hero />
       <div className="container mt-5 pt-5">
         <div className="row">
@@ -18,7 +20,18 @@ const KelolaBerita = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer /> */}
+
+      <Sidebar />
+      <div className="main-content">
+        <DashboardHeader />
+
+        <main>
+          {/* <h2 className="dash-title">Dasboard Admin</h2> */}
+
+          <TableBerita />
+        </main>
+      </div>
     </>
   );
 };

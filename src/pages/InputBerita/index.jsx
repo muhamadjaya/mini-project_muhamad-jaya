@@ -4,10 +4,22 @@ import Hero from "../../components/Hero";
 import Footer from "../../components/Footer";
 import FormInputBerita from "../../components/FormInputBerita";
 
+import Sidebar from "../../components/Sidebar";
+import DashboardHeader from "../../components/DashboardHeader";
+
 const InputBerita = () => {
   return (
     <>
-      <Navbar />
+      <Sidebar />
+      <div className="main-content">
+        <DashboardHeader />
+
+        <main>
+          <FormInputBerita />
+        </main>
+      </div>
+
+      {/* <Navbar />
       <Hero />
       <div className="container mt-5 pt-5">
         <div className="row">
@@ -16,7 +28,7 @@ const InputBerita = () => {
           </div>
         </div>
       </div>
-      <Footer />
+      <Footer /> */}
     </>
   );
 };

@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Beranda from "./pages/Beranda";
 import Wisata from "./pages/Wisata";
 import DetailWisata from "./pages/DetailWisata";
+import WisataKuliner from "./pages/WisataKuliner";
 import VirtualTour from "./pages/VirtualTour";
 import Berita from "./pages/Berita";
 import Login from "./pages/Login";
@@ -15,6 +16,8 @@ import InputBerita from "./pages/InputBerita";
 import UbahBerita from "./pages/UbahBerita";
 import NotFound from "./pages/NotFound";
 
+import TrySidebar from "./pages/TrySidebar";
+
 import PrivateRoutes from "./PrivateRoutes";
 
 const App = () => {
@@ -23,9 +26,12 @@ const App = () => {
       <Route path="/" element={<Beranda />} />
       <Route path="/wisata" element={<Wisata />} />
       <Route path="/wisata/detailwisata/:id" element={<DetailWisata />} />
+      <Route path="/wisatakuliner" element={<WisataKuliner />} />
       <Route path="/virtualtour" element={<VirtualTour />} />
       <Route path="/berita" element={<Berita />} />
       <Route path="/login" element={<Login />} />
+
+      <Route path="/trysidebar" element={<TrySidebar />} />
 
       <Route element={<PrivateRoutes />}>
         <Route path="/kelolawisata" element={<KelolaWisata />} />

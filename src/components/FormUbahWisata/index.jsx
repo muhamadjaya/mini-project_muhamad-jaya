@@ -70,18 +70,11 @@ const FormUbahWisata = () => {
     });
   };
 
-  const [categories, setCategories] = useState([
-    "Pilih kategori",
-    "Alam",
-    "Pantai",
-    "Kuliner",
-  ]);
+  const [categories, setCategories] = useState(["Alam", "Pantai", "Kuliner"]);
 
   const [initSelectValue, setInitSelectValue] = useState(categories[0]);
 
   const handleInput = (value, key) => {
-    setIsEdit(true);
-
     const newInputs = { ...inputs };
 
     newInputs[key] = value;
@@ -129,13 +122,59 @@ const FormUbahWisata = () => {
 
   useEffect(() => {
     if (!loading && data) {
-      setList([...data?.wisata]);
+      setInputs({
+        namaWisata: data?.wisata[0].nama_wisata,
+        kategori: data?.wisata[0].kategori,
+        alamat: data?.wisata[0].alamat,
+        deskripsi: data?.wisata[0].deskripsi,
+        gambar: data?.wisata[0].gambar,
+      });
       setIsDataReady(true);
+      console.log(data);
     }
   }, [loading, data]);
 
+  console.log(inputs);
   console.log("ini list", list);
   console.log(isDataReady);
+
+  const renderElement = () => {
+    if (inputs.kategori === "Alam") {
+      return (
+        <>
+          <option selected value={inputs.kategori}>
+            {inputs.kategori}
+          </option>
+          <option value="Pantai">Pantai</option>
+          <option value="Kuliner">Kuliner</option>
+        </>
+      );
+    }
+
+    if (inputs.kategori === "Pantai") {
+      return (
+        <>
+          <option value="Alam">Alam</option>
+          <option selected value={inputs.kategori}>
+            {inputs.kategori}
+          </option>
+          <option value="Kuliner">Kuliner</option>
+        </>
+      );
+    }
+
+    if (inputs.kategori === "Kuliner") {
+      return (
+        <>
+          <option value="Alam">Alam</option>
+          <option value="Pantai">Pantai</option>
+          <option selected value={inputs.kategori}>
+            {inputs.kategori}
+          </option>
+        </>
+      );
+    }
+  };
 
   return (
     <>
@@ -161,7 +200,7 @@ const FormUbahWisata = () => {
                         name="namaWisata"
                         className="form-control"
                         id="input-nama-wisata"
-                        value={isEdit ? inputs.namaWisata : list[0].nama_wisata}
+                        value={inputs.namaWisata}
                         onChange={(e) =>
                           handleInput(e.target.value, e.target.name)
                         }
@@ -182,16 +221,30 @@ const FormUbahWisata = () => {
                         className="form-select"
                         aria-label="Default select kategori wisata"
                         id="kategori-wisata"
-                        value={isEdit ? initSelectValue : list[0].kategori}
+                        // value={initSelectValue}
                         onChange={(e) =>
                           handleInput(e.target.value, e.target.name)
                         }
                       >
-                        {categories.map((dataCategory, dataCategoryIdx) => (
-                          <option key={dataCategoryIdx} value={dataCategory}>
-                            {dataCategory}
-                          </option>
-                        ))}
+                        {/* {inputs.kategori === "Alam" ? (
+                          <>
+                            <option selected value={inputs.kategori}>
+                              {inputs.kategori}
+                            </option>
+                            <option value="Pantai">Pantai</option>
+                            <option value="Kuliner">Kuliner</option>
+                          </>
+                        ) : (
+                          <>
+                            <option value="Alam">Alam</option>
+                            <option selected value={inputs.kategori}>
+                              {inputs.kategori}
+                            </option>
+                            <option value="Kuliner">Kuliner</option>
+                          </>
+                        )} */}
+
+                        {renderElement()}
                       </select>
                     </div>
                   </div>
@@ -209,7 +262,7 @@ const FormUbahWisata = () => {
                         name="alamat"
                         className="form-control"
                         id="input-alamat-wisata"
-                        value={isEdit ? inputs.alamat : list[0].alamat}
+                        value={inputs.alamat}
                         onChange={(e) =>
                           handleInput(e.target.value, e.target.name)
                         }
@@ -230,7 +283,7 @@ const FormUbahWisata = () => {
                         className="form-control"
                         id="deskripsi"
                         rows="5"
-                        value={isEdit ? inputs.deskripsi : list[0].deskripsi}
+                        value={inputs.deskripsi}
                         onChange={(e) =>
                           handleInput(e.target.value, e.target.name)
                         }
@@ -257,23 +310,11 @@ const FormUbahWisata = () => {
                     </div>
                   </div>
 
-                  {/* <div className="row mb-3">
-                  <label
-                    htmlFor="image-wisata"
-                    className="col-sm-2 col-form-label"
-                  >
-                    Preview
-                  </label>
-                  <div className="col-sm-10">
-                    <img src={baseImage} height="200px" alt="img preview" />
-                  </div>
-                </div> */}
-
                   <div className="row mb-3">
                     <div className="col-sm-2"></div>
                     <div className="col-sm-10">
                       <button type="submit" className="btn btn-primary">
-                        Simpan
+                        Ubah
                       </button>
                       <button type="reset" className="btn btn-danger ms-2">
                         Batal

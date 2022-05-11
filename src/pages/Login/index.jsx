@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
-import ImageLogin from "../../assets/images/news.jpg";
+import ImageLogin from "../../assets/images/admin-login.gif";
 import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 import { useNavigate } from "react-router-dom";
 
@@ -82,7 +82,7 @@ const Login = () => {
               <div className="col-md-4">
                 <form className="form-login">
                   <div className="form-group">
-                    <h1>Selamat Datang!</h1>
+                    <h2>Selamat Datang!</h2>
                     <label htmlFor="username">Username</label>
                     <input
                       type="text"
@@ -91,6 +91,7 @@ const Login = () => {
                       id="username"
                       required
                       autoComplete="off"
+                      autoFocus
                       onChange={handleChangeUsername}
                     />
                   </div>

@@ -34,63 +34,122 @@ const TableBerita = () => {
   };
 
   return (
-    <div className="table-section">
-      <div className="row mb-4">
-        <div className="col-md-4">
-          <Link to="/kelolaberita/inputberita" className="btn btn-primary">
+    <section className="recent">
+      <div className="activity-grid">
+        <div className="activity-card">
+          {/* <h3>Kelola Data Berita</h3> */}
+          <Link
+            to="/kelolawisata/inputberita"
+            className="btn btn-primary my-2 ms-2"
+          >
             Tambah Berita
           </Link>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-md-12">
-          {loading ? (
-            <LoadingSvg />
-          ) : (
-            <table className="table table-bordered">
-              <thead className="table-secondary">
-                <tr className="text-center">
-                  <td>No</td>
-                  <td>Judul Berita</td>
-                  <td>Deskripsi</td>
-                  <td>Tanggal Posting</td>
-                  <td className="text-center" colSpan={2}>
-                    Actions
-                  </td>
-                </tr>
-              </thead>
-
-              <tbody>
-                {data?.berita.map((value, valueIdx) => (
-                  <tr key={valueIdx} data-key={value.id}>
-                    <td className="text-center">{valueIdx + 1}</td>
-                    <td>{value.judul}</td>
-                    <td>{value.deskripsi.substr(0, 50)}</td>
-                    <td>{value.tgl_posting}</td>
-                    <td className="text-center">
-                      <Link
-                        to={`/kelolaberita/ubahberita/${value.id}`}
-                        className="btn btn-outline-primary"
-                      >
-                        Update
-                      </Link>
-                    </td>
-                    <td className="text-center">
-                      <button
-                        className="btn btn-outline-danger"
-                        onClick={() => onDeleteData(value.id)}
-                      >
-                        Delete
-                      </button>
-                    </td>
+          <div className="table-responsive">
+            {loading ? (
+              <LoadingSvg />
+            ) : (
+              <table>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Judul Berita</th>
+                    <th>Deskripsi</th>
+                    <th>Tanggal Posting</th>
+                    <th className="text-center" colSpan={2}>
+                      Actions
+                    </th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
+                </thead>
+                <tbody>
+                  {data?.berita.map((value, valueIdx) => (
+                    <tr key={valueIdx} data-key={value.id}>
+                      <td className="text-center">{valueIdx + 1}</td>
+                      <td>{value.judul}</td>
+                      <td>{value.deskripsi.substr(0, 50)}</td>
+                      <td>{value.tgl_posting}</td>
+                      <td className="text-center">
+                        <Link
+                          to={`/kelolaberita/ubahberita/${value.id}`}
+                          className="btn btn-outline-primary"
+                        >
+                          Update
+                        </Link>
+                      </td>
+                      <td className="text-center">
+                        <button
+                          className="btn btn-outline-danger"
+                          onClick={() => onDeleteData(value.id)}
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
+
+    // <div className="table-section">
+    //   <div className="row mb-4">
+    //     <div className="col-md-4">
+    //       <Link to="/kelolaberita/inputberita" className="btn btn-primary">
+    //         Tambah Berita
+    //       </Link>
+    //     </div>
+    //   </div>
+    //   <div className="row">
+    //     <div className="col-md-12">
+    //       {loading ? (
+    //         <LoadingSvg />
+    //       ) : (
+    //         <table className="table table-bordered">
+    //           <thead className="table-secondary">
+    //             <tr className="text-center">
+    //               <td>No</td>
+    //               <td>Judul Berita</td>
+    //               <td>Deskripsi</td>
+    //               <td>Tanggal Posting</td>
+    //               <td className="text-center" colSpan={2}>
+    //                 Actions
+    //               </td>
+    //             </tr>
+    //           </thead>
+
+    //           <tbody>
+    //             {data?.berita.map((value, valueIdx) => (
+    //               <tr key={valueIdx} data-key={value.id}>
+    //                 <td className="text-center">{valueIdx + 1}</td>
+    //                 <td>{value.judul}</td>
+    //                 <td>{value.deskripsi.substr(0, 50)}</td>
+    //                 <td>{value.tgl_posting}</td>
+    //                 <td className="text-center">
+    //                   <Link
+    //                     to={`/kelolaberita/ubahberita/${value.id}`}
+    //                     className="btn btn-outline-primary"
+    //                   >
+    //                     Update
+    //                   </Link>
+    //                 </td>
+    //                 <td className="text-center">
+    //                   <button
+    //                     className="btn btn-outline-danger"
+    //                     onClick={() => onDeleteData(value.id)}
+    //                   >
+    //                     Delete
+    //                   </button>
+    //                 </td>
+    //               </tr>
+    //             ))}
+    //           </tbody>
+    //         </table>
+    //       )}
+    //     </div>
+    //   </div>
+    // </div>
   );
 };
 

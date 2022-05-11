@@ -4,13 +4,15 @@ import Sidebar from "../../components/Sidebar";
 import Hero from "../../components/Hero";
 import Footer from "../../components/Footer";
 
+import DashboardHeader from "../../components/DashboardHeader";
+import TableWisata from "../../components/TableWisata";
+
 import Table from "../../components/Table";
 
 const KelolaWisata = () => {
   return (
     <>
-      <Sidebar />
-      <Hero />
+      {/* <Sidebar />
       <div id="wrap">
         <div className="container mt-5 pt-5" id="main">
           <div className="row">
@@ -19,9 +21,18 @@ const KelolaWisata = () => {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
-      <Footer />
+      <Sidebar />
+      <div className="main-content">
+        <DashboardHeader />
+
+        <main>
+          {/* <h2 className="dash-title">Dasboard Admin</h2> */}
+
+          <TableWisata />
+        </main>
+      </div>
     </>
   );
 };

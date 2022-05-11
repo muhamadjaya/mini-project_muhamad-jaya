@@ -1,29 +1,56 @@
-import React from "react";
+import React, { useEffect } from "react";
+
+// React Router Dom
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+
+// Components
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 
+// Images
 import Image1 from "../../assets/images/slide1.png";
 import Image2 from "../../assets/images/slide2.png";
 import Image3 from "../../assets/images/slide3.png";
-import ImageSection1 from "../../assets/images/travel.jpg";
-import ImageSection3 from "../../assets/images/news.jpg";
+import ImageTraveler from "../../assets/images/traveler.gif";
+import ImageNews from "../../assets/images/news.gif";
+import ImageMarket from "../../assets/images/market-food.jpg";
+
+// Carousel
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+// Custom Hooks
+import useSubscriptionWisata from "../../hooks/useSubscriptionWisata";
+import useSubscriptionBerita from "../../hooks/useSubscriptionBerita";
 
 const Beranda = () => {
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  // Subscription
+  const { dataWisata, loadingWisata } = useSubscriptionWisata();
 
-  const check = (index) => {
-    setSelectedIndex(index);
+  const { dataBerita, loadingBerita } = useSubscriptionBerita();
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 6,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 4,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
   };
 
-  // Mapbox
-  // var mapboxgl = require("mapbox-gl/dist/mapbox-gl.js");
-
-  // mapboxgl.accessToken =
-  //   "pk.eyJ1IjoiamF5YW11aGFtYWQ5OSIsImEiOiJja3B0Nmh5MnAwejB4MndtdXFudGJlOW1pIn0.OCi7urJJMAsdI084T1lq5A";
-  // var map = new mapboxgl.Map({
-  //   container: "YOUR_CONTAINER_ELEMENT_ID",
-  //   style: "mapbox://styles/mapbox/streets-v11",
-  // });
+  const navigate = useNavigate();
 
   return (
     <>
@@ -127,19 +154,18 @@ const Beranda = () => {
       {/* End od Hero Section */}
 
       {/* Section 1 */}
-
-      <div className="container">
+      <div className="container mt-3 pt-3 mb-5 pb-5">
         <section className="section-1">
           <div className="row">
             <div className="col-12 col-lg-6">
               <div className="section1-left">
-                <h5 className="text-primary title-selamat-datang">
+                <h5 className="title-selamat-datang">
                   SELAMAT DATANG DI WONDERFUL BANTEN
                 </h5>
-                <h1 className="sub-title-selamat-datang">
+                <h2 className="sub-title-selamat-datang">
                   Keindahan alam yang di akui Dunia yang bisa kamu liat di
                   Provinsi Banten
-                </h1>
+                </h2>
                 <p className="deskripsi-selamat-datang">
                   Keindahan alam yang dimiliki Provinsi Banten menjadikannya
                   sebagai wilayah yang masuk rekomendasi untuk dikunjungi saat
@@ -147,16 +173,22 @@ const Beranda = () => {
                   Atraksi yang ada di Provinsi Banten yang siap kalian kunjungi
                   kapan saja.
                 </p>
-                <button type="button" className="btn btn-primary">
-                  Eksplor Sekarang
+                <button
+                  type="button"
+                  className="btn btn-primary button-eksplore mt-2"
+                  onClick={() => {
+                    navigate("/wisata");
+                  }}
+                >
+                  Eksplor Sekarang →
                 </button>
               </div>
             </div>
 
             <div className="col-12 col-lg-6">
-              <div className="section1-right">
+              <div className="section1-right pt-5">
                 <img
-                  src={ImageSection1}
+                  src={ImageTraveler}
                   className="img-thumbnail border-0 section1-image"
                   alt="Traveler Images"
                 />
@@ -165,88 +197,119 @@ const Beranda = () => {
           </div>
         </section>
       </div>
-
       {/* End of Section 1 */}
 
       {/* Section 2 */}
-      <div className="section-rekomendasi-wisata mt-5 ">
-        <section className="section-2 pb-5">
+      <div className="section-rekomendasi-wisata mt-5 pt-5 mb-5 pb-5">
+        <section className="section-2 pt-3 pb-5">
           <div className="row pt-5">
             <div className="col-12 col-lg-12">
-              <h5 className="text-primary font-weight-bold text-center title-rekomendasi-wisata">
-                Rekomendasi Wisata
-              </h5>
-              <h1 className="text-center sub-titile-rekomendasi-wisata">
-                Destinasi Wisata Yang Wajib Anda Kunjungi
-              </h1>
-              <p className="text-center deskripsi-rekomendasi-wisata">
-                Membantu kamu untuk menemukan tempat wisata terbaik yang sesuai
-                dengan <br /> keinginan sebelum memulai petualangan mu di
-                Banten.
-              </p>
+              <div className="rekomendasi-wisata-container container">
+                <h5 className="text-center title-rekomendasi-wisata">
+                  REKOMENDASI WISATA
+                </h5>
+                <h2 className="text-center sub-titile-rekomendasi-wisata">
+                  Destinasi Wisata Yang Wajib Anda Kunjungi
+                </h2>
+                <p className="text-center deskripsi-rekomendasi-wisata">
+                  Membantu kamu untuk menemukan tempat wisata terbaik yang
+                  sesuai dengan <br /> keinginan sebelum memulai petualangan mu
+                  di Banten.
+                </p>
+              </div>
             </div>
           </div>
-          <div className="row pt-5">
+          <div className="row pt-5 pb-5">
             <div className="col-12 col-lg-12">
-              <div className="slider-wisata">
-                {/* Slider Wisata */}
-                <section id="slider" className="slider-wisata">
-                  <input
-                    type="radio"
-                    name="slider"
-                    id="s1"
-                    checked={selectedIndex === 0}
-                    // onClick={() => check(0)}
-                    onChange={() => check(0)}
-                  />
-                  <input
-                    type="radio"
-                    name="slider"
-                    id="s2"
-                    checked={selectedIndex === 1}
-                    // onClick={() => check(1)}
-                    onChange={() => check(1)}
-                  />
-                  <input
-                    type="radio"
-                    name="slider"
-                    id="s3"
-                    checked={selectedIndex === 2}
-                    // onClick={() => check(2)}
-                    onChange={() => check(2)}
-                  />
-                  <label htmlFor="s1" id="slide1">
-                    <img
-                      className="fea"
-                      src="https://picsum.photos/200/200"
-                      height="100%"
-                      width="100%"
-                      alt="slider images"
-                    />
-                    <h5 className="text-center pt-1">Ujung Kulon</h5>
-                  </label>
-                  <label htmlFor="s2" id="slide2">
-                    <img
-                      className="fea"
-                      src="https://picsum.photos/200/300"
-                      height="100%"
-                      width="100%"
-                      alt="slider images"
-                    />
-                    <h5 className="text-center pt-1">Pantai Carita</h5>
-                  </label>
-                  <label htmlFor="s3" id="slide3">
-                    <img
-                      className="fea"
-                      src="https://picsum.photos/300/300"
-                      height="100%"
-                      width="100%"
-                      alt="slider images"
-                    />
-                    <h5 className="text-center pt-1">Curug Lewi</h5>
-                  </label>
-                </section>
-                {/* End of Slider Wisata */}
+              <div className="slider-wisata container">
+                {/* Kolase Wisata */}
+                {loadingWisata ? (
+                  <LoadingSvg />
+                ) : (
+                  <>
+                    <div className="row justify-content-center">
+                      <div className="col-md-6">
+                        <div
+                          className="card text-white card-img-new-wisata-left"
+                          onClick={() => {
+                            navigate(
+                              `/wisata/detailwisata/${dataWisata?.wisata[0].id}`
+                            );
+                          }}
+                        >
+                          <img
+                            src={dataWisata?.wisata[0].gambar}
+                            className="card-img img-new-wisata"
+                            alt="gbr gbr"
+                          />
+
+                          <div className="card-img-overlay d-flex flex-column">
+                            <div className="text-img-overlay mt-auto">
+                              <h5 className="card-title">
+                                {dataWisata?.wisata[0].nama_wisata}
+                              </h5>
+                              <p className="card-text">
+                                {dataWisata?.wisata[0].deskripsi.substr(0, 50)}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="col-md-6">
+                        <div className="row">
+                          <div className="col-md-12">
+                            <div className="card text-white card-img-new-wisata">
+                              <img
+                                src={dataWisata?.wisata[1].gambar}
+                                className="card-img img-new-wisata"
+                                alt="gbr gbr"
+                              />
+                              <div className="card-img-overlay d-flex flex-column">
+                                <div className="text-img-overlay mt-auto">
+                                  <h5 className="card-title">
+                                    {dataWisata?.wisata[1].nama_wisata}
+                                  </h5>
+                                  <p className="card-text">
+                                    {dataWisata?.wisata[1].deskripsi.substr(
+                                      0,
+                                      50
+                                    )}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div className="row mt-2">
+                          <div className="col-md-12">
+                            <div className="card text-white card-img-new-wisata">
+                              <img
+                                src={dataWisata?.wisata[2].gambar}
+                                className="card-img img-new-wisata"
+                                alt="gbr gbr"
+                              />
+                              <div className="card-img-overlay d-flex flex-column">
+                                <div className="text-img-overlay mt-auto">
+                                  <h5 className="card-title">
+                                    {dataWisata?.wisata[2].nama_wisata}
+                                  </h5>
+                                  <p className="card-text">
+                                    {dataWisata?.wisata[2].deskripsi.substr(
+                                      0,
+                                      50
+                                    )}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+                {/* End of Kolase Wisata */}
               </div>
             </div>
           </div>
@@ -255,13 +318,13 @@ const Beranda = () => {
       {/* End of Section 2 */}
 
       {/* Section 3 */}
-      <div className="container mt-5 pt-5">
+      <div className="container mt-5 pt-3 mb-5 pb-5">
         <section className="section-3">
           <div className="row">
-            <div className="col-12 col-lg-6 ">
+            <div className="col-12 col-lg-6 pt-4">
               <div className="section3-left">
                 <img
-                  src={ImageSection3}
+                  src={ImageNews}
                   className="img-thumbnail border-0 section3-image"
                   alt="Traveler Images"
                 />
@@ -270,9 +333,7 @@ const Beranda = () => {
 
             <div className="col-12 col-lg-6">
               <div className="section3-right">
-                <h5 className="text-primary title-selamat-datang">
-                  BERITA WISATA
-                </h5>
+                <h5 className="title-selamat-datang">BERITA WISATA</h5>
                 <h1 className="sub-title-selamat-datang">
                   Berita Menarik Terkini Seputar Destinasi Wisata Banten
                 </h1>
@@ -280,7 +341,13 @@ const Beranda = () => {
                   Dapatkan berita terkini seputar destinasi wisata yang ada di
                   Banten untuk kamu yang menarik untuk dibaca.
                 </p>
-                <button type="button" className="btn btn-primary">
+                <button
+                  type="button"
+                  className="btn btn-primary button-eksplore"
+                  onClick={() => {
+                    navigate("/berita");
+                  }}
+                >
                   Selengkapnya
                 </button>
               </div>
@@ -291,134 +358,113 @@ const Beranda = () => {
       {/* End of Section 3 */}
 
       {/* Section 4 */}
-      <div className="section-rekomendasi-wisata mt-5 ">
-        <section className="section-2 pb-5">
-          <div className="row pt-5">
-            <div className="col-12 col-lg-12">
-              <h5 className="text-primary font-weight-bold text-center title-rekomendasi-wisata">
-                Highlight Berita
-              </h5>
-              <h1 className="text-center sub-titile-rekomendasi-wisata">
-                Destinasi Wisata Yang Wajib Anda Kunjungi
-              </h1>
-              <p className="text-center deskripsi-rekomendasi-wisata">
-                Membantu kamu untuk menemukan tempat wisata terbaik yang sesuai
-                dengan <br /> keinginan sebelum memulai petualangan mu di
-                Banten.
-              </p>
+      <div className="section-rekomendasi-berita pt-5">
+        <section className="section-2 pt-5 pb-5">
+          <div className="banner-higlight-berita mt-5 container">
+            <div className="row justify-content-center">
+              <div className="col-md-6">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      "<iframe src='https://www.youtube.com/embed/EHDwBGGLzO4' />",
+                  }}
+                />
+              </div>
+
+              <div className="col-md-6">
+                <div className="banner-highlight-berita-right">
+                  <h3 className="sub-title-selamat-datang">
+                    Berita wisata terbaru
+                  </h3>
+                  <p className="deskripsi-selamat-datang">
+                    Keindahan alam yang dimiliki Provinsi Banten menjadikannya
+                    sebagai wilayah yang masuk rekomendasi untuk dikunjungi saat
+                    liburan. Memiliki Pantai, Gunung, Tempat Bersejarah dan
+                    Wahana Atraksi yang ada di Provinsi Banten yang siap kalian
+                    kunjungi kapan saja.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div className="container">
-            <div className="row pt-5">
+          <div className="slider-berita container pb-4">
+            <div className="row pt-5 justify-content-center">
               <div className="col-12 col-lg-12">
                 {/* Coba */}
-                <div className="row row-cols-1 row-cols-md-3 g-4">
-                  <div className="col">
-                    <div className="card h-100">
-                      <img
-                        src={Image1}
-                        className="card-img-top"
-                        alt="image-berita"
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">
-                          This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This content is
-                          a little bit longer.
-                        </p>
-                      </div>
-                      <div className="card-footer">
-                        <small className="text-muted">
-                          Last updated 3 mins ago
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card h-100">
-                      <img
-                        src={Image1}
-                        className="card-img-top"
-                        alt="image-berita2"
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">
-                          This card has supporting text below as a natural
-                          lead-in to additional content.
-                        </p>
-                      </div>
-                      <div className="card-footer">
-                        <small className="text-muted">
-                          Last updated 3 mins ago
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col">
-                    <div className="card h-100">
-                      <img
-                        src={Image1}
-                        className="card-img-top"
-                        alt="image-berita3"
-                      />
-                      <div className="card-body">
-                        <h5 className="card-title">Card title</h5>
-                        <p className="card-text">
-                          This is a wider card with supporting text below as a
-                          natural lead-in to additional content. This card has
-                          even longer content than the first to show that equal
-                          height action.
-                        </p>
-                      </div>
-                      <div className="card-footer">
-                        <small className="text-muted">
-                          Last updated 3 mins ago
-                        </small>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
+                {loadingBerita ? (
+                  <LoadingSvg />
+                ) : (
+                  <>
+                    <Carousel responsive={responsive}>
+                      {dataBerita?.berita.map((value, valueIdx) => (
+                        <div key={valueIdx}>
+                          <div
+                            className="card text-white card-img-new-berita"
+                            key={valueIdx}
+                          >
+                            <img
+                              src={value.gambar}
+                              className="card-img img-new-berita"
+                              alt="gbr gbr"
+                            />
+                            <div className="card-img-overlay d-flex flex-column">
+                              <div className="text-img-overlay mt-auto">
+                                <h5 className="card-title card-title-berita">
+                                  {value.judul}
+                                </h5>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </Carousel>
+                  </>
+                )}
+
                 {/* End of Coba */}
               </div>
             </div>
           </div>
         </section>
       </div>
-
       {/* End of Section 4 */}
 
       {/* Section 5 */}
-      <div className="container peta-banten mt-5 pt-5">
-        <section className="section-peta">
+      <div className="container mt-5 pt-3">
+        <section className="section-3">
           <div className="row">
-            <div className="col-12 col-lg-12">
-              <h5 className="text-primary font-weight-bold text-center title-rekomendasi-wisata">
-                Peta Wisata Banten
-              </h5>
-              <h1 className="text-center sub-titile-rekomendasi-wisata">
-                Peta Wisata Banten
-              </h1>
-              <p className="text-center deskripsi-rekomendasi-wisata">
-                Visualisasi tempat-tempat wisata yang ada di Banten.
-              </p>
+            <div className="col-12 col-lg-6 pt-5">
+              <div className="section3-left">
+                <img
+                  src={ImageMarket}
+                  className="img-thumbnail border-0 section3-image"
+                  alt="Traveler Images"
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="row mt-3">
-            <div className="col-md-12">
-              <iframe
-                title="this is title"
-                src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d1015012.8501057501!2d105.38972825391154!3d-6.407661350231691!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1stempat%20wisata%20banten!5e0!3m2!1sid!2sid!4v1651828964968!5m2!1sid!2sid"
-                width="100%"
-                height="450"
-                style={{ border: "0" }}
-                allowFullScreen=""
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
+            <div className="col-12 col-lg-6">
+              <div className="section3-right">
+                <h5 className="title-selamat-datang">WISATA KULINER FAVORIT</h5>
+                <h1 className="sub-title-selamat-datang">
+                  Kelezatan kuliner khas Banten yang dapat memanjakan lidahmu
+                </h1>
+                <p className="text-justify deskripsi-selamat-datang">
+                  Kunjungi destinasi wisata kuliner terbaik untuk menghilangkan
+                  lapar dan haus agar mengembalikan energimu disaat berlibur.
+                </p>
+                <button
+                  type="button"
+                  className="btn btn-primary button-eksplore"
+                  onClick={() => {
+                    navigate("/wisatakuliner");
+                  }}
+                >
+                  Selengkapnya
+                </button>
+              </div>
             </div>
           </div>
         </section>
