@@ -419,7 +419,13 @@ const Beranda = () => {
                   <>
                     <Carousel responsive={responsive}>
                       {dataBerita?.berita.map((value, valueIdx) => (
-                        <div key={valueIdx}>
+                        <div
+                          key={valueIdx}
+                          className="content-slider-berita"
+                          onClick={() => {
+                            navigate(`/berita/detailberita/${value.id}`);
+                          }}
+                        >
                           <div
                             className="card text-white card-img-new-berita"
                             key={valueIdx}

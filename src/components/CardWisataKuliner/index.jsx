@@ -27,6 +27,10 @@ const CardWisataKuliner = () => {
   const [isInitialQuery, setInitialQuery] = useState(true);
 
   const onChangeTitle = (e) => {
+    if (e.target.value === "") {
+      setInitialQuery(true);
+    }
+
     if (e.target) {
       setTitle(e.target.value);
     }

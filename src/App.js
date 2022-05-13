@@ -11,6 +11,7 @@ import DetailWisataPantai from "./pages/DetailWisata";
 import WisataKuliner from "./pages/WisataKuliner";
 import DetailWisataKuliner from "./pages/DetailWisata";
 import Berita from "./pages/Berita";
+import DetailBerita from "./pages/DetailBerita";
 import Login from "./pages/Login";
 import KelolaWisata from "./pages/KelolaWisata";
 import InputWisata from "./pages/InputWisata";
@@ -49,6 +50,7 @@ const App = () => {
       />
 
       <Route path="/berita" element={<Berita />} />
+      <Route path="/berita/detailberita/:id" element={<DetailBerita />} />
       <Route path="/tentang" element={<Tentang />} />
       <Route path="/login" element={<Login />} />
 

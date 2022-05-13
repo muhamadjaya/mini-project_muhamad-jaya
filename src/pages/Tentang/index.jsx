@@ -15,17 +15,18 @@ const Tentang = () => {
           <div className="row">
             <div className="col-12 col-lg-6">
               <div className="section1-left">
-                {/* <h5 className="title-selamat-datang">
-                  Tentang Kami
-                </h5> */}
-                <h2 className="sub-title-selamat-datang">Tentang Kami</h2>
+                <h5 className="title-selamat-datang">Tentang Kami</h5>
+                <h2 className="sub-title-selamat-datang">
+                  Membantu kamu menemukan tempat wisata terbaik untuk berlibur
+                </h2>
                 <p className="deskripsi-selamat-datang">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-                  modi unde ipsa quod. Odio, voluptatum tempore tempora fugit
-                  ipsum quasi praesentium adipisci eum maiores sit, culpa ipsam
-                  velit maxime perferendis itaque vitae vero soluta quos et
-                  temporibus quidem suscipit cumque! Nisi, nulla modi eaque
-                  repellendus velit cupiditate culpa facilis consectetur.
+                  Berlibur kini sudah bukan lagi jadi kebutuhan tersier ataupun
+                  sekunder, namun sudah menjadi kebutuhan primer bagi siapapun.
+                  Liburan tidak hanya menjadi sekadar bepergian saja, kini
+                  setiap orang ingin melakukan perjalanan lebih lama, lebih
+                  jauh, dan lebih sering. Maka dari itu kami menyediakan
+                  berbagai destinasi wisata pilihan yang dapat kamu kunjungi
+                  setiap saat demi mewujudkan hari-hari terbaik disaat berlibur.
                 </p>
               </div>
             </div>

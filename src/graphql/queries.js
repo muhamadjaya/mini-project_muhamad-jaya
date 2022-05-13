@@ -113,6 +113,19 @@ export const GET_BERITA_BY_ID = gql`
   }
 `;
 
+export const GET_BERITA_BY_NAME = gql`
+  query getBeritaByName($judul: String!) {
+    berita(where: { judul: { _ilike: $judul } }) {
+      id
+      judul
+      deskripsi
+      tgl_posting
+      gambar
+      id_admin
+    }
+  }
+`;
+
 export const GET_ADMIN = gql`
   query getAdmin($username: String, $password: String) {
     admin(

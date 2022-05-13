@@ -653,3 +653,10 @@ iframe {
 .text-logout:hover {
   color: rgb(252, 92, 18);
 }
+
+.content-slider-berita:hover {
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  cursor: pointer;
+  margin-top: -3px;
+  transition: 0.2s ease;
+}

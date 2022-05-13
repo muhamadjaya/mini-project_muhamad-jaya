@@ -1,14 +1,60 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
 import LoadingSvg from "../LoadingSvg/LoadingSvg";
 // Apollo Client
 import { useQuery, useLazyQuery } from "@apollo/client";
 // Hasura GraphQL Queries
-import { GET_LISTBERITA } from "../../graphql/queries";
+import { GET_LISTBERITA, GET_BERITA_BY_NAME } from "../../graphql/queries";
 
 const CardBerita = () => {
   const { data, loading, error, refetch } = useQuery(GET_LISTBERITA);
+
+  const [getBerita, { data: dataByName, loading: loadingByName }] =
+    useLazyQuery(GET_BERITA_BY_NAME, {
+      onCompleted: (data) => {
+        console.log(data);
+      },
+      onError: (error) => {
+        console.log(error);
+      },
+    });
+
+  const [title, setTitle] = useState("");
+
+  const [isInitialQuery, setInitialQuery] = useState(true);
+
+  const onChangeTitle = (e) => {
+    if (e.target.value === "") {
+      setInitialQuery(true);
+    }
+
+    if (e.target) {
+      setTitle(e.target.value);
+    }
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (title === "") {
+      setInitialQuery(true);
+    } else {
+      setInitialQuery(false);
+      getBerita({ variables: { judul: `%${title}%` } });
+    }
+  };
+
+  useEffect(() => {
+    console.log("ini loading", loading);
+  }, [loading]);
+
+  useEffect(() => {
+    console.log("ini loadingByName", loadingByName);
+  }, [loadingByName]);
+
+  useEffect(() => {
+    console.log("ini isInitialQuery", isInitialQuery);
+  }, [isInitialQuery]);
 
   return (
     <div className="list-card-berita">
@@ -16,8 +62,8 @@ const CardBerita = () => {
         <div className="row">
           <div className="col-md-3">
             <input
-              // onChange={onChangeTitle}
-              // value={title}
+              onChange={onChangeTitle}
+              value={title}
               autoFocus
               type="text"
               className="form-control searchbyname-input"
@@ -27,16 +73,16 @@ const CardBerita = () => {
             <button
               type="submit"
               className="btn btn-primary btn-search"
-              // onClick={handleSearch}
+              onClick={handleSearch}
             >
               Search
             </button>
           </div>
         </div>
       </div>
-      {loading ? (
+      {loading || loadingByName ? (
         <LoadingSvg />
-      ) : (
+      ) : isInitialQuery ? (
         <>
           {data?.berita.map((value, valueIdx) => (
             <div className="card mb-3 card-berita" key={valueIdx}>
@@ -50,7 +96,12 @@ const CardBerita = () => {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body ">
-                    <h5 className="card-title">{value.judul}</h5>
+                    <Link
+                      to={`/berita/detailberita/${value.id}`}
+                      className="link-title-wisata"
+                    >
+                      {value.judul}
+                    </Link>
                     <p className="card-text text-justify">{value.deskripsi}</p>
                     <p className="card-text">
                       <small className="text-muted">{value.tgl_posting}</small>
@@ -60,6 +111,48 @@ const CardBerita = () => {
               </div>
             </div>
           ))}
+        </>
+      ) : (
+        <>
+          {dataByName?.berita.length === 0 ? (
+            <div>
+              <h1>Data Tidak Ditemukan</h1>
+            </div>
+          ) : (
+            <>
+              {dataByName?.berita.map((value, valueIdx) => (
+                <div className="card mb-3 card-berita" key={valueIdx}>
+                  <div className="row no-gutters">
+                    <div className="col-md-4">
+                      <img
+                        src={value.gambar}
+                        className="img-berita"
+                        alt="berita images"
+                      />
+                    </div>
+                    <div className="col-md-8">
+                      <div className="card-body ">
+                        <Link
+                          to={`/berita/detailberita/${value.id}`}
+                          className="link-title-wisata"
+                        >
+                          {value.judul}
+                        </Link>
+                        <p className="card-text text-justify">
+                          {value.deskripsi}
+                        </p>
+                        <p className="card-text">
+                          <small className="text-muted">
+                            {value.tgl_posting}
+                          </small>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </>
+          )}
         </>
       )}
     </div>
