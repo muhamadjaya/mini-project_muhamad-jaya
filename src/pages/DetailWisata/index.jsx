@@ -26,7 +26,9 @@ const DetailWisata = () => {
       <Navbar />
 
       {loading ? (
-        <LoadingSvg />
+        <div className="loading-animation">
+          <LoadingSvg />
+        </div>
       ) : (
         <>
           {data?.wisata.map((value, valueIdx) => (

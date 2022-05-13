@@ -66,6 +66,7 @@ const CardWisataPantai = () => {
             <input
               onChange={onChangeTitle}
               value={title}
+              placeholder="Cari Wisata"
               autoFocus
               type="text"
               className="form-control searchbyname-input"

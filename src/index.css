@@ -642,6 +642,15 @@ iframe {
   background-color: transparent;
 }
 
+.btn-search {
+  border-radius: 0.5em !important;
+  padding: 0.45em 2em !important;
+  border: 1px solid transparent !important;
+  transition: 0.5s ease !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
 /* Enf of Button Styles */
 
 .text-logout {
@@ -659,4 +668,8 @@ iframe {
   cursor: pointer;
   margin-top: -3px;
   transition: 0.2s ease;
+}
+
+.loading-animation {
+  padding-top: 10rem;
 }

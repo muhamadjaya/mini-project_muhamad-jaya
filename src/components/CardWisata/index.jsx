@@ -51,6 +51,10 @@ const CardWisata = () => {
     console.log("ini isInitialQuery", isInitialQuery);
   }, [isInitialQuery]);
 
+  useEffect(() => {
+    refetch();
+  }, []);
+
   return (
     <>
       <div className="section-section mb-4">

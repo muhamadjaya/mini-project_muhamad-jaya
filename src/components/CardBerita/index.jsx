@@ -56,6 +56,10 @@ const CardBerita = () => {
     console.log("ini isInitialQuery", isInitialQuery);
   }, [isInitialQuery]);
 
+  useEffect(() => {
+    refetch();
+  }, []);
+
   return (
     <div className="list-card-berita">
       <div className="section-section mb-4">
@@ -64,6 +68,7 @@ const CardBerita = () => {
             <input
               onChange={onChangeTitle}
               value={title}
+              placeholder="Cari Judul Berita"
               autoFocus
               type="text"
               className="form-control searchbyname-input"

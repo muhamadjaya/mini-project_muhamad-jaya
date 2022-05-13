@@ -76,7 +76,11 @@ const Login = () => {
   };
 
   if (loading) {
-    return <LoadingSvg />;
+    return (
+      <div className="loading-animation">
+        <LoadingSvg />
+      </div>
+    );
   }
 
   return (
@@ -122,7 +126,11 @@ const Login = () => {
                     />
                   </div>
 
-                  {data && <h4>Gagal</h4>}
+                  {data && (
+                    <h6 className="text-danger fst-italic pt-2">
+                      Username atau password salah...
+                    </h6>
+                  )}
 
                   <button
                     type="submit"

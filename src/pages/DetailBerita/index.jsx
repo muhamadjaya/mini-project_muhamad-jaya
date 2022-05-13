@@ -26,7 +26,9 @@ const DetailBerita = () => {
       <Navbar />
 
       {loading ? (
-        <LoadingSvg />
+        <div className="loading-animation">
+          <LoadingSvg />
+        </div>
       ) : (
         <>
           {data?.berita.map((value, valueIdx) => (
