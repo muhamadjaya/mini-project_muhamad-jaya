@@ -22,7 +22,12 @@ const DashboardHeader = () => {
     <header>
       <div className="logout-icons">
         <i className="fa-solid fa-arrow-right-from-bracket"></i>
-        <Link onClick={logout} to="/login" style={{ textDecoration: "none" }}>
+        <Link
+          onClick={logout}
+          to="/login"
+          style={{ textDecoration: "none" }}
+          className="text-logout"
+        >
           <span>Logout</span>
         </Link>
       </div>

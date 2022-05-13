@@ -10,6 +10,8 @@ import { DELETE_BERITA_BY_ID } from "../../graphql/mutations";
 
 import LoadingSvg from "../LoadingSvg/LoadingSvg";
 
+import Swal from "sweetalert2";
+
 const TableBerita = () => {
   const { data, loading, error, refetch } = useQuery(GET_LISTBERITA);
 
@@ -26,10 +28,25 @@ const TableBerita = () => {
   );
 
   const onDeleteData = (idx) => {
-    deleteBerita({
-      variables: {
-        id: idx,
-      },
+    Swal.fire({
+      title: "Yakin hapus data ini?",
+      text: "Kamu tidak dapat mengembalikan data yang telah dihapus!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteBerita({
+          variables: {
+            id: idx,
+          },
+        });
+        Swal.fire("Berhasil!", "Data berhasil dihapus.", "success");
+      } else {
+        Swal.fire("Batal", "Data batal dihapus", "error");
+      }
     });
   };
 
@@ -39,8 +56,8 @@ const TableBerita = () => {
         <div className="activity-card">
           {/* <h3>Kelola Data Berita</h3> */}
           <Link
-            to="/kelolawisata/inputberita"
-            className="btn btn-primary my-2 ms-2"
+            to="/kelolaberita/inputberita"
+            className="btn btn-primary my-2 ms-2 btn-tambah-berita"
           >
             Tambah Berita
           </Link>
@@ -66,7 +83,11 @@ const TableBerita = () => {
                       <td className="text-center">{valueIdx + 1}</td>
                       <td>{value.judul}</td>
                       <td>{value.deskripsi.substr(0, 50)}</td>
-                      <td>{value.tgl_posting}</td>
+                      <td>
+                        {value.tgl_posting.substr(8, 2)}-
+                        {value.tgl_posting.substr(5, 2)}-
+                        {value.tgl_posting.substr(0, 4)}
+                      </td>
                       <td className="text-center">
                         <Link
                           to={`/kelolaberita/ubahberita/${value.id}`}

@@ -62,8 +62,19 @@ const Sidebar = () => {
                   isActive ? "side-link active" : "side-link"
                 }
               >
-                <i className="fa-regular fa-newspaper"></i>
+                <i class="fa-solid fa-comment-dots"></i>
                 <span>Kelola Ulasan</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/kelolaadmin"
+                className={({ isActive }) =>
+                  isActive ? "side-link active" : "side-link"
+                }
+              >
+                <i class="fa-solid fa-user-pen"></i>
+                <span>Kelola Admin</span>
               </NavLink>
             </li>
           </ul>

@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
 // Apollo Client
 import { useQuery, useMutation } from "@apollo/client";
 // Hasura GraphQL Queries
@@ -8,8 +11,17 @@ import { INSERT_WISATA } from "../../graphql/mutations";
 
 import Swal from "sweetalert2";
 
+// Universal Cookies
+import Cookies from "universal-cookie";
+
 const FormInputWisata = () => {
+  const navigate = useNavigate();
+
   const { data, loading, error, refetch } = useQuery(GET_LISTWISATA);
+
+  const cookies = new Cookies();
+
+  const cookiesAuth = cookies.get("auth");
 
   const [insertWisata, { loading: loadingInsert }] = useMutation(
     INSERT_WISATA,
@@ -18,7 +30,7 @@ const FormInputWisata = () => {
       onCompleted: (data) => {
         Swal.fire({
           title: "Sukses!",
-          text: "Data Berhasil Diupdate",
+          text: "Data Berhasil Disimpan",
           icon: "success",
         });
       },
@@ -57,8 +69,6 @@ const FormInputWisata = () => {
     });
   };
 
-  const [listWisata, setListWisata] = useState([]);
-
   const [categories, setCategories] = useState(["Alam", "Pantai", "Kuliner"]);
 
   const [initSelectValue, setInitSelectValue] = useState(categories[0]);
@@ -90,7 +100,7 @@ const FormInputWisata = () => {
           alamat: inputs.alamat,
           deskripsi: inputs.deskripsi,
           gambar: baseImage,
-          id_admin: 1,
+          id_admin: cookiesAuth.id,
         },
       },
     });
@@ -102,15 +112,24 @@ const FormInputWisata = () => {
       deskripsi: "",
       gambar: "",
     });
+
+    setBaseImage("");
+  };
+
+  const handleReset = (e) => {
+    e.preventDefault();
+
+    setBaseImage("");
+    navigate("/kelolawisata");
   };
 
   return (
     <>
       <section className="tambahwisataalamm mb-3 pb-3 mt-3 pt-3">
         <div className="container">
-          <div className="row justify-content-between">
-            <div className="col-md-8">
-              <form onSubmit={handleSubmit}>
+          <div className="row justify-content-center">
+            <div className="col-md-10">
+              <form onSubmit={handleSubmit} onReset={handleReset}>
                 <div className="row mb-3">
                   <label
                     htmlFor="input-nama-wisata"
@@ -203,32 +222,13 @@ const FormInputWisata = () => {
                     />
                   </div>
                 </div>
-                {/* 
-                <div className="row mb-3">
-                  <label htmlFor="gambar" className="col-sm-2 col-form-label">
-                    Gambar
-                  </label>
-                  <div className="col-sm-10">
-                    <input
-                      className="form-control"
-                      type="file"
-                      name="gambar"
-                      id="gambar"
-                      accept="image/*"
-                      value={inputs.gambar}
-                      onChange={(e) =>
-                        handleInput(e.target.value, e.target.name)
-                      }
-                    />
-                  </div>
-                </div> */}
 
                 <div className="row mb-3">
                   <label
                     htmlFor="gambar-wisata"
                     className="col-sm-2 col-form-label"
                   >
-                    Image
+                    Gambar
                   </label>
                   <div className="col-sm-10">
                     <input
@@ -242,7 +242,7 @@ const FormInputWisata = () => {
                   </div>
                 </div>
 
-                {/* <div className="row mb-3">
+                <div className="row mb-3">
                   <label
                     htmlFor="image-wisata"
                     className="col-sm-2 col-form-label"
@@ -250,17 +250,29 @@ const FormInputWisata = () => {
                     Preview
                   </label>
                   <div className="col-sm-10">
-                    <img src={baseImage} height="200px" alt="img preview" />
+                    <img
+                      src={baseImage}
+                      height="300px"
+                      width="100%"
+                      alt="...."
+                      style={{ borderRadius: "15px" }}
+                    />
                   </div>
-                </div> */}
+                </div>
 
                 <div className="row mb-3">
                   <div className="col-sm-2"></div>
                   <div className="col-sm-10">
-                    <button type="submit" className="btn btn-primary">
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-simpan"
+                    >
                       Simpan
                     </button>
-                    <button type="reset" className="btn btn-danger ms-2">
+                    <button
+                      type="reset"
+                      className="btn btn-danger ms-2 btn-batal"
+                    >
                       Batal
                     </button>
                   </div>
@@ -268,9 +280,9 @@ const FormInputWisata = () => {
               </form>
             </div>
 
-            <div className="col-md-3">
+            {/* <div className="col-md-3">
               <h1>Input Wisata</h1>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

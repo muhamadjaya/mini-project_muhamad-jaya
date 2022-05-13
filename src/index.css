@@ -342,7 +342,8 @@ svg {
 }
 
 .brand-title {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
+  font-weight: 800;
 }
 
 .sidebar {
@@ -364,6 +365,7 @@ svg {
   align-items: center;
   height: 60px;
   padding: 0rem 1rem;
+  border-bottom: 1px solid #333499;
 }
 
 .sidebar-menu {
@@ -382,8 +384,7 @@ svg {
 
 .sidebar a {
   color: #fff;
-  font-size: 0.8rem;
-
+  font-size: 1.125rem;
   text-decoration: none !important;
 }
 
@@ -393,17 +394,15 @@ svg {
 
 .sidebar a:hover {
   color: rgb(255, 255, 255);
-  border-left: 3px solid rgb(252, 92, 18);
+  border-bottom: 2px solid rgb(252, 92, 18);
 
   font-weight: 700;
-  background-color: #2d31a7;
+  transition: 0.2s ease !important;
 }
 
 .side-link.active {
-  border-left: 3px solid rgb(252, 92, 18);
+  border-bottom: 2px solid rgb(252, 92, 18);
   font-weight: 700;
-
-  background-color: #2d31a7;
 }
 
 #sidebar-toggle:checked ~ .sidebar {
@@ -604,4 +603,53 @@ iframe {
   width: 100%;
   height: 380px;
   border-radius: 20px;
+}
+
+/* Button Styles */
+.btn-simpan,
+.btn-batal {
+  border-radius: 0.5em !important;
+  padding: 0.45em 0 !important;
+  width: 49%;
+  text-decoration: none !important;
+  border: 1px solid transparent !important;
+  transition: 0.5s ease !important;
+  font-size: 1.1rem !important;
+  font-weight: 700 !important;
+}
+
+.btn-simpan:hover,
+.btn-batal:hover {
+  filter: brightness(85%);
+  border: 1px solid #db1313;
+  background-color: transparent;
+}
+
+.btn-tambah-wisata,
+.btn-tambah-berita {
+  border-radius: 0.5em !important;
+  padding: 0.45em 2em !important;
+  border: 1px solid transparent !important;
+  transition: 0.5s ease !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+}
+
+.btn-tambah-wisata:hover,
+.btn-tambah-berita:hover {
+  filter: brightness(85%);
+  border: 1px solid #db1313;
+  background-color: transparent;
+}
+
+/* Enf of Button Styles */
+
+.text-logout {
+  font-weight: 700;
+  color: #444bff;
+  text-decoration: none;
+}
+
+.text-logout:hover {
+  color: rgb(252, 92, 18);
 }

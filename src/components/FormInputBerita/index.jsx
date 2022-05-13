@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
 // Apollo Client
 import { useQuery, useMutation } from "@apollo/client";
 // Hasura GraphQL Queries
@@ -6,12 +9,32 @@ import { GET_LISTBERITA } from "../../graphql/queries";
 // Hasura GraphQL Mutations
 import { INSERT_BERITA } from "../../graphql/mutations";
 
+import Swal from "sweetalert2";
+
+// Universal Cookies
+import Cookies from "universal-cookie";
+
 const FormInputBerita = () => {
+  const navigate = useNavigate();
+
+  const cookies = new Cookies();
+
+  const cookiesAuth = cookies.get("auth");
+
   const { data, loading, error, refetch } = useQuery(GET_LISTBERITA);
 
   const [insertBerita, { loading: loadingInsert }] = useMutation(
     INSERT_BERITA,
-    { refetchQueries: [GET_LISTBERITA] }
+    {
+      refetchQueries: [GET_LISTBERITA],
+      onCompleted: (data) => {
+        Swal.fire({
+          title: "Sukses!",
+          text: "Data Berhasil Disimpan",
+          icon: "success",
+        });
+      },
+    }
   );
 
   const [inputs, setInputs] = useState({
@@ -46,8 +69,6 @@ const FormInputBerita = () => {
     });
   };
 
-  const [listWisata, setListWisata] = useState([]);
-
   const handleInput = (value, key) => {
     const newInputs = { ...inputs };
 
@@ -72,7 +93,7 @@ const FormInputBerita = () => {
           deskripsi: inputs.deskripsi,
           tgl_posting: inputs.tgl_posting,
           gambar: baseImage,
-          id_admin: 1,
+          id_admin: cookiesAuth.id,
         },
       },
     });
@@ -84,16 +105,24 @@ const FormInputBerita = () => {
       gambar: "",
       id_admin: "",
     });
+
+    setBaseImage("");
+  };
+
+  const handleReset = (e) => {
+    e.preventDefault();
+
+    setBaseImage("");
+    navigate("/kelolaberita");
   };
 
   return (
     <>
-      <h1>Form Input</h1>
-      <section className="tambahberita mb-5 pb-5 mt-5 pt-5">
+      <section className="tambahberita mb-3 pb-3 mt-3 pt-3">
         <div className="container">
-          <div className="row justify-content-between">
-            <div className="col-md-8">
-              <form onSubmit={handleSubmit}>
+          <div className="row justify-content-center">
+            <div className="col-md-10">
+              <form onSubmit={handleSubmit} onReset={handleReset}>
                 <div className="row mb-3">
                   <label
                     htmlFor="input-judul-berita"
@@ -177,21 +206,41 @@ const FormInputBerita = () => {
                 </div>
 
                 <div className="row mb-3">
+                  <label
+                    htmlFor="preview-gambar"
+                    className="col-sm-2 col-form-label"
+                  >
+                    Preview
+                  </label>
+                  <div className="col-sm-10">
+                    <img
+                      src={baseImage}
+                      height="300px"
+                      width="100%"
+                      alt="...."
+                      style={{ borderRadius: "15px" }}
+                    />
+                  </div>
+                </div>
+
+                <div className="row mb-3">
                   <div className="col-sm-2"></div>
                   <div className="col-sm-10">
-                    <button type="submit" className="btn btn-primary">
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-simpan"
+                    >
                       Simpan
                     </button>
-                    <button type="reset" className="btn btn-danger ms-2">
+                    <button
+                      type="reset"
+                      className="btn btn-danger ms-2 btn-batal"
+                    >
                       Batal
                     </button>
                   </div>
                 </div>
               </form>
-            </div>
-
-            <div className="col-md-3">
-              <h1>Input Berita</h1>
             </div>
           </div>
         </div>

@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
 // Apollo Client
 import { useQuery, useMutation } from "@apollo/client";
 // Hasura GraphQL Queries
@@ -17,6 +20,8 @@ import Cookies from "universal-cookie";
 
 const FormUbahWisata = () => {
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const [isDataReady, setIsDataReady] = useState(false);
 
@@ -135,17 +140,23 @@ const FormUbahWisata = () => {
   console.log(inputs);
   console.log(isDataReady);
 
+  const handleReset = (e) => {
+    e.preventDefault();
+
+    setBaseImage("");
+    navigate("/kelolawisata");
+  };
+
   return (
     <>
-      <h1>Form Ubah</h1>
-      <section className="tambahwisataalamm mb-5 pb-5 mt-5 pt-5">
+      <section className="ubahwisata mb-3 pb-3 mt-3 pt-3">
         <div className="container">
-          <div className="row justify-content-between">
-            <div className="col-md-8">
+          <div className="row justify-content-center">
+            <div className="col-md-10">
               {!isDataReady ? (
                 <LoadingSvg />
               ) : (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} onReset={handleReset}>
                   <div className="row mb-3">
                     <label
                       htmlFor="input-nama-wisata"
@@ -193,8 +204,6 @@ const FormUbahWisata = () => {
                             {dataCategory}
                           </option>
                         ))}
-
-                        {/* {renderElement()} */}
                       </select>
                     </div>
                   </div>
@@ -246,7 +255,7 @@ const FormUbahWisata = () => {
                       htmlFor="gambar-wisata"
                       className="col-sm-2 col-form-label"
                     >
-                      Image
+                      Gambar
                     </label>
                     <div className="col-sm-10">
                       <input
@@ -270,8 +279,10 @@ const FormUbahWisata = () => {
                     <div className="col-sm-10">
                       <img
                         src={inputs.gambar}
-                        height="200px"
-                        alt="img preview"
+                        height="300px"
+                        width="100%"
+                        alt="...."
+                        style={{ borderRadius: "15px" }}
                       />
                     </div>
                   </div>
@@ -279,20 +290,22 @@ const FormUbahWisata = () => {
                   <div className="row mb-3">
                     <div className="col-sm-2"></div>
                     <div className="col-sm-10">
-                      <button type="submit" className="btn btn-primary">
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-simpan"
+                      >
                         Ubah
                       </button>
-                      <button type="reset" className="btn btn-danger ms-2">
+                      <button
+                        type="reset"
+                        className="btn btn-danger ms-2 btn-batal"
+                      >
                         Batal
                       </button>
                     </div>
                   </div>
                 </form>
               )}
-            </div>
-
-            <div className="col-md-3">
-              <h1>Ubah Wisata</h1>
             </div>
           </div>
         </div>

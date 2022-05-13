@@ -216,7 +216,6 @@ const Beranda = () => {
                   sesuai dengan <br /> keinginan sebelum memulai petualangan mu
                   di Banten.
                 </p>
-                <p>test</p>
               </div>
             </div>
           </div>
@@ -234,7 +233,9 @@ const Beranda = () => {
                           className="card text-white card-img-new-wisata-left"
                           onClick={() => {
                             navigate(
-                              `/wisata/detailwisata/${dataWisata?.wisata[0].id}`
+                              `/wisata${dataWisata?.wisata[0].kategori.toLowerCase()}/detailwisata/${
+                                dataWisata?.wisata[0].id
+                              }`
                             );
                           }}
                         >
@@ -259,7 +260,16 @@ const Beranda = () => {
                       <div className="col-md-6">
                         <div className="row">
                           <div className="col-md-12">
-                            <div className="card text-white card-img-new-wisata">
+                            <div
+                              className="card text-white card-img-new-wisata"
+                              onClick={() => {
+                                navigate(
+                                  `/wisata${dataWisata?.wisata[1].kategori.toLowerCase()}/detailwisata/${
+                                    dataWisata?.wisata[1].id
+                                  }`
+                                );
+                              }}
+                            >
                               <img
                                 src={dataWisata?.wisata[1].gambar}
                                 className="card-img img-new-wisata"
@@ -283,7 +293,16 @@ const Beranda = () => {
                         </div>
                         <div className="row mt-2">
                           <div className="col-md-12">
-                            <div className="card text-white card-img-new-wisata">
+                            <div
+                              className="card text-white card-img-new-wisata"
+                              onClick={() => {
+                                navigate(
+                                  `/wisata${dataWisata?.wisata[2].kategori.toLowerCase()}/detailwisata/${
+                                    dataWisata?.wisata[2].id
+                                  }`
+                                );
+                              }}
+                            >
                               <img
                                 src={dataWisata?.wisata[2].gambar}
                                 className="card-img img-new-wisata"

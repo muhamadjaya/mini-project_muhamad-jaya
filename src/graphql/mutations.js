@@ -98,3 +98,34 @@ export const UPDATE_WISATA = gql`
     }
   }
 `;
+
+export const UPDATE_BERITA = gql`
+  mutation updateBerita(
+    $id: Int!
+    $judul: String = ""
+    $deskripsi: String = ""
+    $tgl_posting: date = ""
+    $gambar: String = ""
+    $id_admin: Int = 10
+  ) {
+    update_berita(
+      where: { id: { _eq: $id } }
+      _set: {
+        judul: $judul
+        deskripsi: $deskripsi
+        tgl_posting: $tgl_posting
+        gambar: $gambar
+        id_admin: $id_admin
+      }
+    ) {
+      returning {
+        id
+        judul
+        deskripsi
+        tgl_posting
+        gambar
+        id_admin
+      }
+    }
+  }
+`;

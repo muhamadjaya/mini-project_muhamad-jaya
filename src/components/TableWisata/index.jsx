@@ -10,6 +10,8 @@ import { DELETE_WSIATA_BY_ID } from "../../graphql/mutations";
 
 import LoadingSvg from "../LoadingSvg/LoadingSvg";
 
+import Swal from "sweetalert2";
+
 const TableWisata = () => {
   const { data, loading, error, refetch } = useQuery(GET_LISTWISATA);
 
@@ -26,10 +28,25 @@ const TableWisata = () => {
   );
 
   const onDeleteData = (idx) => {
-    deleteWisata({
-      variables: {
-        id: idx,
-      },
+    Swal.fire({
+      title: "Yakin hapus data ini?",
+      text: "Kamu tidak dapat mengembalikan data yang telah dihapus!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteWisata({
+          variables: {
+            id: idx,
+          },
+        });
+        Swal.fire("Berhasil!", "Data berhasil dihapus.", "success");
+      } else {
+        Swal.fire("Batal", "Data batal dihapus", "error");
+      }
     });
   };
 
@@ -40,7 +57,7 @@ const TableWisata = () => {
           {/* <h3>Kelola Data Wisata</h3> */}
           <Link
             to="/kelolawisata/inputwisata"
-            className="btn btn-primary my-2 ms-2"
+            className="btn btn-primary my-2 ms-2 btn-tambah-wisata"
           >
             Tambah Wisata
           </Link>

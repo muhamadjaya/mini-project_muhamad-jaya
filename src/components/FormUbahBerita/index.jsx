@@ -1,37 +1,50 @@
 import React, { useEffect, useState } from "react";
+
+import { useNavigate } from "react-router-dom";
+
 // Apollo Client
 import { useQuery, useMutation } from "@apollo/client";
 // Hasura GraphQL Queries
 import { GET_LISTBERITA, GET_BERITA_BY_ID } from "../../graphql/queries";
 // Hasura GraphQL Mutations
-import { INSERT_BERITA } from "../../graphql/mutations";
+import { UPDATE_BERITA } from "../../graphql/mutations";
 
 import LoadingSvg from "../LoadingSvg/LoadingSvg";
 
 import { useParams } from "react-router-dom";
 
+import Swal from "sweetalert2";
+
+// Universal Cookies
+import Cookies from "universal-cookie";
+
 const FormUbahBerita = () => {
   const { id } = useParams();
 
-  const [isEdit, setIsEdit] = useState(false);
+  const navigate = useNavigate();
 
   const [isDataReady, setIsDataReady] = useState(false);
 
-  const [list, setList] = useState([]);
+  const cookies = new Cookies();
+
+  const cookiesAuth = cookies.get("auth");
 
   const { data, loading, error, refetch } = useQuery(GET_BERITA_BY_ID, {
     variables: { id: id },
-    onCompleted: (data) => {
-      setList([...data?.berita]);
-      setIsDataReady(true);
-    },
   });
 
-  //   const { data, loading, error, refetch } = useQuery(GET_LISTWISATA);
-
-  const [insertBerita, { loading: loadingInsert }] = useMutation(
-    INSERT_BERITA,
-    { refetchQueries: [GET_LISTBERITA] }
+  const [updateBerita, { loading: loadingUpdate }] = useMutation(
+    UPDATE_BERITA,
+    {
+      refetchQueries: [GET_LISTBERITA],
+      onCompleted: (data) => {
+        Swal.fire({
+          title: "Sukses!",
+          text: "Data Berhasil Diupdate",
+          icon: "success",
+        });
+      },
+    }
   );
 
   const [inputs, setInputs] = useState({
@@ -46,7 +59,7 @@ const FormUbahBerita = () => {
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertBase64(file);
-    setBaseImage(base64);
+    setInputs({ ...inputs, gambar: base64 });
     console.log(base64);
   };
 
@@ -66,8 +79,6 @@ const FormUbahBerita = () => {
   };
 
   const handleInput = (value, key) => {
-    setIsEdit(true);
-
     const newInputs = { ...inputs };
 
     newInputs[key] = value;
@@ -84,15 +95,14 @@ const FormUbahBerita = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    insertBerita({
+    updateBerita({
       variables: {
-        object: {
-          judul: inputs.judul,
-          deskripsi: inputs.deskripsi,
-          tgl_posting: inputs.tgl_posting,
-          gambar: baseImage,
-          id_admin: 1,
-        },
+        id: id,
+        judul: inputs.judul,
+        deskripsi: inputs.deskripsi,
+        tgl_posting: inputs.tgl_posting,
+        gambar: inputs.gambar,
+        id_admin: cookiesAuth.id,
       },
     });
 
@@ -105,24 +115,38 @@ const FormUbahBerita = () => {
   };
 
   useEffect(() => {
-    console.log(data);
-    console.log("ini isEdit", isEdit);
-  }, [data, isEdit]);
+    if (!loading && data) {
+      setInputs({
+        judul: data?.berita[0].judul,
+        deskripsi: data?.berita[0].deskripsi,
+        tgl_posting: data?.berita[0].tgl_posting,
+        gambar: data?.berita[0].gambar,
+      });
+      setIsDataReady(true);
+      console.log(data);
+    }
+  }, [loading, data]);
 
-  console.log("ini list", list);
+  console.log(inputs);
   console.log(isDataReady);
+
+  const handleReset = (e) => {
+    e.preventDefault();
+
+    setBaseImage("");
+    navigate("/kelolaberita");
+  };
 
   return (
     <>
-      <h1>Form Ubah</h1>
-      <section className="tambahwisataalamm mb-5 pb-5 mt-5 pt-5">
+      <section className="ubahberita mb-3 pb-3 mt-3 pt-3">
         <div className="container">
-          <div className="row justify-content-between">
-            <div className="col-md-8">
+          <div className="row justify-content-center">
+            <div className="col-md-10">
               {!isDataReady ? (
                 <LoadingSvg />
               ) : (
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} onReset={handleReset}>
                   <div className="row mb-3">
                     <label
                       htmlFor="input-judul-berita"
@@ -136,7 +160,7 @@ const FormUbahBerita = () => {
                         name="judul"
                         className="form-control"
                         id="input-judul-berita"
-                        value={isEdit ? inputs.judul : list[0].judul}
+                        value={inputs.judul}
                         onChange={(e) =>
                           handleInput(e.target.value, e.target.name)
                         }
@@ -157,7 +181,7 @@ const FormUbahBerita = () => {
                         className="form-control"
                         id="deskripsi"
                         rows="5"
-                        value={isEdit ? inputs.deskripsi : list[0].deskripsi}
+                        value={inputs.deskripsi}
                         onChange={(e) =>
                           handleInput(e.target.value, e.target.name)
                         }
@@ -175,12 +199,10 @@ const FormUbahBerita = () => {
                     <div className="col-sm-10">
                       <input
                         type="date"
-                        name="alamat"
+                        name="tgl_posting"
                         className="form-control"
                         id="input-tgl-posting"
-                        value={
-                          isEdit ? inputs.tgl_posting : list[0].tgl_posting
-                        }
+                        value={inputs.tgl_posting}
                         onChange={(e) =>
                           handleInput(e.target.value, e.target.name)
                         }
@@ -208,22 +230,42 @@ const FormUbahBerita = () => {
                   </div>
 
                   <div className="row mb-3">
+                    <label
+                      htmlFor="image-berita"
+                      className="col-sm-2 col-form-label"
+                    >
+                      Preview
+                    </label>
+                    <div className="col-sm-10">
+                      <img
+                        src={inputs.gambar}
+                        height="300px"
+                        width="100%"
+                        alt="...."
+                        style={{ borderRadius: "15px" }}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="row mb-3">
                     <div className="col-sm-2"></div>
                     <div className="col-sm-10">
-                      <button type="submit" className="btn btn-primary">
-                        Simpan
+                      <button
+                        type="submit"
+                        className="btn btn-primary btn-simpan"
+                      >
+                        Ubah
                       </button>
-                      <button type="reset" className="btn btn-danger ms-2">
+                      <button
+                        type="reset"
+                        className="btn btn-danger ms-2 btn-batal"
+                      >
                         Batal
                       </button>
                     </div>
                   </div>
                 </form>
               )}
-            </div>
-
-            <div className="col-md-3">
-              <h1>Ubah Berita</h1>
             </div>
           </div>
         </div>
