@@ -8,23 +8,27 @@ import Kategori from "./pages/WisataAlam";
 import Wisata from "./pages/Wisata";
 import DetailWisata from "./pages/DetailWisata";
 
-import WisataAlam from "./pages/WisataAlam";
-import DetailWisataAlam from "./pages/DetailWisata";
-import WisataPantai from "./pages/WisataPantai";
-import DetailWisataPantai from "./pages/DetailWisata";
-import WisataKuliner from "./pages/WisataKuliner";
-import DetailWisataKuliner from "./pages/DetailWisata";
 import Berita from "./pages/Berita";
 import DetailBerita from "./pages/DetailBerita";
+
+import Tentang from "./pages/Tentang";
+
 import Login from "./pages/Login";
+
+import NotFound from "./pages/NotFound";
+
 import KelolaWisata from "./pages/KelolaWisata";
 import InputWisata from "./pages/InputWisata";
 import UbahWisata from "./pages/UbahWisata";
+
 import KelolaBerita from "./pages/KelolaBerita";
 import InputBerita from "./pages/InputBerita";
 import UbahBerita from "./pages/UbahBerita";
-import Tentang from "./pages/Tentang";
-import NotFound from "./pages/NotFound";
+
+import KelolaUlasan from "./pages/KelolaUlasan";
+
+import KelolaAdmin from "./pages/KelolaAdmin";
+import InputAdmin from "./pages/InputAdmin";
 
 import PrivateRoutes from "./PrivateRoutes";
 
@@ -32,53 +36,42 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Beranda />} />
-      <Route path="/wisata" element={<Wisata />} />
-      <Route path="/wisata/detailwisata/:id" element={<DetailWisata />} />
 
-      {/* COba */}
-      {/* <Route path="/kategori">
-        <Route index element={<Navigate to="wisataalam" />} />
-        <Route path="wisataalam" element={<Wisata />} />
-        <Route path="wisatapantai" element={<WisataPantai />} />
-        <Route path="wisatakuliner" element={<WisataKuliner />} />
-      </Route> */}
       <Route path="/kategori">
         <Route element={<Kategori />} index />
-        <Route path=":category" element={<Wisata />}>
+        <Route path=":category">
+          <Route element={<Wisata />} index />
           <Route path="detail-wisata/:id" element={<DetailWisata />} />
         </Route>
       </Route>
 
-      <Route path="/wisataalam" element={<WisataAlam />} />
-      <Route
-        path="/wisataalam/detailwisata/:id"
-        element={<DetailWisataAlam />}
-      />
+      <Route path="/berita">
+        <Route element={<Berita />} index />
+        <Route path="detail-berita/:id" element={<DetailBerita />} />
+      </Route>
 
-      <Route path="/wisatapantai" element={<WisataPantai />} />
-      <Route
-        path="/wisatapantai/detailwisata/:id"
-        element={<DetailWisataPantai />}
-      />
-
-      <Route path="/wisatakuliner" element={<WisataKuliner />} />
-      <Route
-        path="/wisatakuliner/detailwisata/:id"
-        element={<DetailWisataKuliner />}
-      />
-
-      <Route path="/berita" element={<Berita />} />
-      <Route path="/berita/detailberita/:id" element={<DetailBerita />} />
       <Route path="/tentang" element={<Tentang />} />
       <Route path="/login" element={<Login />} />
 
       <Route element={<PrivateRoutes />}>
-        <Route path="/kelolawisata" element={<KelolaWisata />} />
-        <Route path="/kelolawisata/inputwisata" element={<InputWisata />} />
-        <Route path="/kelolawisata/ubahwisata/:id" element={<UbahWisata />} />
-        <Route path="/kelolaberita" element={<KelolaBerita />} />
-        <Route path="/kelolaberita/inputberita" element={<InputBerita />} />
-        <Route path="/kelolaberita/ubahberita/:id" element={<UbahBerita />} />
+        <Route path="/kelola-wisata">
+          <Route element={<KelolaWisata />} index />
+          <Route path="input-wisata" element={<InputWisata />} />
+          <Route path="ubah-wisata/:id" element={<UbahWisata />} />
+        </Route>
+
+        <Route path="/kelola-berita">
+          <Route element={<KelolaBerita />} index />
+          <Route path="input-berita" element={<InputBerita />} />
+          <Route path="ubah-berita/:id" element={<UbahBerita />} />
+        </Route>
+      </Route>
+
+      <Route path="/kelola-ulasan" element={<KelolaUlasan />} />
+
+      <Route path="/kelola-admin">
+        <Route element={<KelolaAdmin />} index />
+        <Route path="input-admin" element={<InputAdmin />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

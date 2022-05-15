@@ -696,7 +696,8 @@ iframe {
 }
 
 .btn-tambah-wisata,
-.btn-tambah-berita {
+.btn-tambah-berita,
+.btn-tambah-admin {
   border-radius: 0.5em !important;
   padding: 0.45em 2em !important;
   border: 1px solid transparent !important;
@@ -706,7 +707,8 @@ iframe {
 }
 
 .btn-tambah-wisata:hover,
-.btn-tambah-berita:hover {
+.btn-tambah-berita:hover,
+.btn-tambah-admin:hover {
   filter: brightness(85%);
   border: 1px solid #db1313;
   background-color: transparent;

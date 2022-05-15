@@ -55,7 +55,7 @@ const Navbar = () => {
                         ? "nav-link dropdown-toggle"
                         : "nav-link dropdown-toggle"
                     }
-                    to="/"
+                    to="wisata-alam"
                     id="navbarDropdownMenuLink"
                     role="button"
                     data-bs-toggle="dropdown"
@@ -68,20 +68,34 @@ const Navbar = () => {
                     aria-labelledby="navbarDropdownMenuLink"
                   >
                     <li>
-                      <NavLink className="dropdown-item" to="/wisataalam">
+                      {/* <NavLink className="dropdown-item" to="wisata-alam">
+                        Wisata Alam
+                      </NavLink> */}
+                      <NavLink
+                        className="dropdown-item"
+                        to={`/kategori/${category[0]}`}
+                      >
                         Wisata Alam
                       </NavLink>
-                      <NavLink className="dropdown-item" to="/wisatapantai">
+                    </li>
+                    <li>
+                      <NavLink
+                        className="dropdown-item"
+                        to={`/kategori/${category[1]}`}
+                      >
                         Wisata Pantai
                       </NavLink>
                     </li>
                     <li>
                       <NavLink
                         className="dropdown-item"
-                        to={`kategori/${category[2]}`}
+                        to={`/kategori/${category[2]}`}
                       >
                         Wisata Kuliner
                       </NavLink>
+                      {/* <NavLink className="dropdown-item" to="wisata-pantai">
+                        Wisata Pantai
+                      </NavLink> */}
                     </li>
                   </ul>
                 </li>

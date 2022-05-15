@@ -1,28 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import DashboardHeader from "../../components/DashboardHeader";
-import TableWisata from "../../components/TableWisata";
+import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
+import TableUlasan from "../../components/TableUlasan";
 
 // Apollo Client
 import { useQuery, useMutation } from "@apollo/client";
 
 // Hasura GraphQL Queries
-import { GET_LISTWISATA } from "../../graphql/queries";
+import { GET_LISTULASAN } from "../../graphql/queries";
 
 // Hasura GraphQL Mutations
-import { DELETE_WSIATA_BY_ID } from "../../graphql/mutations";
-
-import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
+import { DELETE_ULASAN_BY_ID } from "../../graphql/mutations";
 
 // Third Party
 import Swal from "sweetalert2";
 
-const KelolaWisata = () => {
-  const { data, loading, error, refetch } = useQuery(GET_LISTWISATA);
+const KelolaUlasan = () => {
+  const { data, loading, error, refetch } = useQuery(GET_LISTULASAN);
 
-  const [deleteWisata, { loading: loadingDeleteWisata }] = useMutation(
-    DELETE_WSIATA_BY_ID,
+  const [deleteUlasan, { loading: loadingDeleteUlasan }] = useMutation(
+    DELETE_ULASAN_BY_ID,
     {
       onCompleted: (data) => {
         refetch();
@@ -44,7 +42,7 @@ const KelolaWisata = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteWisata({
+        deleteUlasan({
           variables: {
             id: idx,
           },
@@ -65,12 +63,6 @@ const KelolaWisata = () => {
           <section className="recent">
             <div className="activity-grid">
               <div className="activity-card">
-                <Link
-                  to="input-wisata"
-                  className="btn btn-primary my-2 ms-2 btn-tambah-wisata"
-                >
-                  Tambah Wisata
-                </Link>
                 <div className="table-responsive">
                   {loading ? (
                     <LoadingSvg />
@@ -78,32 +70,32 @@ const KelolaWisata = () => {
                     <table>
                       <thead>
                         <tr>
-                          <th className="text-center" style={{ width: "15%" }}>
+                          <th className="text-center" style={{ width: "10%" }}>
                             No
                           </th>
-                          <th>Nama Wisata</th>
-                          <th>Kategori</th>
-                          <th>Alamat</th>
-                          <th>Deskripsi</th>
-                          <th
-                            className="text-center"
-                            colSpan={2}
-                            style={{ width: "35%" }}
-                          >
+                          <th className="text-center" style={{ width: "15%" }}>
+                            Nama
+                          </th>
+                          <th className="text-center" style={{ width: "15%" }}>
+                            Email
+                          </th>
+                          <th className="text-center" style={{ width: "40%" }}>
+                            Ulasan
+                          </th>
+                          <th className="text-center" style={{ width: "20%" }}>
                             Actions
                           </th>
                         </tr>
                       </thead>
                       <tbody>
-                        {data?.wisata.map((value, valueIdx) => (
+                        {data?.ulasan.map((value, valueIdx) => (
                           <tr key={valueIdx} data-key={value.id}>
-                            <TableWisata
+                            <TableUlasan
                               idx={valueIdx}
                               id={value.id}
-                              nama_wisata={value.nama_wisata}
-                              kategori={value.kategori}
-                              alamat={value.alamat}
-                              deskripsi={value.deskripsi}
+                              nama={value.nama}
+                              email={value.email}
+                              ulasan={value.ulasan}
                               onDeleteData={() => onDeleteData(value.id)}
                             />
                           </tr>
@@ -121,4 +113,4 @@ const KelolaWisata = () => {
   );
 };
 
-export default KelolaWisata;
+export default KelolaUlasan;

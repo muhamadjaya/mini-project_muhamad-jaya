@@ -121,6 +121,8 @@ const FormUbahWisata = () => {
       deskripsi: "",
       gambar: "",
     });
+
+    navigate("/kelola-wisata");
   };
 
   useEffect(() => {
@@ -144,7 +146,7 @@ const FormUbahWisata = () => {
     e.preventDefault();
 
     setBaseImage("");
-    navigate("/kelolawisata");
+    navigate("/kelola-wisata");
   };
 
   return (

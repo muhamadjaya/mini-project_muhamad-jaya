@@ -126,6 +126,17 @@ export const GET_BERITA_BY_NAME = gql`
   }
 `;
 
+export const GET_LISTADMIN = gql`
+  query getListAdmin {
+    admin(order_by: { id: asc }) {
+      id
+      nama_admin
+      username
+      password
+    }
+  }
+`;
+
 export const GET_ADMIN = gql`
   query getAdmin($username: String, $password: String) {
     admin(

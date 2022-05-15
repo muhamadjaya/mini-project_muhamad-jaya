@@ -112,6 +112,8 @@ const FormUbahBerita = () => {
       tgl_posting: "",
       gambar: "",
     });
+
+    navigate("/kelola-berita");
   };
 
   useEffect(() => {
@@ -134,7 +136,7 @@ const FormUbahBerita = () => {
     e.preventDefault();
 
     setBaseImage("");
-    navigate("/kelolaberita");
+    navigate("/kelola-berita");
   };
 
   return (

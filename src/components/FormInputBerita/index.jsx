@@ -107,13 +107,14 @@ const FormInputBerita = () => {
     });
 
     setBaseImage("");
+    navigate("/kelola-berita");
   };
 
   const handleReset = (e) => {
     e.preventDefault();
 
     setBaseImage("");
-    navigate("/kelolaberita");
+    navigate("/kelola-berita");
   };
 
   return (

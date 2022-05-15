@@ -114,13 +114,14 @@ const FormInputWisata = () => {
     });
 
     setBaseImage("");
+    navigate("/kelola-wisata");
   };
 
   const handleReset = (e) => {
     e.preventDefault();
 
     setBaseImage("");
-    navigate("/kelolawisata");
+    navigate("/kelola-wisata");
   };
 
   return (
@@ -279,10 +280,6 @@ const FormInputWisata = () => {
                 </div>
               </form>
             </div>
-
-            {/* <div className="col-md-3">
-              <h1>Input Wisata</h1>
-            </div> */}
           </div>
         </div>
       </section>

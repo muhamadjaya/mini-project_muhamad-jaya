@@ -34,7 +34,7 @@ const Sidebar = () => {
           <ul>
             <li>
               <NavLink
-                to="/kelolawisata"
+                to="/kelola-wisata"
                 className={({ isActive }) =>
                   isActive ? "side-link active" : "side-link"
                 }
@@ -46,7 +46,7 @@ const Sidebar = () => {
             </li>
             <li>
               <NavLink
-                to="/kelolaberita"
+                to="/kelola-berita"
                 className={({ isActive }) =>
                   isActive ? "side-link active" : "side-link"
                 }
@@ -57,23 +57,23 @@ const Sidebar = () => {
             </li>
             <li>
               <NavLink
-                to="/kelolaulasan"
+                to="/kelola-ulasan"
                 className={({ isActive }) =>
                   isActive ? "side-link active" : "side-link"
                 }
               >
-                <i class="fa-solid fa-comment-dots"></i>
+                <i className="fa-solid fa-comment-dots"></i>
                 <span>Kelola Ulasan</span>
               </NavLink>
             </li>
             <li>
               <NavLink
-                to="/kelolaadmin"
+                to="/kelola-admin"
                 className={({ isActive }) =>
                   isActive ? "side-link active" : "side-link"
                 }
               >
-                <i class="fa-solid fa-user-pen"></i>
+                <i className="fa-solid fa-user-pen"></i>
                 <span>Kelola Admin</span>
               </NavLink>
             </li>

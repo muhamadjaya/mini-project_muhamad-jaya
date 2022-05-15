@@ -1,25 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const TableBerita = ({
+const TableAdmin = ({
   idx,
   id,
-  judul,
-  deskripsi,
-  tgl_posting,
+  nama_admin,
+  username,
+  password,
   onDeleteData,
 }) => {
   return (
     <>
       <td className="text-center">{idx + 1}</td>
-      <td>{judul}</td>
-      <td>{deskripsi.substr(0, 50)}</td>
-      <td className="text-center">
-        {tgl_posting.substr(8, 2)}-{tgl_posting.substr(5, 2)}-
-        {tgl_posting.substr(0, 4)}
-      </td>
+      <td>{nama_admin}</td>
+      <td>{username}</td>
       <td className="text-end">
-        <Link to={`ubah-berita/${id}`} className="btn btn-outline-primary">
+        <Link to={`ubah-admin/${id}`} className="btn btn-outline-primary">
           Update
         </Link>
       </td>
@@ -32,4 +28,4 @@ const TableBerita = ({
   );
 };
 
-export default TableBerita;
+export default TableAdmin;

@@ -42,7 +42,7 @@ const Login = () => {
   useEffect(() => {
     const getAuth = cookies.get("auth");
     if (getAuth) {
-      navigate("/kelolawisata");
+      navigate("/kelola-wisata");
     }
   }, []);
 
@@ -58,7 +58,7 @@ const Login = () => {
         },
         { path: "/" }
       );
-      return navigate("/kelolawisata");
+      return navigate("/kelola-wisata");
     }
   }, [data]);
 

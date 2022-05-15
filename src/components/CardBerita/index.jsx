@@ -102,7 +102,7 @@ const CardBerita = () => {
                 <div className="col-md-8">
                   <div className="card-body ">
                     <Link
-                      to={`/berita/detailberita/${value.id}`}
+                      to={`detail-berita/${value.id}`}
                       className="link-title-wisata"
                     >
                       {value.judul}

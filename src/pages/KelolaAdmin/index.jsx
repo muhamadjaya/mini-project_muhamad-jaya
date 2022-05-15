@@ -2,27 +2,27 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import DashboardHeader from "../../components/DashboardHeader";
-import TableWisata from "../../components/TableWisata";
+import TableAdmin from "../../components/TableAdmin";
 
 // Apollo Client
 import { useQuery, useMutation } from "@apollo/client";
 
 // Hasura GraphQL Queries
-import { GET_LISTWISATA } from "../../graphql/queries";
+import { GET_LISTADMIN } from "../../graphql/queries";
 
 // Hasura GraphQL Mutations
-import { DELETE_WSIATA_BY_ID } from "../../graphql/mutations";
+import { DELETE_ADMIN_BY_ID } from "../../graphql/mutations";
 
 import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 
 // Third Party
 import Swal from "sweetalert2";
 
-const KelolaWisata = () => {
-  const { data, loading, error, refetch } = useQuery(GET_LISTWISATA);
+const KelolaAdmin = () => {
+  const { data, loading, error, refetch } = useQuery(GET_LISTADMIN);
 
-  const [deleteWisata, { loading: loadingDeleteWisata }] = useMutation(
-    DELETE_WSIATA_BY_ID,
+  const [deleteAdmin, { loading: loadingDeleteAdmin }] = useMutation(
+    DELETE_ADMIN_BY_ID,
     {
       onCompleted: (data) => {
         refetch();
@@ -44,7 +44,7 @@ const KelolaWisata = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        deleteWisata({
+        deleteAdmin({
           variables: {
             id: idx,
           },
@@ -66,10 +66,10 @@ const KelolaWisata = () => {
             <div className="activity-grid">
               <div className="activity-card">
                 <Link
-                  to="input-wisata"
-                  className="btn btn-primary my-2 ms-2 btn-tambah-wisata"
+                  to="input-admin"
+                  className="btn btn-primary my-2 ms-2 btn-tambah-admin"
                 >
-                  Tambah Wisata
+                  Tambah Admin
                 </Link>
                 <div className="table-responsive">
                   {loading ? (
@@ -81,10 +81,8 @@ const KelolaWisata = () => {
                           <th className="text-center" style={{ width: "15%" }}>
                             No
                           </th>
-                          <th>Nama Wisata</th>
-                          <th>Kategori</th>
-                          <th>Alamat</th>
-                          <th>Deskripsi</th>
+                          <th>Nama Admin</th>
+                          <th>Username</th>
                           <th
                             className="text-center"
                             colSpan={2}
@@ -95,15 +93,14 @@ const KelolaWisata = () => {
                         </tr>
                       </thead>
                       <tbody>
-                        {data?.wisata.map((value, valueIdx) => (
+                        {data?.admin.map((value, valueIdx) => (
                           <tr key={valueIdx} data-key={value.id}>
-                            <TableWisata
+                            <TableAdmin
                               idx={valueIdx}
                               id={value.id}
-                              nama_wisata={value.nama_wisata}
-                              kategori={value.kategori}
-                              alamat={value.alamat}
-                              deskripsi={value.deskripsi}
+                              nama_admin={value.nama_admin}
+                              username={value.username}
+                              password={value.password}
                               onDeleteData={() => onDeleteData(value.id)}
                             />
                           </tr>
@@ -121,4 +118,4 @@ const KelolaWisata = () => {
   );
 };
 
-export default KelolaWisata;
+export default KelolaAdmin;

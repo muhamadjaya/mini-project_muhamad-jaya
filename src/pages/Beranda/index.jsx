@@ -246,7 +246,7 @@ const Beranda = () => {
                           className="card text-white card-img-new-wisata-left"
                           onClick={() => {
                             navigate(
-                              `/wisata${dataWisata?.wisata[0].kategori.toLowerCase()}/detailwisata/${
+                              `/wisata-${dataWisata?.wisata[0].kategori.toLowerCase()}/detail-wisata/${
                                 dataWisata?.wisata[0].id
                               }`
                             );
@@ -277,7 +277,7 @@ const Beranda = () => {
                               className="card text-white card-img-new-wisata"
                               onClick={() => {
                                 navigate(
-                                  `/wisata${dataWisata?.wisata[1].kategori.toLowerCase()}/detailwisata/${
+                                  `/wisata-${dataWisata?.wisata[1].kategori.toLowerCase()}/detailwisata/${
                                     dataWisata?.wisata[1].id
                                   }`
                                 );
@@ -310,7 +310,7 @@ const Beranda = () => {
                               className="card text-white card-img-new-wisata"
                               onClick={() => {
                                 navigate(
-                                  `/wisata${dataWisata?.wisata[2].kategori.toLowerCase()}/detailwisata/${
+                                  `/wisata-${dataWisata?.wisata[2].kategori.toLowerCase()}/detail-wisata/${
                                     dataWisata?.wisata[2].id
                                   }`
                                 );
@@ -435,7 +435,7 @@ const Beranda = () => {
                           key={valueIdx}
                           className="content-slider-berita"
                           onClick={() => {
-                            navigate(`/berita/detailberita/${value.id}`);
+                            navigate(`/berita/detail-berita/${value.id}`);
                           }}
                         >
                           <div
@@ -496,11 +496,13 @@ const Beranda = () => {
                 <button
                   type="button"
                   className="btn btn-primary button-eksplore"
-                  onClick={() => {
-                    navigate("/wisatakuliner");
-                  }}
                 >
-                  Selengkapnya
+                  <Link
+                    to={`/kategori/${"wisata-kuliner"}`}
+                    style={{ textDecoration: "none", color: "white" }}
+                  >
+                    Selengkapnya
+                  </Link>
                 </button>
               </div>
             </div>

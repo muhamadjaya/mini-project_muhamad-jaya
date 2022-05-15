@@ -195,7 +195,7 @@ const CardWisata = () => {
                     <div className="card-body">
                       <h5 className="card-title">
                         <Link
-                          to={`/wisata/detailwisata/${value.id}`}
+                          to={`detail-wisata/${value.id}`}
                           className="link-title-wisata"
                         >
                           {value.nama_wisata}
@@ -222,7 +222,7 @@ const CardWisata = () => {
                     <div className="card-body">
                       <h5 className="card-title">
                         <Link
-                          to={`/wisata/detailwisata/${value.id}`}
+                          to={`detail-wisata/${value.id}`}
                           className="link-title-wisata"
                         >
                           {value.nama_wisata}
@@ -249,7 +249,7 @@ const CardWisata = () => {
                     <div className="card-body">
                       <h5 className="card-title">
                         <Link
-                          to={`/wisata/detailwisata/${value.id}`}
+                          to={`detail-wisata/${value.id}`}
                           className="link-title-wisata"
                         >
                           {value.nama_wisata}
@@ -286,7 +286,7 @@ const CardWisata = () => {
                         <div className="card-body">
                           <h5 className="card-title">
                             <Link
-                              to={`/wisata/detailwisata/${value.id}`}
+                              to={`detail-wisata/${value.id}`}
                               className="link-title-wisata"
                             >
                               {value.nama_wisata}
@@ -321,7 +321,7 @@ const CardWisata = () => {
                         <div className="card-body">
                           <h5 className="card-title">
                             <Link
-                              to={`/wisata/detailwisata/${value.id}`}
+                              to={`detail-wisata/${value.id}`}
                               className="link-title-wisata"
                             >
                               {value.nama_wisata}
@@ -356,7 +356,7 @@ const CardWisata = () => {
                         <div className="card-body">
                           <h5 className="card-title">
                             <Link
-                              to={`/wisata/detailwisata/${value.id}`}
+                              to={`detail-wisata/${value.id}`}
                               className="link-title-wisata"
                             >
                               {value.nama_wisata}

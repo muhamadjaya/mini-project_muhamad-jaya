@@ -129,3 +129,30 @@ export const UPDATE_BERITA = gql`
     }
   }
 `;
+
+export const DELETE_ULASAN_BY_ID = gql`
+  mutation deleteUlasanById($id: Int!) {
+    delete_ulasan_by_pk(id: $id) {
+      id
+    }
+  }
+`;
+
+export const DELETE_ADMIN_BY_ID = gql`
+  mutation deleteAdminById($id: Int!) {
+    delete_admin_by_pk(id: $id) {
+      id
+    }
+  }
+`;
+
+export const INSERT_ADMIN = gql`
+  mutation insertAdmin($object: admin_insert_input!) {
+    insert_admin_one(object: $object) {
+      id
+      nama_admin
+      username
+      password
+    }
+  }
+`;
