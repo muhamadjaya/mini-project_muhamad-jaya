@@ -92,7 +92,11 @@ const Beranda = () => {
                 </div>
                 <div className="carousel-inner">
                   <div className="carousel-item customCarousel active">
-                    <img src={Image1} className="d-block w-100" alt="slide-1" />
+                    <img
+                      src={Image1}
+                      className="d-block w-100 image-carousel-hero"
+                      alt="slide-1"
+                    />
                     <div className="carousel-caption d-none d-md-block">
                       <h5 className="main-title-carousel">Enjoy in Banten !</h5>
                       <p className="description-title-carousel">
@@ -102,7 +106,11 @@ const Beranda = () => {
                     </div>
                   </div>
                   <div className="carousel-item customCarousel">
-                    <img src={Image2} className="d-block w-100" alt="slide-2" />
+                    <img
+                      src={Image2}
+                      className="d-block w-100 image-carousel-hero"
+                      alt="slide-2"
+                    />
                     <div className="carousel-caption d-none d-md-block">
                       <h5 className="main-title-carousel">Enjoy in Banten !</h5>
                       <p className="description-title-carousel">
@@ -112,7 +120,11 @@ const Beranda = () => {
                     </div>
                   </div>
                   <div className="carousel-item customCarousel">
-                    <img src={Image3} className="d-block w-100" alt="slide-3" />
+                    <img
+                      src={Image3}
+                      className="d-block w-100 image-carousel-hero"
+                      alt="slide-3"
+                    />
                     <div className="carousel-caption d-none d-md-block">
                       <h5 className="main-title-carousel">Enjoy in Banten !</h5>
                       <p className="description-title-carousel">
@@ -166,6 +178,7 @@ const Beranda = () => {
                   Keindahan alam yang di akui Dunia yang bisa kamu liat di
                   Provinsi Banten
                 </h2>
+                <span>test</span>
                 <p className="deskripsi-selamat-datang">
                   Keindahan alam yang dimiliki Provinsi Banten menjadikannya
                   sebagai wilayah yang masuk rekomendasi untuk dikunjungi saat
@@ -382,7 +395,7 @@ const Beranda = () => {
         <section className="section-2 pt-5 pb-5">
           <div className="banner-higlight-berita mt-5 container">
             <div className="row justify-content-center">
-              <div className="col-md-6">
+              <div className="col-md-8">
                 <div
                   dangerouslySetInnerHTML={{
                     __html:
@@ -391,17 +404,16 @@ const Beranda = () => {
                 />
               </div>
 
-              <div className="col-md-6">
-                <div className="banner-highlight-berita-right">
-                  <h3 className="sub-title-selamat-datang">
-                    Berita wisata terbaru
-                  </h3>
-                  <p className="deskripsi-selamat-datang">
-                    Keindahan alam yang dimiliki Provinsi Banten menjadikannya
-                    sebagai wilayah yang masuk rekomendasi untuk dikunjungi saat
-                    liburan. Memiliki Pantai, Gunung, Tempat Bersejarah dan
-                    Wahana Atraksi yang ada di Provinsi Banten yang siap kalian
-                    kunjungi kapan saja.
+              <div className="col-md-4">
+                <div className="banner-highlight-berita-right ps-1 pt-4">
+                  <h1 className="title-artikel-berita fw-bold ">
+                    ARTIKEL BERITA
+                  </h1>
+                  <h3 className="sub-title-artikel-berita">TERBARU UNTUK MU</h3>
+                  <p className="deskripsi-selamat-datang fs-6">
+                    Menyajikan berita terhangat yang menarik dan informatif
+                    sebagai bacaan yang mermanfaat untuk mengisi waktu kosong
+                    liburanmu.
                   </p>
                 </div>
               </div>

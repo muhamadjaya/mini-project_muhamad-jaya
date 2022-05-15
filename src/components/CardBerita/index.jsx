@@ -107,9 +107,15 @@ const CardBerita = () => {
                     >
                       {value.judul}
                     </Link>
-                    <p className="card-text text-justify">{value.deskripsi}</p>
+                    <p className="card-text text-justify">
+                      {value.deskripsi.substr(0, 500)}
+                    </p>
                     <p className="card-text">
-                      <small className="text-muted">{value.tgl_posting}</small>
+                      <small className="text-muted">
+                        Diposting pada tanggal {value.tgl_posting.substr(8, 2)}-
+                        {value.tgl_posting.substr(5, 2)}-
+                        {value.tgl_posting.substr(0, 4)}
+                      </small>
                     </p>
                   </div>
                 </div>

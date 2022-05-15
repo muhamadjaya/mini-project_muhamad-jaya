@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import LogoNavbar from "../../assets/images/logo.png";
 
 const Navbar = () => {
+  const [category, setCategory] = useState([
+    "wisata-alam",
+    "wisata-pantai",
+    "wisata-kuliner",
+  ]);
+
   return (
     <>
       <div className="container">
         <nav className="navbar navbar-expand-lg navbar-light fixed-top customNav">
           <div className="container-fluid">
-            <Link className="navbar-brand navBrand" to="/">
+            {/* <Link className="navbar-brand navBrand" to="/">
               Wonderful Banten
+            </Link> */}
+            <Link className="navbar-brand navBrand" to="/">
+              <img src={LogoNavbar} alt="Logo" />
             </Link>
+
             <button
               className="navbar-toggler"
               type="button"
@@ -65,7 +76,10 @@ const Navbar = () => {
                       </NavLink>
                     </li>
                     <li>
-                      <NavLink className="dropdown-item" to="/wisatakuliner">
+                      <NavLink
+                        className="dropdown-item"
+                        to={`kategori/${category[2]}`}
+                      >
                         Wisata Kuliner
                       </NavLink>
                     </li>

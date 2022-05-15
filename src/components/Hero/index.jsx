@@ -10,21 +10,22 @@ const Hero = () => {
 
   useEffect(() => {
     if (
-      location.pathname.substring(1, location.pathname.length) === "wisataalam"
+      location.pathname.substring(10, location.pathname.length) ===
+      "wisata-alam"
     ) {
       setCurrentPath("Wisata Alam");
     }
 
     if (
-      location.pathname.substring(1, location.pathname.length) ===
-      "wisatapantai"
+      location.pathname.substring(10, location.pathname.length) ===
+      "wisata-pantai"
     ) {
       setCurrentPath("Wisata Pantai");
     }
 
     if (
-      location.pathname.substring(1, location.pathname.length) ===
-      "wisatakuliner"
+      location.pathname.substring(10, location.pathname.length) ===
+      "wisata-kuliner"
     ) {
       setCurrentPath("Wisata Kuliner");
     }
@@ -39,7 +40,14 @@ const Hero = () => {
       setCurrentPath("Tentang");
     }
 
-    console.log(location.pathname.substring(1, location.pathname.length));
+    if (location.pathname.substring(1, location.pathname.length) === "login") {
+      setCurrentPath("Login");
+    }
+
+    console.log(
+      "ini hero",
+      location.pathname.substring(10, location.pathname.length)
+    );
   }, [location]);
 
   return (

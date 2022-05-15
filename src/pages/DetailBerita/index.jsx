@@ -38,13 +38,13 @@ const DetailBerita = () => {
                   <div className="banner-detail-wisata">
                     <img
                       src={value.gambar}
-                      className="detail-wisata-image"
+                      className="detail-berita-image"
                       alt="Detail Berita"
                     />
                   </div>
 
                   <div className="content-utama">
-                    <h3 className="head-title-detail-wisata">{value.judul}</h3>
+                    <h3 className="head-title-detail-berita">{value.judul}</h3>
                     <h4 className="address-title">
                       Diposting pada tanggal {value.tgl_posting}
                     </h4>

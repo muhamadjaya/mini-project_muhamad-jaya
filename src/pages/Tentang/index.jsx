@@ -3,7 +3,7 @@ import Navbar from "../../components/Navbar";
 import Hero from "../../components/Hero";
 import Footer from "../../components/Footer";
 
-import ImageTraveler from "../../assets/images/traveler.gif";
+import ImageTentang from "../../assets/images/about.png";
 
 const Tentang = () => {
   return (
@@ -13,11 +13,12 @@ const Tentang = () => {
       <div className="container mt-3 pt-3 mb-5 pb-5">
         <section className="section-1">
           <div className="row">
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-7">
               <div className="section1-left">
                 <h5 className="title-selamat-datang">Tentang Kami</h5>
                 <h2 className="sub-title-selamat-datang">
-                  Membantu kamu menemukan tempat wisata terbaik untuk berlibur
+                  Membantu kamu <br /> menemukan tempat wisata <br /> terbaik
+                  untuk berlibur
                 </h2>
                 <p className="deskripsi-selamat-datang">
                   Berlibur kini sudah bukan lagi jadi kebutuhan tersier ataupun
@@ -31,10 +32,10 @@ const Tentang = () => {
               </div>
             </div>
 
-            <div className="col-12 col-lg-6">
+            <div className="col-12 col-lg-5 pt-5">
               <div className="section1-right pt-5">
                 <img
-                  src={ImageTraveler}
+                  src={ImageTentang}
                   className="img-thumbnail border-0 section1-image"
                   alt="Traveler Images"
                 />

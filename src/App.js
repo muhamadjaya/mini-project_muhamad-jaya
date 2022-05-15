@@ -1,9 +1,13 @@
 // import './App.css';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import Beranda from "./pages/Beranda";
-// import Wisata from "./pages/Wisata";
-// import DetailWisata from "./pages/DetailWisata";
+
+import Kategori from "./pages/WisataAlam";
+
+import Wisata from "./pages/Wisata";
+import DetailWisata from "./pages/DetailWisata";
+
 import WisataAlam from "./pages/WisataAlam";
 import DetailWisataAlam from "./pages/DetailWisata";
 import WisataPantai from "./pages/WisataPantai";
@@ -28,8 +32,22 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Beranda />} />
-      {/* <Route path="/wisata" element={<Wisata />} />
-      <Route path="/wisata/detailwisata/:id" element={<DetailWisata />} /> */}
+      <Route path="/wisata" element={<Wisata />} />
+      <Route path="/wisata/detailwisata/:id" element={<DetailWisata />} />
+
+      {/* COba */}
+      {/* <Route path="/kategori">
+        <Route index element={<Navigate to="wisataalam" />} />
+        <Route path="wisataalam" element={<Wisata />} />
+        <Route path="wisatapantai" element={<WisataPantai />} />
+        <Route path="wisatakuliner" element={<WisataKuliner />} />
+      </Route> */}
+      <Route path="/kategori">
+        <Route element={<Kategori />} index />
+        <Route path=":category" element={<Wisata />}>
+          <Route path="detail-wisata/:id" element={<DetailWisata />} />
+        </Route>
+      </Route>
 
       <Route path="/wisataalam" element={<WisataAlam />} />
       <Route
