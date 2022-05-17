@@ -1,9 +1,9 @@
 // import './App.css';
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Beranda from "./pages/Beranda";
 
-import Kategori from "./pages/WisataAlam";
+import Kategori from "./pages/Wisata";
 
 import Wisata from "./pages/Wisata";
 import DetailWisata from "./pages/DetailWisata";

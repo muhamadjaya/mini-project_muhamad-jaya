@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-import { Link, NavLink } from "react-router-dom";
-
 const Hero = () => {
   const location = useLocation();
 
@@ -44,10 +42,10 @@ const Hero = () => {
       setCurrentPath("Login");
     }
 
-    console.log(
-      "ini hero",
-      location.pathname.substring(10, location.pathname.length)
-    );
+    // console.log(
+    //   "ini hero",
+    //   location.pathname.substring(10, location.pathname.length)
+    // );
   }, [location]);
 
   return (

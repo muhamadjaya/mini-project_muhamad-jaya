@@ -13,10 +13,10 @@ const CardBerita = () => {
   const [getBerita, { data: dataByName, loading: loadingByName }] =
     useLazyQuery(GET_BERITA_BY_NAME, {
       onCompleted: (data) => {
-        console.log(data);
+        // console.log(data);
       },
       onError: (error) => {
-        console.log(error);
+        // console.log(error);
       },
     });
 
@@ -43,18 +43,6 @@ const CardBerita = () => {
       getBerita({ variables: { judul: `%${title}%` } });
     }
   };
-
-  useEffect(() => {
-    console.log("ini loading", loading);
-  }, [loading]);
-
-  useEffect(() => {
-    console.log("ini loadingByName", loadingByName);
-  }, [loadingByName]);
-
-  useEffect(() => {
-    console.log("ini isInitialQuery", isInitialQuery);
-  }, [isInitialQuery]);
 
   useEffect(() => {
     refetch();

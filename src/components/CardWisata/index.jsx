@@ -44,40 +44,40 @@ const CardWisata = () => {
   const [getWisata, { data: dataByName, loading: loadingByName }] =
     useLazyQuery(GET_WISATA_BY_NAME, {
       onCompleted: (data) => {
-        console.log(data);
+        // console.log(data);
       },
       onError: (error) => {
-        console.log(error);
+        // console.log(error);
       },
     });
 
   const [get_alam, { data: data_by_alam, loading: loading_by_alam }] =
     useLazyQuery(GET_WISATA_ALAM_BY_NAME, {
       onCompleted: (data) => {
-        console.log(data);
+        // console.log(data);
       },
       onError: (error) => {
-        console.log(error);
+        // console.log(error);
       },
     });
 
   const [get_pantai, { data: data_by_pantai, loading: loading_by_pantai }] =
     useLazyQuery(GET_WISATA_PANTAI_BY_NAME, {
       onCompleted: (data) => {
-        console.log(data);
+        // console.log(data);
       },
       onError: (error) => {
-        console.log(error);
+        // console.log(error);
       },
     });
 
   const [get_kuliner, { data: data_by_kuliner, loading: loading_by_kuliner }] =
     useLazyQuery(GET_WISATA_KULINER_BY_NAME, {
       onCompleted: (data) => {
-        console.log(data);
+        // console.log(data);
       },
       onError: (error) => {
-        console.log(error);
+        // console.log(error);
       },
     });
 
@@ -117,23 +117,23 @@ const CardWisata = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("ini loading", loading);
-  }, [loading]);
+  // useEffect(() => {
+  //   console.log("ini loading", loading);
+  // }, [loading]);
 
-  useEffect(() => {
-    console.log("ini loadingByName", loadingByName);
-  }, [loadingByName]);
+  // useEffect(() => {
+  //   console.log("ini loadingByName", loadingByName);
+  // }, [loadingByName]);
 
-  useEffect(() => {
-    console.log("ini isInitialQuery", isInitialQuery);
-  }, [isInitialQuery]);
+  // useEffect(() => {
+  //   console.log("ini isInitialQuery", isInitialQuery);
+  // }, [isInitialQuery]);
 
   useEffect(() => {
     setCurrentPath(location.pathname.substring(17, location.pathname.length));
   }, [location]);
 
-  console.log("ini path", currentPath);
+  // console.log("ini path", currentPath);
 
   return (
     <>
@@ -171,7 +171,7 @@ const CardWisata = () => {
       loading_by_kuliner ? (
         <LoadingSvg />
       ) : isInitialQuery ? (
-        <>
+        <div className="main-contents">
           {currentPath === "alam" ? (
             <div className="row row-cols-1 row-cols-md-3">
               {data_alam?.wisata.map((value, valueIdx) => (
@@ -254,11 +254,11 @@ const CardWisata = () => {
               ))}
             </div>
           )}
-        </>
+        </div>
       ) : (
-        <>
+        <div className="main-content-by-category">
           {currentPath === "alam" ? (
-            <>
+            <div className="cards-wisata">
               {data_by_alam?.wisata.length === 0 ? (
                 <div>
                   <h1>Data Tidak Ditemukan</h1>
@@ -291,7 +291,7 @@ const CardWisata = () => {
                   ))}
                 </div>
               )}
-            </>
+            </div>
           ) : currentPath === "pantai" ? (
             <>
               {data_by_pantai?.wisata.length === 0 ? (
@@ -363,7 +363,7 @@ const CardWisata = () => {
               )}
             </>
           )}
-        </>
+        </div>
       )}
     </>
   );
