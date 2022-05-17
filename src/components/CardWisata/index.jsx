@@ -171,7 +171,7 @@ const CardWisata = () => {
       loading_by_kuliner ? (
         <LoadingSvg />
       ) : isInitialQuery ? (
-        <>
+        <div className="main-content">
           {currentPath === "alam" ? (
             <div className="row row-cols-1 row-cols-md-3">
               {data_alam?.wisata.map((value, valueIdx) => (
@@ -254,11 +254,11 @@ const CardWisata = () => {
               ))}
             </div>
           )}
-        </>
+        </div>
       ) : (
-        <>
+        <div className="main-content-by-category">
           {currentPath === "alam" ? (
-            <>
+            <div className="cards-wisata">
               {data_by_alam?.wisata.length === 0 ? (
                 <div>
                   <h1>Data Tidak Ditemukan</h1>
@@ -291,7 +291,7 @@ const CardWisata = () => {
                   ))}
                 </div>
               )}
-            </>
+            </div>
           ) : currentPath === "pantai" ? (
             <>
               {data_by_pantai?.wisata.length === 0 ? (
@@ -363,7 +363,7 @@ const CardWisata = () => {
               )}
             </>
           )}
-        </>
+        </div>
       )}
     </>
   );
