@@ -46,7 +46,9 @@ const DetailBerita = () => {
                   <div className="content-utama">
                     <h3 className="head-title-detail-berita">{value.judul}</h3>
                     <h4 className="address-title">
-                      Diposting pada tanggal {value.tgl_posting}
+                      Diposting pada tanggal {value.tgl_posting.substr(8, 2)}-
+                      {value.tgl_posting.substr(5, 2)}-
+                      {value.tgl_posting.substr(0, 4)}
                     </h4>
                     <p className="deskripsi-1">{value.deskripsi}</p>
                   </div>

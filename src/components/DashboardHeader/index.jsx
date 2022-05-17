@@ -1,6 +1,5 @@
 import React from "react";
-
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 // Universal Cookies
@@ -15,7 +14,8 @@ const DashboardHeader = () => {
     e.preventDefault();
 
     cookies.remove("auth", { path: "/" });
-    return navigate("/login");
+
+    return navigate("/admin-area/login");
   };
 
   return (

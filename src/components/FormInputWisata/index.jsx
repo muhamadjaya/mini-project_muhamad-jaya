@@ -27,12 +27,14 @@ const FormInputWisata = () => {
     INSERT_WISATA,
     {
       refetchQueries: [GET_LISTWISATA],
+      awaitRefetchQueries: true,
       onCompleted: (data) => {
         Swal.fire({
           title: "Sukses!",
           text: "Data Berhasil Disimpan",
           icon: "success",
         });
+        navigate("/kelola-wisata");
       },
     }
   );
@@ -45,13 +47,16 @@ const FormInputWisata = () => {
     gambar: "",
   });
 
+  const [errorMessage, setErrorMessage] = useState({
+    kategori: "",
+  });
+
   const [baseImage, setBaseImage] = useState("");
 
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertBase64(file);
     setBaseImage(base64);
-    console.log(base64);
   };
 
   const convertBase64 = (file) => {
@@ -78,19 +83,26 @@ const FormInputWisata = () => {
 
     newInputs[key] = value;
 
-    // Kepo isi variable
-    console.log(newInputs[key]);
-
     setInitSelectValue(value);
 
     setInputs(newInputs);
-
-    // Kepo isi variable
-    console.log(newInputs);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (inputs.kategori === "") {
+      setErrorMessage((errorMessage) => ({
+        ...errorMessage,
+        kategori: "Pilih salah satu kategori",
+      }));
+      return;
+    } else {
+      setErrorMessage((errorMessage) => ({
+        ...errorMessage,
+        kategori: "",
+      }));
+    }
 
     insertWisata({
       variables: {
@@ -114,13 +126,19 @@ const FormInputWisata = () => {
     });
 
     setBaseImage("");
-    navigate("/kelola-wisata");
+
+    setErrorMessage({
+      kategori: "",
+    });
   };
 
   const handleReset = (e) => {
     e.preventDefault();
 
     setBaseImage("");
+    setErrorMessage({
+      kategori: "",
+    });
     navigate("/kelola-wisata");
   };
 
@@ -144,6 +162,7 @@ const FormInputWisata = () => {
                       name="namaWisata"
                       className="form-control"
                       id="input-nama-wisata"
+                      required
                       value={inputs.namaWisata}
                       onChange={(e) =>
                         handleInput(e.target.value, e.target.name)
@@ -179,6 +198,14 @@ const FormInputWisata = () => {
                         </option>
                       ))}
                     </select>
+                    {!!errorMessage.kategori && (
+                      <div>
+                        <i>
+                          {" "}
+                          <small>{errorMessage.kategori}</small>{" "}
+                        </i>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -195,6 +222,7 @@ const FormInputWisata = () => {
                       name="alamat"
                       className="form-control"
                       id="input-alamat-wisata"
+                      required
                       value={inputs.alamat}
                       onChange={(e) =>
                         handleInput(e.target.value, e.target.name)
@@ -215,6 +243,7 @@ const FormInputWisata = () => {
                       name="deskripsi"
                       className="form-control"
                       id="deskripsi"
+                      required
                       rows="5"
                       value={inputs.deskripsi}
                       onChange={(e) =>
@@ -235,6 +264,7 @@ const FormInputWisata = () => {
                     <input
                       className="form-control"
                       id="gambar-wisata"
+                      required
                       type="file"
                       onChange={(e) => {
                         uploadImage(e);

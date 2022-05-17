@@ -156,3 +156,28 @@ export const INSERT_ADMIN = gql`
     }
   }
 `;
+
+export const UPDATE_ADMIN = gql`
+  mutation updateAdmin(
+    $id: Int!
+    $nama_admin: String = ""
+    $username: String = ""
+    $password: String = ""
+  ) {
+    update_admin(
+      where: { id: { _eq: $id } }
+      _set: {
+        nama_admin: $nama_admin
+        username: $username
+        password: $password
+      }
+    ) {
+      returning {
+        id
+        nama_admin
+        username
+        password
+      }
+    }
+  }
+`;

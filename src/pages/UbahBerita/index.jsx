@@ -17,17 +17,6 @@ const UbahBerita = () => {
           <FormUbahBerita />
         </main>
       </div>
-
-      {/* <Navbar />
-      <Hero />
-      <div className="container mt-5 pt-5">
-        <div className="row">
-          <div className="col-12 col-lg-12">
-            <FormUbahWisata />
-          </div>
-        </div>
-      </div>
-      <Footer /> */}
     </>
   );
 };

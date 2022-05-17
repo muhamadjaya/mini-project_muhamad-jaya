@@ -15,6 +15,12 @@ import {
   GET_WISATA_KULINER_BY_NAME,
 } from "../../graphql/queries";
 
+import useSubscriptionWisataByAlam from "../../hooks/useSubscriptionWisataByAlam";
+
+import useSubscriptionWisataByPantai from "../../hooks/useSubscriptionWisataByPantai";
+
+import useSubscriptionWisataByKuliner from "../../hooks/useSubscriptionWisataByKuliner";
+
 import { useLocation } from "react-router-dom";
 
 const CardWisata = () => {
@@ -22,28 +28,18 @@ const CardWisata = () => {
 
   const [currentPath, setCurrentPath] = useState("");
 
-  const { data, loading, error, refetch } = useQuery(GET_LISTWISATA);
+  const { data, loading, error, refetch } = useQuery(GET_LISTWISATA, {
+    fetchPolicy: "no-cache",
+    nextFetchPolicy: "no-cache",
+  });
 
-  const {
-    data: data_alam,
-    loading: loading_alam,
-    error: error_alam,
-    refetch: refetch_alam,
-  } = useQuery(GET_WISATA_ALAM);
+  const { data_alam, loading_alam, error_alam } = useSubscriptionWisataByAlam();
 
-  const {
-    data: data_pantai,
-    loading: loading_pantai,
-    error: error_pantai,
-    refetch: refetch_pantai,
-  } = useQuery(GET_WISATA_PANTAI);
+  const { data_pantai, loading_pantai, error_pantai } =
+    useSubscriptionWisataByPantai();
 
-  const {
-    data: data_kuliner,
-    loading: loading_kuliner,
-    error: error_kuliner,
-    refetch: refetch_kuliner,
-  } = useQuery(GET_WISATA_KULINER);
+  const { data_kuliner, loading_kuliner, error_kuliner } =
+    useSubscriptionWisataByKuliner();
 
   const [getWisata, { data: dataByName, loading: loadingByName }] =
     useLazyQuery(GET_WISATA_BY_NAME, {
@@ -134,13 +130,6 @@ const CardWisata = () => {
   }, [isInitialQuery]);
 
   useEffect(() => {
-    refetch();
-    refetch_alam();
-    refetch_pantai();
-    refetch_kuliner();
-  }, []);
-
-  useEffect(() => {
     setCurrentPath(location.pathname.substring(17, location.pathname.length));
   }, [location]);
 
@@ -150,16 +139,17 @@ const CardWisata = () => {
     <>
       <div className="section-section mb-4">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3 mt-1">
             <input
               onChange={onChangeTitle}
               value={title}
+              placeholder="Cari Wisata"
               autoFocus
               type="text"
               className="form-control searchbyname-input"
             />
           </div>
-          <div className="col-md-2">
+          <div className="col-md-2 mt-1">
             <button
               type="submit"
               className="btn btn-primary btn-search"

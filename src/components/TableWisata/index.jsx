@@ -17,12 +17,12 @@ const TableWisata = ({
       <td className="text-center">{kategori}</td>
       <td>{alamat}</td>
       <td>{deskripsi.substr(0, 50)}</td>
-      <td className="text-center">
+      <td className="text-end">
         <Link to={`ubah-wisata/${id}`} className="btn btn-outline-primary">
           Update
         </Link>
       </td>
-      <td className="text-center">
+      <td className="text-start">
         <button className="btn btn-outline-danger" onClick={onDeleteData}>
           Delete
         </button>

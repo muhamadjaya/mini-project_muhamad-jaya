@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
+import YoutubeEmbed from "../../components/YoutubeEmbed";
 
 // Images
 import Image1 from "../../assets/images/slide1.png";
@@ -175,10 +176,9 @@ const Beranda = () => {
                   SELAMAT DATANG DI WONDERFUL BANTEN
                 </h5>
                 <h2 className="sub-title-selamat-datang">
-                  Keindahan alam yang di akui Dunia yang bisa kamu liat di
-                  Provinsi Banten
+                  Keindahan alam yang diakui Dunia dapat kamu lihat di Provinsi
+                  Banten
                 </h2>
-                <span>test</span>
                 <p className="deskripsi-selamat-datang">
                   Keindahan alam yang dimiliki Provinsi Banten menjadikannya
                   sebagai wilayah yang masuk rekomendasi untuk dikunjungi saat
@@ -260,10 +260,10 @@ const Beranda = () => {
 
                           <div className="card-img-overlay d-flex flex-column">
                             <div className="text-img-overlay mt-auto">
-                              <h5 className="card-title">
+                              <h5 className="card-title card-title-beranda">
                                 {dataWisata?.wisata[0].nama_wisata}
                               </h5>
-                              <p className="card-text">
+                              <p className="card-text card-text-beranda">
                                 {dataWisata?.wisata[0].deskripsi.substr(0, 50)}
                               </p>
                             </div>
@@ -290,10 +290,10 @@ const Beranda = () => {
                               />
                               <div className="card-img-overlay d-flex flex-column">
                                 <div className="text-img-overlay mt-auto">
-                                  <h5 className="card-title">
+                                  <h5 className="card-title card-title-beranda">
                                     {dataWisata?.wisata[1].nama_wisata}
                                   </h5>
-                                  <p className="card-text">
+                                  <p className="card-text card-text-beranda">
                                     {dataWisata?.wisata[1].deskripsi.substr(
                                       0,
                                       50
@@ -323,10 +323,10 @@ const Beranda = () => {
                               />
                               <div className="card-img-overlay d-flex flex-column">
                                 <div className="text-img-overlay mt-auto">
-                                  <h5 className="card-title">
+                                  <h5 className="card-title card-title-beranda">
                                     {dataWisata?.wisata[2].nama_wisata}
                                   </h5>
-                                  <p className="card-text">
+                                  <p className="card-text card-text-beranda">
                                     {dataWisata?.wisata[2].deskripsi.substr(
                                       0,
                                       50
@@ -395,21 +395,18 @@ const Beranda = () => {
         <section className="section-2 pt-5 pb-5">
           <div className="banner-higlight-berita mt-5 container">
             <div className="row justify-content-center">
-              <div className="col-md-8">
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html:
-                      "<iframe src='https://www.youtube.com/embed/EHDwBGGLzO4' />",
-                  }}
-                />
+              <div className="col-md-7">
+                <YoutubeEmbed embedId="EHDwBGGLzO4" />
               </div>
 
-              <div className="col-md-4">
-                <div className="banner-highlight-berita-right ps-1 pt-4">
-                  <h1 className="title-artikel-berita fw-bold ">
+              <div className="col-md-5">
+                <div className="banner-highlight-berita-right ps-1 pt-5">
+                  <h1 className="title-artikel-berita fw-bold pt-5">
                     ARTIKEL BERITA
                   </h1>
-                  <h3 className="sub-title-artikel-berita">TERBARU UNTUK MU</h3>
+                  <h3 className="sub-title-artikel-berita">
+                    MENARIK DAN INFORMATIF
+                  </h3>
                   <p className="deskripsi-selamat-datang fs-6">
                     Menyajikan berita terhangat yang menarik dan informatif
                     sebagai bacaan yang mermanfaat untuk mengisi waktu kosong

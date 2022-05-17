@@ -1,33 +1,24 @@
 import React, { useState, useEffect } from "react";
-import Navbar from "../../components/Navbar";
-import Hero from "../../components/Hero";
-import Footer from "../../components/Footer";
 import ImageLogin from "../../assets/images/admin-login.gif";
 import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 import { useNavigate } from "react-router-dom";
 
 // Apollo Client
-import { useQuery, useLazyQuery } from "@apollo/client";
+import { useLazyQuery } from "@apollo/client";
+
 // Hasura GraphQL Queries
 import { GET_ADMIN } from "../../graphql/queries";
 
 // Universal Cookies
 import Cookies from "universal-cookie";
 
-import Swal from "sweetalert2";
-
 const Login = () => {
   const [getAdmin, { data, loading, error }] = useLazyQuery(GET_ADMIN, {
     onCompleted: (data) => {
-      console.log(data);
+      // console.log(data);
     },
     onError: (error) => {
-      console.log(error);
-      Swal.fire({
-        title: "Failed!",
-        text: "Login gagal",
-        icon: "error",
-      });
+      // console.log(error);
     },
   });
 
@@ -39,6 +30,12 @@ const Login = () => {
 
   const cookies = new Cookies();
 
+  const [passwordShown, setPasswordShown] = useState(false);
+
+  const togglePassword = () => {
+    setPasswordShown(!passwordShown);
+  };
+
   useEffect(() => {
     const getAuth = cookies.get("auth");
     if (getAuth) {
@@ -48,7 +45,6 @@ const Login = () => {
 
   useEffect(() => {
     if (data?.admin.length === 1) {
-      console.log("data", data);
       cookies.set(
         "auth",
         {
@@ -85,71 +81,85 @@ const Login = () => {
   }
 
   return (
-    <>
-      <Navbar />
-      <Hero />
-      <div className="container">
-        <section className="login mt-5 pt-5">
-          <div className="container">
-            <div className="row justify-content-center">
-              <div className="col-md-5">
-                <img
-                  src={ImageLogin}
-                  alt="gambar login"
-                  className="login-image"
+    <div className="container">
+      <section className="login mt-5 pt-5">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-md-5">
+              <img
+                src={ImageLogin}
+                alt="gambar login"
+                className="login-image"
+              />
+            </div>
+            <div className="col-md-4">
+              <form className="form-login">
+                <div className="form-group">
+                  <h2 className="label-login-selamat-datang">
+                    Selamat Datang!
+                  </h2>
+                  <label htmlFor="username" className="label-login-username">
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="username"
+                    id="username"
+                    required
+                    autoComplete="off"
+                    autoFocus
+                    onChange={handleChangeUsername}
+                  />
+                </div>
+                <div className="form-group mt-2">
+                  <label htmlFor="password" className="label-login-password">
+                    Password
+                  </label>
+                  <input
+                    type={passwordShown ? "text" : "password"}
+                    className="form-control"
+                    name="password"
+                    id="password"
+                    required
+                    autoComplete="off"
+                    onChange={handleChangePassword}
+                  />
+                </div>
+                <input
+                  className="form-check-input login-check-box"
+                  type="checkbox"
+                  value=""
+                  id="flexCheckDefault"
+                  onClick={togglePassword}
                 />
-              </div>
-              <div className="col-md-4">
-                <form className="form-login">
-                  <div className="form-group">
-                    <h2>Selamat Datang!</h2>
-                    <label htmlFor="username">Username</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="username"
-                      id="username"
-                      required
-                      autoComplete="off"
-                      autoFocus
-                      onChange={handleChangeUsername}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      name="password"
-                      id="password"
-                      required
-                      autoComplete="off"
-                      onChange={handleChangePassword}
-                    />
-                  </div>
+                <label
+                  className="form-check-label label-tampilkan-password"
+                  htmlFor="flexCheckDefault"
+                >
+                  Tampilkan Password
+                </label>
 
-                  {data && (
-                    <h6 className="text-danger fst-italic pt-2">
-                      Username atau password salah...
-                    </h6>
-                  )}
+                {data && (
+                  <h6 className="text-danger fst-italic pt-2">
+                    Username atau password salah...
+                  </h6>
+                )}
 
-                  <button
-                    type="submit"
-                    name="login"
-                    className="btn btn-primary btn-login"
-                    onClick={login}
-                  >
-                    Login
-                  </button>
-                </form>
-              </div>
+                <button
+                  type="submit"
+                  name="login"
+                  className="btn btn-primary btn-login pt-2 pb-2"
+                  onClick={login}
+                >
+                  Login
+                </button>
+              </form>
             </div>
           </div>
-        </section>
-      </div>
-      <Footer />
-    </>
+        </div>
+      </section>
+    </div>
   );
 };
 

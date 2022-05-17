@@ -101,14 +101,17 @@ const CardBerita = () => {
                 </div>
                 <div className="col-md-8">
                   <div className="card-body ">
-                    <Link
-                      to={`detail-berita/${value.id}`}
-                      className="link-title-wisata"
-                    >
-                      {value.judul}
-                    </Link>
-                    <p className="card-text text-justify">
-                      {value.deskripsi.substr(0, 500)}
+                    <h5 className="card-title mt-3">
+                      <Link
+                        to={`detail-berita/${value.id}`}
+                        className="link-title-berita"
+                      >
+                        {value.judul}
+                      </Link>
+                    </h5>
+
+                    <p className="card-text text-justify desc-text-berita mt-3">
+                      {value.deskripsi.substr(0, 450)}
                     </p>
                     <p className="card-text">
                       <small className="text-muted">

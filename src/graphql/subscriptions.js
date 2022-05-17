@@ -24,3 +24,45 @@ export const GET_NEW_BERITA = gql`
     }
   }
 `;
+
+export const GET_WISATA_ALAM_SUBS = gql`
+  subscription getWisataAlam {
+    wisata(order_by: { id: asc }, where: { kategori: { _eq: "Alam" } }) {
+      id
+      nama_wisata
+      kategori
+      alamat
+      deskripsi
+      gambar
+      id_admin
+    }
+  }
+`;
+
+export const GET_WISATA_PANTAI_SUBS = gql`
+  subscription getWisataAlam {
+    wisata(order_by: { id: asc }, where: { kategori: { _eq: "Pantai" } }) {
+      id
+      nama_wisata
+      kategori
+      alamat
+      deskripsi
+      gambar
+      id_admin
+    }
+  }
+`;
+
+export const GET_WISATA_KULINER_SUBS = gql`
+  subscription getWisataAlam {
+    wisata(order_by: { id: asc }, where: { kategori: { _eq: "Kuliner" } }) {
+      id
+      nama_wisata
+      kategori
+      alamat
+      deskripsi
+      gambar
+      id_admin
+    }
+  }
+`;

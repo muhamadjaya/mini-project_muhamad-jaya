@@ -131,6 +131,7 @@
 .card-img-new-wisata-left {
   height: 508px;
   border-radius: 15px !important;
+  /* filter: brightness(90%); */
 }
 
 .card-img-new-wisata-left:hover {
@@ -143,6 +144,7 @@
 .card-img-new-wisata {
   height: 250px;
   border-radius: 15px !important;
+  /* filter: brightness(90%); */
 }
 
 .card-img-new-wisata:hover {
@@ -293,9 +295,9 @@
 /* Detail Wisata */
 .jumbotron {
   margin-top: 5rem;
-  background-image: url(./assets/images/slide1.png);
+  background-image: url(./assets/images/danau.png);
   background-size: cover;
-  /* background-position: 0 -210px; */
+  /* background-position: 0 -140px; */
   border-bottom: 5px solid lightskyblue;
 }
 
@@ -754,4 +756,63 @@ iframe {
   font-size: 2rem;
   font-weight: 700;
   color: rgb(0, 0, 0);
+}
+
+.label-login-selamat-datang {
+  font-size: 2rem !important;
+  font-weight: 600 !important;
+}
+
+.label-login-username,
+.label-login-password {
+  font-size: 1.125rem !important;
+  font-weight: 500 !important;
+}
+
+.login-check-box {
+  margin-top: 0.5rem !important;
+}
+
+.label-tampilkan-password {
+  font-size: 0.75rem !important;
+  font-weight: 400;
+  margin-top: 0.4rem !important;
+  margin-left: 0.2rem !important;
+}
+
+.link-title-wisata {
+  color: #000000 !important;
+  font-weight: 700 !important;
+}
+
+.card-text {
+  color: rgba(101, 98, 98, 0.76) !important;
+  font-size: 0.95rem;
+  font-weight: 400;
+  text-align: justify !important;
+  margin-bottom: 1rem !important;
+}
+
+.link-title-berita {
+  color: #000000 !important;
+  font-weight: 600 !important;
+  font-size: 1.275rem !important;
+  line-height: 1rem !important;
+}
+
+.card-title a:hover {
+  color: rgb(21, 1, 229) !important;
+}
+
+.card-title-beranda {
+  font-size: 2rem !important;
+  font-weight: 700;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) !important;
+}
+
+.card-text-beranda {
+  font-size: 1rem !important;
+  color: white !important;
+  font-weight: 600;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) !important;
 }

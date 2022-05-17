@@ -123,7 +123,7 @@ const Navbar = () => {
                 </li>
               </ul>
 
-              <ul className="navbar-nav ms-auto">
+              {/* <ul className="navbar-nav ms-auto">
                 <li className="nav-item ">
                   <NavLink
                     className={({ isActive }) =>
@@ -134,86 +134,8 @@ const Navbar = () => {
                     Login
                   </NavLink>
                 </li>
-              </ul>
+              </ul> */}
             </div>
-
-            {/* <div className="collapse navbar-collapse d" id="navbarNavAltMarkup">
-              <div className="navbar-nav">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "nav-link active" : "nav-link"
-                  }
-                  aria-current="page"
-                  to="/"
-                >
-                  Beranda
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "nav-link active" : "nav-link"
-                  }
-                  to="/wisata"
-                >
-                  Wisata
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "nav-link active" : "nav-link"
-                  }
-                  to="/virtualtour"
-                >
-                  Virtual Tour
-                </NavLink>
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "nav-link active" : "nav-link"
-                  }
-                  to="/berita"
-                >
-                  Berita
-                </NavLink>
-                <NavLink
-                  className="nav-link dropdown-toggle"
-                  to="/"
-                  id="navbarDropdownMenuLink"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown link
-                </NavLink>
-                <ul
-                  className="dropdown-menu"
-                  aria-labelledby="navbarDropdownMenuLink"
-                >
-                  <li>
-                    <NavLink to="/" className="dropdown-item">
-                      Alam
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/" className="dropdown-item">
-                      Pantai
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink to="/" className="dropdown-item">
-                      Kuliner
-                    </NavLink>
-                  </li>
-                </ul>
-              </div>
-              <div className="navbar-nav ms-auto">
-                <NavLink
-                  className={({ isActive }) =>
-                    isActive ? "nav-link active" : "nav-link"
-                  }
-                  to="/login"
-                >
-                  Login
-                </NavLink>
-              </div>
-            </div> */}
           </div>
         </nav>
       </div>

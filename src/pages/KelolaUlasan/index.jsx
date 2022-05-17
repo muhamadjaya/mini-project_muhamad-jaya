@@ -39,7 +39,8 @@ const KelolaUlasan = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteUlasan({

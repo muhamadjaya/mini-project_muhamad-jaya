@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-
+import LoadingSvg from "../LoadingSvg/LoadingSvg";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 // Apollo Client
 import { useQuery, useMutation } from "@apollo/client";
@@ -9,10 +10,7 @@ import { GET_LISTBERITA, GET_BERITA_BY_ID } from "../../graphql/queries";
 // Hasura GraphQL Mutations
 import { UPDATE_BERITA } from "../../graphql/mutations";
 
-import LoadingSvg from "../LoadingSvg/LoadingSvg";
-
-import { useParams } from "react-router-dom";
-
+// Third Party
 import Swal from "sweetalert2";
 
 // Universal Cookies
@@ -22,6 +20,15 @@ const FormUbahBerita = () => {
   const { id } = useParams();
 
   const navigate = useNavigate();
+
+  const [inputs, setInputs] = useState({
+    judul: "",
+    deskripsi: "",
+    tgl_posting: "",
+    gambar: "",
+  });
+
+  const [baseImage, setBaseImage] = useState("");
 
   const [isDataReady, setIsDataReady] = useState(false);
 
@@ -43,24 +50,23 @@ const FormUbahBerita = () => {
           text: "Data Berhasil Diupdate",
           icon: "success",
         });
+        navigate("/kelola-berita");
       },
     }
   );
 
-  const [inputs, setInputs] = useState({
-    judul: "",
-    deskripsi: "",
-    tgl_posting: "",
-    gambar: "",
-  });
+  const handleInput = (value, key) => {
+    const newInputs = { ...inputs };
 
-  const [baseImage, setBaseImage] = useState("");
+    newInputs[key] = value;
+
+    setInputs(newInputs);
+  };
 
   const uploadImage = async (e) => {
     const file = e.target.files[0];
     const base64 = await convertBase64(file);
     setInputs({ ...inputs, gambar: base64 });
-    console.log(base64);
   };
 
   const convertBase64 = (file) => {
@@ -76,20 +82,6 @@ const FormUbahBerita = () => {
         reject(error);
       };
     });
-  };
-
-  const handleInput = (value, key) => {
-    const newInputs = { ...inputs };
-
-    newInputs[key] = value;
-
-    // Kepo isi variable
-    console.log(newInputs[key]);
-
-    setInputs(newInputs);
-
-    // Kepo isi variable
-    console.log(newInputs);
   };
 
   const handleSubmit = (e) => {
@@ -113,6 +105,13 @@ const FormUbahBerita = () => {
       gambar: "",
     });
 
+    setBaseImage("");
+  };
+
+  const handleReset = (e) => {
+    e.preventDefault();
+
+    setBaseImage("");
     navigate("/kelola-berita");
   };
 
@@ -125,154 +124,141 @@ const FormUbahBerita = () => {
         gambar: data?.berita[0].gambar,
       });
       setIsDataReady(true);
-      console.log(data);
     }
   }, [loading, data]);
 
-  console.log(inputs);
-  console.log(isDataReady);
-
-  const handleReset = (e) => {
-    e.preventDefault();
-
-    setBaseImage("");
-    navigate("/kelola-berita");
-  };
-
   return (
-    <>
-      <section className="ubahberita mb-3 pb-3 mt-3 pt-3">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="col-md-10">
-              {!isDataReady ? (
-                <LoadingSvg />
-              ) : (
-                <form onSubmit={handleSubmit} onReset={handleReset}>
-                  <div className="row mb-3">
-                    <label
-                      htmlFor="input-judul-berita"
-                      className="col-sm-2 col-form-label"
-                    >
-                      Judul Berita
-                    </label>
-                    <div className="col-sm-10">
-                      <input
-                        type="text"
-                        name="judul"
-                        className="form-control"
-                        id="input-judul-berita"
-                        value={inputs.judul}
-                        onChange={(e) =>
-                          handleInput(e.target.value, e.target.name)
-                        }
-                      />
-                    </div>
+    <section className="ubahberita mb-3 pb-3 mt-3 pt-3">
+      <div className="container">
+        <div className="row justify-content-center">
+          <div className="col-md-10">
+            {!isDataReady ? (
+              <LoadingSvg />
+            ) : (
+              <form onSubmit={handleSubmit} onReset={handleReset}>
+                <div className="row mb-3">
+                  <label
+                    htmlFor="input-judul-berita"
+                    className="col-sm-2 col-form-label"
+                  >
+                    Judul Berita
+                  </label>
+                  <div className="col-sm-10">
+                    <input
+                      type="text"
+                      name="judul"
+                      className="form-control"
+                      id="input-judul-berita"
+                      value={inputs.judul}
+                      onChange={(e) =>
+                        handleInput(e.target.value, e.target.name)
+                      }
+                    />
                   </div>
+                </div>
 
-                  <div className="row mb-3">
-                    <label
-                      htmlFor="deskripsi"
-                      className="col-sm-2 col-form-label"
-                    >
-                      Deskripsi
-                    </label>
-                    <div className="col-sm-10">
-                      <textarea
-                        name="deskripsi"
-                        className="form-control"
-                        id="deskripsi"
-                        rows="5"
-                        value={inputs.deskripsi}
-                        onChange={(e) =>
-                          handleInput(e.target.value, e.target.name)
-                        }
-                      />
-                    </div>
+                <div className="row mb-3">
+                  <label
+                    htmlFor="deskripsi"
+                    className="col-sm-2 col-form-label"
+                  >
+                    Deskripsi
+                  </label>
+                  <div className="col-sm-10">
+                    <textarea
+                      name="deskripsi"
+                      className="form-control"
+                      id="deskripsi"
+                      rows="5"
+                      value={inputs.deskripsi}
+                      onChange={(e) =>
+                        handleInput(e.target.value, e.target.name)
+                      }
+                    />
                   </div>
+                </div>
 
-                  <div className="row mb-3">
-                    <label
-                      htmlFor="input-tgl-posting"
-                      className="col-sm-2 col-form-label"
-                    >
-                      Tanggal Posting
-                    </label>
-                    <div className="col-sm-10">
-                      <input
-                        type="date"
-                        name="tgl_posting"
-                        className="form-control"
-                        id="input-tgl-posting"
-                        value={inputs.tgl_posting}
-                        onChange={(e) =>
-                          handleInput(e.target.value, e.target.name)
-                        }
-                      />
-                    </div>
+                <div className="row mb-3">
+                  <label
+                    htmlFor="input-tgl-posting"
+                    className="col-sm-2 col-form-label"
+                  >
+                    Tanggal Posting
+                  </label>
+                  <div className="col-sm-10">
+                    <input
+                      type="date"
+                      name="tgl_posting"
+                      className="form-control"
+                      id="input-tgl-posting"
+                      value={inputs.tgl_posting}
+                      onChange={(e) =>
+                        handleInput(e.target.value, e.target.name)
+                      }
+                    />
                   </div>
+                </div>
 
-                  <div className="row mb-3">
-                    <label
-                      htmlFor="gambar-berita"
-                      className="col-sm-2 col-form-label"
-                    >
-                      Gambar
-                    </label>
-                    <div className="col-sm-10">
-                      <input
-                        className="form-control"
-                        id="gambar-berita"
-                        type="file"
-                        onChange={(e) => {
-                          uploadImage(e);
-                        }}
-                      />
-                    </div>
+                <div className="row mb-3">
+                  <label
+                    htmlFor="gambar-berita"
+                    className="col-sm-2 col-form-label"
+                  >
+                    Gambar
+                  </label>
+                  <div className="col-sm-10">
+                    <input
+                      className="form-control"
+                      id="gambar-berita"
+                      type="file"
+                      onChange={(e) => {
+                        uploadImage(e);
+                      }}
+                    />
                   </div>
+                </div>
 
-                  <div className="row mb-3">
-                    <label
-                      htmlFor="image-berita"
-                      className="col-sm-2 col-form-label"
-                    >
-                      Preview
-                    </label>
-                    <div className="col-sm-10">
-                      <img
-                        src={inputs.gambar}
-                        height="300px"
-                        width="100%"
-                        alt="...."
-                        style={{ borderRadius: "15px" }}
-                      />
-                    </div>
+                <div className="row mb-3">
+                  <label
+                    htmlFor="image-berita"
+                    className="col-sm-2 col-form-label"
+                  >
+                    Preview
+                  </label>
+                  <div className="col-sm-10">
+                    <img
+                      src={inputs.gambar}
+                      height="300px"
+                      width="100%"
+                      alt="...."
+                      style={{ borderRadius: "15px" }}
+                    />
                   </div>
+                </div>
 
-                  <div className="row mb-3">
-                    <div className="col-sm-2"></div>
-                    <div className="col-sm-10">
-                      <button
-                        type="submit"
-                        className="btn btn-primary btn-simpan"
-                      >
-                        Ubah
-                      </button>
-                      <button
-                        type="reset"
-                        className="btn btn-danger ms-2 btn-batal"
-                      >
-                        Batal
-                      </button>
-                    </div>
+                <div className="row mb-3">
+                  <div className="col-sm-2"></div>
+                  <div className="col-sm-10">
+                    <button
+                      type="submit"
+                      className="btn btn-primary btn-simpan"
+                    >
+                      Ubah
+                    </button>
+                    <button
+                      type="reset"
+                      className="btn btn-danger ms-2 btn-batal"
+                    >
+                      Batal
+                    </button>
                   </div>
-                </form>
-              )}
-            </div>
+                </div>
+              </form>
+            )}
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

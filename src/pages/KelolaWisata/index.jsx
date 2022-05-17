@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import DashboardHeader from "../../components/DashboardHeader";
+import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 import TableWisata from "../../components/TableWisata";
 
 // Apollo Client
@@ -12,8 +13,6 @@ import { GET_LISTWISATA } from "../../graphql/queries";
 
 // Hasura GraphQL Mutations
 import { DELETE_WSIATA_BY_ID } from "../../graphql/mutations";
-
-import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 
 // Third Party
 import Swal from "sweetalert2";
@@ -41,7 +40,8 @@ const KelolaWisata = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteWisata({
@@ -78,17 +78,23 @@ const KelolaWisata = () => {
                     <table>
                       <thead>
                         <tr>
-                          <th className="text-center" style={{ width: "15%" }}>
+                          <th className="text-center" style={{ width: "5%" }}>
                             No
                           </th>
-                          <th>Nama Wisata</th>
-                          <th>Kategori</th>
-                          <th>Alamat</th>
-                          <th>Deskripsi</th>
+                          <th className="text-center" style={{ width: "15%" }}>
+                            Nama Wisata
+                          </th>
+                          <th className="text-center" style={{ width: "5%" }}>
+                            Kategori
+                          </th>
+                          <th className="text-center" style={{ width: "20%" }}>
+                            Alamat
+                          </th>
+                          <th className="text-center">Deskripsi</th>
                           <th
                             className="text-center"
                             colSpan={2}
-                            style={{ width: "35%" }}
+                            style={{ width: "10%" }}
                           >
                             Actions
                           </th>

@@ -29,6 +29,7 @@ import KelolaUlasan from "./pages/KelolaUlasan";
 
 import KelolaAdmin from "./pages/KelolaAdmin";
 import InputAdmin from "./pages/InputAdmin";
+import UbahAdmin from "./pages/UbahAdmin";
 
 import PrivateRoutes from "./PrivateRoutes";
 
@@ -51,7 +52,7 @@ const App = () => {
       </Route>
 
       <Route path="/tentang" element={<Tentang />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/admin-area/login" element={<Login />} />
 
       <Route element={<PrivateRoutes />}>
         <Route path="/kelola-wisata">
@@ -72,6 +73,7 @@ const App = () => {
       <Route path="/kelola-admin">
         <Route element={<KelolaAdmin />} index />
         <Route path="input-admin" element={<InputAdmin />} />
+        <Route path="ubah-admin/:id" element={<UbahAdmin />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

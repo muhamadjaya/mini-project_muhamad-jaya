@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar";
 import DashboardHeader from "../../components/DashboardHeader";
+import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 import TableBerita from "../../components/TableBerita";
 
 // Apollo Client
@@ -12,8 +13,6 @@ import { GET_LISTBERITA } from "../../graphql/queries";
 
 // Hasura GraphQL Mutations
 import { DELETE_BERITA_BY_ID } from "../../graphql/mutations";
-
-import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 
 // Third Party
 import Swal from "sweetalert2";
@@ -41,7 +40,8 @@ const KelolaBerita = () => {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "Ya",
+      cancelButtonText: "Tidak",
     }).then((result) => {
       if (result.isConfirmed) {
         deleteBerita({

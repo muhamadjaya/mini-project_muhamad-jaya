@@ -15,7 +15,7 @@ const Tentang = () => {
           <div className="row">
             <div className="col-12 col-lg-7">
               <div className="section1-left">
-                <h5 className="title-selamat-datang">Tentang Kami</h5>
+                <h5 className="title-selamat-datang">TENTANG KAMI</h5>
                 <h2 className="sub-title-selamat-datang">
                   Membantu kamu <br /> menemukan tempat wisata <br /> terbaik
                   untuk berlibur

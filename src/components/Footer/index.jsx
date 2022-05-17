@@ -63,13 +63,13 @@ const Footer = () => {
               <p className="wave-underline ps-4">〰︎〰︎〰︎〰︎〰︎</p>
               <ul style={{ listStyleType: "none" }}>
                 <li>
-                  <Link to="/kategori/wisataalam">Wisata Alam</Link>
+                  <Link to="/kategori/wisata-alam">Wisata Alam</Link>
                 </li>
                 <li>
-                  <Link to="/kategori/wisatapantai">Wisata Pantai</Link>
+                  <Link to="/kategori/wisata-pantai">Wisata Pantai</Link>
                 </li>
                 <li>
-                  <Link to="/kategori/wisatakuliner">Wisata Kuliner</Link>
+                  <Link to="/kategori/wisata-kuliner">Wisata Kuliner</Link>
                 </li>
               </ul>
             </div>

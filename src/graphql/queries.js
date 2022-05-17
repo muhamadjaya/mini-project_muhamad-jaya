@@ -257,3 +257,25 @@ export const GET_WISATA_KULINER_BY_NAME = gql`
 `;
 
 // End of Query Kategori Wisata Kuliner
+
+export const GET_ADMIN_BY_ID = gql`
+  query getAdminById($id: Int!) {
+    admin(where: { id: { _eq: $id } }) {
+      id
+      nama_admin
+      username
+      password
+    }
+  }
+`;
+
+export const GET_ADMIN_BY_USERNAME = gql`
+  query getAdminByUsername($username: String!) {
+    admin(where: { username: { _eq: $username } }) {
+      id
+      nama_admin
+      username
+      password
+    }
+  }
+`;
