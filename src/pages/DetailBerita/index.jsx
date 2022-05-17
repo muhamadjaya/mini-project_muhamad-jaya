@@ -19,7 +19,7 @@ const DetailBerita = () => {
     nextFetchPolicy: "no-cache",
   });
 
-  console.log("ini data berita", data);
+  // console.log("ini data berita", data);
 
   return (
     <>

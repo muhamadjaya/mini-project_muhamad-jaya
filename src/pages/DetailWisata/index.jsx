@@ -20,7 +20,7 @@ const DetailWisata = () => {
     nextFetchPolicy: "no-cache",
   });
 
-  console.log("ini data wisata", data);
+  // console.log("ini data wisata", data);
 
   return (
     <>

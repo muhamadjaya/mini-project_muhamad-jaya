@@ -6,7 +6,7 @@ import FormInputAdmin from "../../components/FormInputAdmin";
 
 const InputAdmin = () => {
   return (
-    <>
+    <div className="main-content-form-input-admin">
       <Sidebar />
       <div className="main-content">
         <DashboardHeader />
@@ -15,7 +15,7 @@ const InputAdmin = () => {
           <FormInputAdmin />
         </main>
       </div>
-    </>
+    </div>
   );
 };
 
