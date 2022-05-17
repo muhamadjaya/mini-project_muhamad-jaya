@@ -171,7 +171,7 @@ const CardWisata = () => {
       loading_by_kuliner ? (
         <LoadingSvg />
       ) : isInitialQuery ? (
-        <div className="main-content">
+        <div className="main-contents">
           {currentPath === "alam" ? (
             <div className="row row-cols-1 row-cols-md-3">
               {data_alam?.wisata.map((value, valueIdx) => (
