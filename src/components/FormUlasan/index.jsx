@@ -9,8 +9,6 @@ import { INSERT_ULASAN } from "../../graphql/mutations";
 const FormUlasan = ({ dataWisata }) => {
   const idwisata = dataWisata.wisata[0].id;
 
-  console.log("ini id wisata", idwisata);
-
   const { data, loading, error, refetch } = useQuery(GET_LISTULASAN, {
     fetchPolicy: "no-cache",
     nextFetchPolicy: "no-cache",
@@ -32,13 +30,7 @@ const FormUlasan = ({ dataWisata }) => {
 
     newInputs[key] = value;
 
-    // Kepo isi variable
-    console.log(newInputs[key]);
-
     setInputs(newInputs);
-
-    // Kepo isi variable
-    console.log(newInputs);
   };
 
   const handleSubmit = (e) => {
