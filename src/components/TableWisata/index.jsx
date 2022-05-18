@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 const TableWisata = ({
   idx,
   id,
+  gambar,
   nama_wisata,
   kategori,
   alamat,
@@ -13,6 +14,13 @@ const TableWisata = ({
   return (
     <>
       <td className="text-center">{idx + 1}</td>
+      <td>
+        <img
+          src={gambar}
+          alt="gbr kelola"
+          style={{ height: "50px", width: "80px", borderRadius: "10px" }}
+        />
+      </td>
       <td>{nama_wisata}</td>
       <td className="text-center">{kategori}</td>
       <td>{alamat}</td>

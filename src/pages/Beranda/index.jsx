@@ -14,9 +14,9 @@ import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 import YoutubeEmbed from "../../components/YoutubeEmbed";
 
 // Images
-import Image1 from "../../assets/images/slide1.png";
-import Image2 from "../../assets/images/slide2.png";
-import Image3 from "../../assets/images/slide3.png";
+import Image1 from "../../assets/images/slide1.jpg";
+import Image2 from "../../assets/images/slide2.jpg";
+import Image3 from "../../assets/images/slide3.jpg";
 import ImageTraveler from "../../assets/images/traveler.gif";
 import ImageNews from "../../assets/images/news.gif";
 import ImageMarket from "../../assets/images/market-food.jpg";
@@ -199,7 +199,7 @@ const Beranda = () => {
                   type="button"
                   className="btn btn-primary button-eksplore mt-2"
                   onClick={() => {
-                    navigate("/wisata");
+                    navigate(`/kategori/${"wisata-alam"}`);
                   }}
                 >
                   Eksplor Sekarang →

@@ -5,6 +5,10 @@
   font-family: "Manrope", sans-serif;
 }
 
+body {
+  overflow-x: hidden !important;
+}
+
 /* Navbar Style */
 .customNav {
   background-color: #fcfcfc !important;
@@ -305,9 +309,10 @@
 
 .detail-wisata-image,
 .detail-berita-image {
-  height: 40%;
+  height: 100%;
   width: 100%;
   border-radius: 10px;
+  object-fit: cover !important;
 }
 
 .head-title-detail-wisata,
@@ -728,9 +733,9 @@ iframe {
   font-weight: 600 !important;
 }
 
-.image-carousel-hero {
+/* .image-carousel-hero {
   filter: brightness(80%);
-}
+} */
 
 /* Enf of Button Styles */
 
@@ -843,4 +848,8 @@ iframe {
   margin-top: -4rem;
   font-weight: 800;
   color: #1501e5;
+}
+
+.banner-detail-wisata {
+  height: 400px;
 }

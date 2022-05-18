@@ -33,7 +33,7 @@ const DetailWisata = () => {
       ) : (
         <>
           {data?.wisata.map((value, valueIdx) => (
-            <div className="container mt-5 pt-5" key={valueIdx}>
+            <div className="container mt-4 pt-5" key={valueIdx}>
               <div className="row">
                 <div className="col-12 col-lg-12 pt-5">
                   <div className="banner-detail-wisata">

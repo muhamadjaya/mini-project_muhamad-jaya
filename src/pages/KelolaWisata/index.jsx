@@ -81,13 +81,14 @@ const KelolaWisata = () => {
                           <th className="text-center" style={{ width: "5%" }}>
                             No
                           </th>
+                          <th className="text-center">Gambar</th>
                           <th className="text-center" style={{ width: "15%" }}>
                             Nama Wisata
                           </th>
                           <th className="text-center" style={{ width: "5%" }}>
                             Kategori
                           </th>
-                          <th className="text-center" style={{ width: "20%" }}>
+                          <th className="text-center" style={{ width: "15%" }}>
                             Alamat
                           </th>
                           <th className="text-center">Deskripsi</th>
@@ -106,6 +107,7 @@ const KelolaWisata = () => {
                             <TableWisata
                               idx={valueIdx}
                               id={value.id}
+                              gambar={value.gambar}
                               nama_wisata={value.nama_wisata}
                               kategori={value.kategori}
                               alamat={value.alamat}

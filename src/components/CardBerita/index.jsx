@@ -103,8 +103,30 @@ const CardBerita = () => {
                     </p>
                     <p className="card-text">
                       <small className="text-muted">
-                        Diposting pada tanggal {value.tgl_posting.substr(8, 2)}-
-                        {value.tgl_posting.substr(5, 2)}-
+                        Diposting pada tanggal {value.tgl_posting.substr(8, 2)}{" "}
+                        {value.tgl_posting.substr(5, 2) === "01"
+                          ? "Januari"
+                          : value.tgl_posting.substr(5, 2) === "02"
+                          ? "Februari"
+                          : value.tgl_posting.substr(5, 2) === "03"
+                          ? "Maret"
+                          : value.tgl_posting.substr(5, 2) === "04"
+                          ? "April"
+                          : value.tgl_posting.substr(5, 2) === "05"
+                          ? "Mei"
+                          : value.tgl_posting.substr(5, 2) === "06"
+                          ? "Juni"
+                          : value.tgl_posting.substr(5, 2) === "07"
+                          ? "Juli"
+                          : value.tgl_posting.substr(5, 2) === "08"
+                          ? "Agustus"
+                          : value.tgl_posting.substr(5, 2) === "09"
+                          ? "September"
+                          : value.tgl_posting.substr(5, 2) === "10"
+                          ? "Oktober"
+                          : value.tgl_posting.substr(5, 2) === "11"
+                          ? "November"
+                          : "Desember"}{" "}
                         {value.tgl_posting.substr(0, 4)}
                       </small>
                     </p>
