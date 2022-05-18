@@ -5,6 +5,10 @@
   font-family: "Manrope", sans-serif;
 }
 
+body {
+  overflow-x: hidden !important;
+}
+
 /* Navbar Style */
 .customNav {
   background-color: #fcfcfc !important;
@@ -131,7 +135,6 @@
 .card-img-new-wisata-left {
   height: 508px;
   border-radius: 15px !important;
-  /* filter: brightness(90%); */
 }
 
 .card-img-new-wisata-left:hover {
@@ -157,6 +160,7 @@
 .img-new-wisata {
   border-radius: 15px !important;
   height: 100%;
+  object-fit: cover !important;
 }
 
 /* End of Image Overlay */
@@ -200,6 +204,7 @@
 .img-new-berita {
   border-radius: 20px !important;
   height: 100%;
+  object-fit: cover !important;
 }
 
 .card-title-berita {
@@ -284,6 +289,7 @@
   width: 100%;
   height: 100%;
   border-radius: 17px 17px 0 0 !important;
+  object-fit: cover !important;
 }
 
 .card-body a {
@@ -303,9 +309,10 @@
 
 .detail-wisata-image,
 .detail-berita-image {
-  height: 40%;
+  height: 100%;
   width: 100%;
   border-radius: 10px;
+  object-fit: cover !important;
 }
 
 .head-title-detail-wisata,
@@ -377,6 +384,7 @@ svg {
   width: 100%;
   height: 100%;
   border-radius: 17px 0 0 17px !important;
+  object-fit: cover !important;
 }
 
 /* End of Berita */
@@ -725,9 +733,9 @@ iframe {
   font-weight: 600 !important;
 }
 
-.image-carousel-hero {
+/* .image-carousel-hero {
   filter: brightness(80%);
-}
+} */
 
 /* Enf of Button Styles */
 
@@ -840,4 +848,8 @@ iframe {
   margin-top: -4rem;
   font-weight: 800;
   color: #1501e5;
+}
+
+.banner-detail-wisata {
+  height: 400px;
 }

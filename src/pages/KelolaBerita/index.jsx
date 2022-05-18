@@ -81,6 +81,7 @@ const KelolaBerita = () => {
                           <th className="text-center" style={{ width: "5%" }}>
                             No
                           </th>
+                          <th className="text-center">Gambar</th>
                           <th className="text-center" style={{ width: "25%" }}>
                             Judul Berita
                           </th>
@@ -103,6 +104,7 @@ const KelolaBerita = () => {
                             <TableBerita
                               idx={valueIdx}
                               id={value.id}
+                              gambar={value.gambar}
                               judul={value.judul}
                               deskripsi={value.deskripsi}
                               tgl_posting={value.tgl_posting}
