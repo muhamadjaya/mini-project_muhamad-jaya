@@ -131,7 +131,6 @@
 .card-img-new-wisata-left {
   height: 508px;
   border-radius: 15px !important;
-  /* filter: brightness(90%); */
 }
 
 .card-img-new-wisata-left:hover {
@@ -157,6 +156,7 @@
 .img-new-wisata {
   border-radius: 15px !important;
   height: 100%;
+  object-fit: cover !important;
 }
 
 /* End of Image Overlay */
@@ -200,6 +200,7 @@
 .img-new-berita {
   border-radius: 20px !important;
   height: 100%;
+  object-fit: cover !important;
 }
 
 .card-title-berita {
@@ -284,6 +285,7 @@
   width: 100%;
   height: 100%;
   border-radius: 17px 17px 0 0 !important;
+  object-fit: cover !important;
 }
 
 .card-body a {
@@ -377,6 +379,7 @@ svg {
   width: 100%;
   height: 100%;
   border-radius: 17px 0 0 17px !important;
+  object-fit: cover !important;
 }
 
 /* End of Berita */

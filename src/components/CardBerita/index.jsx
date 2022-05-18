@@ -62,7 +62,7 @@ const CardBerita = () => {
               className="form-control searchbyname-input"
             />
           </div>
-          <div className="col-md-2">
+          <div className="col-md-2 mt-1">
             <button
               type="submit"
               className="btn btn-primary btn-search"
