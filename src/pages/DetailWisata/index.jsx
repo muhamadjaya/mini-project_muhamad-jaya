@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import FormUlasan from "../../components/FormUlasan";
@@ -10,17 +10,27 @@ import { useQuery } from "@apollo/client";
 import { GET_WISATA_AND_ULASAN } from "../../graphql/queries";
 
 import { useParams } from "react-router-dom";
+// TawkTo
+import TawkTo from "tawkto-react";
 
 const DetailWisata = () => {
   const { id } = useParams();
 
-  const { data, loading, error, refetch } = useQuery(GET_WISATA_AND_ULASAN, {
+  const { data, loading } = useQuery(GET_WISATA_AND_ULASAN, {
     variables: { id: id },
     fetchPolicy: "no-cache",
     nextFetchPolicy: "no-cache",
   });
 
   // console.log("ini data wisata", data);
+
+  useEffect(() => {
+    var tawk = new TawkTo("62850c19b0d10b6f3e72dfbe", "1g3brehf6");
+
+    tawk.onStatusChange((status) => {
+      // console.log(status)
+    });
+  }, []);
 
   return (
     <>

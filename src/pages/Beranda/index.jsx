@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
 // React Redux
 import { useSelector } from "react-redux";
@@ -29,6 +29,9 @@ import "react-multi-carousel/lib/styles.css";
 import useSubscriptionWisata from "../../hooks/useSubscriptionWisata";
 import useSubscriptionBerita from "../../hooks/useSubscriptionBerita";
 
+// TawkTo
+import TawkTo from "tawkto-react";
+
 const Beranda = () => {
   const navigate = useNavigate();
 
@@ -58,6 +61,14 @@ const Beranda = () => {
       items: 1,
     },
   };
+
+  useEffect(() => {
+    var tawk = new TawkTo("62850c19b0d10b6f3e72dfbe", "1g3brehf6");
+
+    tawk.onStatusChange((status) => {
+      // console.log(status)
+    });
+  }, []);
 
   return (
     <>

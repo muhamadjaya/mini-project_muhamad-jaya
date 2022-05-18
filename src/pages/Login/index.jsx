@@ -13,7 +13,7 @@ import { GET_ADMIN } from "../../graphql/queries";
 import Cookies from "universal-cookie";
 
 const Login = () => {
-  const [getAdmin, { data, loading, error }] = useLazyQuery(GET_ADMIN, {
+  const [getAdmin, { data, loading }] = useLazyQuery(GET_ADMIN, {
     onCompleted: (data) => {
       // console.log(data);
     },

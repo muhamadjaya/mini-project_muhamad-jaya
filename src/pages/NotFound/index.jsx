@@ -4,11 +4,8 @@ import Footer from "../../components/Footer";
 import ImageNotFound from "../../assets/images/not-found.gif";
 
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 const NotFound = () => {
-  const navigate = useNavigate();
-
   return (
     <>
       <Navbar />

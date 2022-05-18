@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar";
-import FormUlasan from "../../components/FormUlasan";
-import ListUlasan from "../../components/ListUlasan";
 import LoadingSvg from "../../components/LoadingSvg/LoadingSvg";
 // Apollo Client
 import { useQuery } from "@apollo/client";
@@ -10,16 +8,27 @@ import { GET_BERITA_BY_ID } from "../../graphql/queries";
 
 import { useParams } from "react-router-dom";
 
+// TawkTo
+import TawkTo from "tawkto-react";
+
 const DetailBerita = () => {
   const { id } = useParams();
 
-  const { data, loading, error, refetch } = useQuery(GET_BERITA_BY_ID, {
+  const { data, loading } = useQuery(GET_BERITA_BY_ID, {
     variables: { id: id },
     fetchPolicy: "no-cache",
     nextFetchPolicy: "no-cache",
   });
 
   // console.log("ini data berita", data);
+
+  useEffect(() => {
+    var tawk = new TawkTo("62850c19b0d10b6f3e72dfbe", "1g3brehf6");
+
+    tawk.onStatusChange((status) => {
+      // console.log(status)
+    });
+  }, []);
 
   return (
     <>
