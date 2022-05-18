@@ -1,11 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "../../components/Navbar";
 import Hero from "../../components/Hero";
 import Footer from "../../components/Footer";
 
 import ImageTentang from "../../assets/images/about.png";
 
+// TawkTo
+import TawkTo from "tawkto-react";
+
 const Tentang = () => {
+  useEffect(() => {
+    var tawk = new TawkTo("62850c19b0d10b6f3e72dfbe", "1g3brehf6");
+
+    tawk.onStatusChange((status) => {
+      // console.log(status)
+    });
+  }, []);
+
   return (
     <>
       <Navbar />
