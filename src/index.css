@@ -816,3 +816,28 @@ iframe {
   font-weight: 600;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25) !important;
 }
+
+.btn-notfound {
+  padding: 0.5em 2em !important;
+  text-decoration: none !important;
+  border: 1px solid transparent !important;
+  transition: 0.9s ease !important;
+  background: #1501e5 !important;
+  color: #fff !important;
+  border-radius: 2.5em !important;
+}
+
+.btn-notfound:hover {
+  border: 1px solid #1a0da5 !important;
+  background: #1a0da5 !important;
+}
+
+.img-not-found {
+  margin-left: 10rem !important;
+}
+
+.title-notfound {
+  margin-top: -4rem;
+  font-weight: 800;
+  color: #1501e5;
+}

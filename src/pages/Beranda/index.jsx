@@ -1,4 +1,7 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+
+// React Redux
+import { useSelector } from "react-redux";
 
 // React Router Dom
 import { useNavigate } from "react-router-dom";
@@ -27,6 +30,11 @@ import useSubscriptionWisata from "../../hooks/useSubscriptionWisata";
 import useSubscriptionBerita from "../../hooks/useSubscriptionBerita";
 
 const Beranda = () => {
+  const navigate = useNavigate();
+
+  // Global State
+  const contents = useSelector((state) => state.contents.contents);
+
   // Subscription
   const { dataWisata, loadingWisata } = useSubscriptionWisata();
 
@@ -50,8 +58,6 @@ const Beranda = () => {
       items: 1,
     },
   };
-
-  const navigate = useNavigate();
 
   return (
     <>
@@ -173,18 +179,21 @@ const Beranda = () => {
             <div className="col-12 col-lg-6">
               <div className="section1-left">
                 <h5 className="title-selamat-datang">
-                  SELAMAT DATANG DI WONDERFUL BANTEN
+                  {/* SELAMAT DATANG DI WONDERFUL BANTEN  */}
+                  {contents[0].title}
                 </h5>
                 <h2 className="sub-title-selamat-datang">
-                  Keindahan alam yang diakui Dunia dapat kamu lihat di Provinsi
-                  Banten
+                  {/* Keindahan alam yang diakui Dunia dapat kamu lihat di Provinsi
+                  Banten */}
+                  {contents[0].subtitle}
                 </h2>
                 <p className="deskripsi-selamat-datang">
-                  Keindahan alam yang dimiliki Provinsi Banten menjadikannya
+                  {/* Keindahan alam yang dimiliki Provinsi Banten menjadikannya
                   sebagai wilayah yang masuk rekomendasi untuk dikunjungi saat
                   liburan. Memiliki Pantai, Gunung, Tempat Bersejarah dan Wahana
                   Atraksi yang ada di Provinsi Banten yang siap kalian kunjungi
-                  kapan saja.
+                  kapan saja. */}
+                  {contents[0].description}
                 </p>
                 <button
                   type="button"
@@ -219,15 +228,18 @@ const Beranda = () => {
             <div className="col-12 col-lg-12">
               <div className="rekomendasi-wisata-container container">
                 <h5 className="text-center title-rekomendasi-wisata">
-                  REKOMENDASI WISATA
+                  {/* REKOMENDASI WISATA */}
+                  {contents[1].title}
                 </h5>
                 <h2 className="text-center sub-titile-rekomendasi-wisata">
-                  Destinasi Wisata Yang Wajib Anda Kunjungi
+                  {/* Destinasi Wisata Yang Wajib Anda Kunjungi */}
+                  {contents[1].subtitle}
                 </h2>
                 <p className="text-center deskripsi-rekomendasi-wisata">
-                  Membantu kamu untuk menemukan tempat wisata terbaik yang
+                  {/* Membantu kamu untuk menemukan tempat wisata terbaik yang
                   sesuai dengan <br /> keinginan sebelum memulai petualangan mu
-                  di Banten.
+                  di Banten. */}
+                  {contents[1].description}
                 </p>
               </div>
             </div>
@@ -366,13 +378,18 @@ const Beranda = () => {
 
             <div className="col-12 col-lg-6">
               <div className="section3-right">
-                <h5 className="title-selamat-datang">BERITA WISATA</h5>
+                <h5 className="title-selamat-datang">
+                  {/* BERITA WISATA */}
+                  {contents[2].title}
+                </h5>
                 <h1 className="sub-title-selamat-datang">
-                  Berita Menarik Terkini Seputar Destinasi Wisata Banten
+                  {/* Berita Menarik Terkini Seputar Destinasi Wisata Banten */}
+                  {contents[2].subtitle}
                 </h1>
                 <p className="text-justify deskripsi-selamat-datang">
-                  Dapatkan berita terkini seputar destinasi wisata yang ada di
-                  Banten untuk kamu yang menarik untuk dibaca.
+                  {/* Dapatkan berita terkini seputar destinasi wisata yang ada di
+                  Banten untuk kamu yang menarik untuk dibaca. */}
+                  {contents[2].description}
                 </p>
                 <button
                   type="button"
@@ -402,15 +419,18 @@ const Beranda = () => {
               <div className="col-md-5">
                 <div className="banner-highlight-berita-right ps-1 pt-5">
                   <h1 className="title-artikel-berita fw-bold pt-5">
-                    ARTIKEL BERITA
+                    {/* ARTIKEL BERITA */}
+                    {contents[3].title}
                   </h1>
                   <h3 className="sub-title-artikel-berita">
-                    MENARIK DAN INFORMATIF
+                    {/* MENARIK DAN INFORMATIF */}
+                    {contents[3].subtitle}
                   </h3>
                   <p className="deskripsi-selamat-datang fs-6">
-                    Menyajikan berita terhangat yang menarik dan informatif
+                    {/* Menyajikan berita terhangat yang menarik dan informatif
                     sebagai bacaan yang mermanfaat untuk mengisi waktu kosong
-                    liburanmu.
+                    liburanmu. */}
+                    {contents[3].description}
                   </p>
                 </div>
               </div>
@@ -482,13 +502,18 @@ const Beranda = () => {
 
             <div className="col-12 col-lg-6">
               <div className="section3-right">
-                <h5 className="title-selamat-datang">WISATA KULINER FAVORIT</h5>
+                <h5 className="title-selamat-datang">
+                  {/* WISATA KULINER FAVORIT */}
+                  {contents[4].title}
+                </h5>
                 <h1 className="sub-title-selamat-datang">
-                  Kelezatan kuliner khas Banten yang dapat memanjakan lidahmu
+                  {/* Kelezatan kuliner khas Banten yang dapat memanjakan lidahmu */}
+                  {contents[4].subtitle}
                 </h1>
                 <p className="text-justify deskripsi-selamat-datang">
-                  Kunjungi destinasi wisata kuliner terbaik untuk menghilangkan
-                  lapar dan haus agar mengembalikan energimu disaat berlibur.
+                  {/* Kunjungi destinasi wisata kuliner terbaik untuk menghilangkan
+                  lapar dan haus agar mengembalikan energimu disaat berlibur. */}
+                  {contents[4].description}
                 </p>
                 <button
                   type="button"
