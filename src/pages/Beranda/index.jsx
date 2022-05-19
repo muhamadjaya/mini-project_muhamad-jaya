@@ -269,7 +269,7 @@ const Beranda = () => {
                           className="card text-white card-img-new-wisata-left"
                           onClick={() => {
                             navigate(
-                              `/wisata-${dataWisata?.wisata[0].kategori.toLowerCase()}/detail-wisata/${
+                              `/kategori/wisata-${dataWisata?.wisata[0].kategori.toLowerCase()}/detail-wisata/${
                                 dataWisata?.wisata[0].id
                               }`
                             );
@@ -300,7 +300,7 @@ const Beranda = () => {
                               className="card text-white card-img-new-wisata"
                               onClick={() => {
                                 navigate(
-                                  `/wisata-${dataWisata?.wisata[1].kategori.toLowerCase()}/detailwisata/${
+                                  `/kategori/wisata-${dataWisata?.wisata[1].kategori.toLowerCase()}/detail-wisata/${
                                     dataWisata?.wisata[1].id
                                   }`
                                 );
@@ -333,7 +333,7 @@ const Beranda = () => {
                               className="card text-white card-img-new-wisata"
                               onClick={() => {
                                 navigate(
-                                  `/wisata-${dataWisata?.wisata[2].kategori.toLowerCase()}/detail-wisata/${
+                                  `/kategori/wisata-${dataWisata?.wisata[2].kategori.toLowerCase()}/detail-wisata/${
                                     dataWisata?.wisata[2].id
                                   }`
                                 );
